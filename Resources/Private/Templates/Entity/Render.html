@@ -1,0 +1,6 @@
+{namespace p = Portrino\PxSemantic\ViewHelpers}
+<f:layout name="Jsonld" />
+<f:section name="entity">
+    <p:format.jsonld.encode value="{entity}" context="{settings.context}" dateTimeFormat="Y-m-d\TH:i:sO" />
+</f:section>
+

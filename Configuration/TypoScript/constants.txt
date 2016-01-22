@@ -1,0 +1,16 @@
+plugin.tx_pxsemantic {
+    view {
+        # cat=plugin.tx_pxsemantic/file; type=string; label=Path to template root (FE)
+        templateRootPath = EXT:px_semantic/Resources/Private/Templates/
+        # cat=plugin.tx_pxsemantic/file; type=string; label=Path to template partials (FE)
+        partialRootPath = EXT:px_semantic/Resources/Private/Partials/
+        # cat=plugin.tx_pxsemantic/file; type=string; label=Path to template layouts (FE)
+        layoutRootPath = EXT:px_semantic/Resources/Private/Layouts/
+    }
+    persistence {
+        storagePid =
+        recursive =
+    }
+    settings {
+    }
+}

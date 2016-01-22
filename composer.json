@@ -1,0 +1,19 @@
+{
+  "name": "portrino/px_semantic",
+  "type": "typo3-cms-extension",
+  "description": "",
+  "homepage": "http://typo3.org",
+  "license": ["GPL-2.0+"],
+  "version": "1.0.0",
+  "autoload": {
+    "psr-4": {
+      "Portrino\\PxSemantic\\": "Classes"
+    }
+  },
+  "replace": {
+    "px_semantic": "*"
+  },
+  "require-dev": {
+    "api-platform/schema-generator": "dev-master"
+  }
+}

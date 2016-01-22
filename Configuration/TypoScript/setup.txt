@@ -1,0 +1,91 @@
+plugin.tx_pxsemantic {
+    view {
+        templateRootPath >
+        templateRootPaths {
+            0 = {$plugin.tx_pxsemantic.view.templateRootPath}
+        }
+        partialRootPath >
+        partialRootPaths {
+            0 = {$plugin.tx_pxsemantic.view.partialRootPath}
+        }
+        layoutRootPath >
+        layoutRootPaths {
+            0 = {$plugin.tx_pxsemantic.view.layoutRootPath}
+        }
+    }
+    persistence {
+        storagePid = {$plugin.tx_pxsemantic.persistence.storagePid}
+        recursive = {$plugin.tx_pxsemantic.persistence.recursive}
+    }
+}
+
+# global extbase settings
+config.tx_extbase {
+    persistence {
+        storagePid = {$plugin.tx_pxsemantic.persistence.storagePid}
+        recursive = {$plugin.tx_pxsemantic.persistence.recursive}
+
+        classes {
+            Portrino\PxSemantic\Domain\Model\Page {
+                mapping {
+                    tableName = pages
+                    // disable single table inheritance
+                    recordType =
+                    columns {
+                        crdate.mapOnProperty = crdate
+                        tstamp.mapOnProperty = tstamp
+                        backend_layout.mapOnProperty = backendLayout
+                    }
+                }
+            }
+        }
+    }
+}
+
+lib.structuredDataMarkup = USER
+lib.structuredDataMarkup {
+    userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+    extensionName = PxSemantic
+    pluginName = StructuredDataMarkup
+    vendorName = Portrino
+    controller = Entity
+    action = render
+    view < plugin.tx_pxsemantic.view
+    persistence < plugin.tx_pxsemantic.persistence
+    settings {
+        context = http://schema.org
+        # classname of the entity (root) which should be rendered
+        # entity = Portrino\PxSemantic\SchemaOrg\Thing
+        processors {
+            # Processors should implement Portrino\PxSemantic\Processors\ProcessorInterface
+            # Processors will be executed in order of the array keys
+            # 0 {
+            #    className = Portrino\PxSemantic\Processor\ExampleProcessor
+            #    settings {
+            #        foo = bar
+            #    }
+            # }
+        }
+    }
+}
+
+lib.structuredDataMarkupExample < lib.structuredDataMarkup
+lib.structuredDataMarkupExample {
+    settings {
+        # classname of the entity (root) which should be rendered
+        entity = Portrino\PxSemantic\SchemaOrg\CreativeWork
+        processors {
+            # Processors should implement Portrino\PxSemantic\Processors\ProcessorInterface
+            # Processors will be executed in order of the array keys
+            0 {
+                className = Portrino\PxSemantic\Processor\PageProcessor
+                settings {
+                    media {
+                        height = 800
+                        width = 800
+                    }
+                }
+            }
+        }
+    }
+}
