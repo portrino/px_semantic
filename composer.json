@@ -13,6 +13,15 @@
   "replace": {
     "px_semantic": "*"
   },
+  "repositories": [
+    {
+      "type": "git",
+      "url": "https://github.com/FluidTYPO3/vhs"
+    }
+  ],
+  "require": {
+    "fluidtypo3/vhs": "2.4.*"
+  },
   "require-dev": {
     "api-platform/schema-generator": "dev-master"
   }
