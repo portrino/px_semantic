@@ -69,8 +69,8 @@ lib.structuredDataMarkup {
     }
 }
 
-lib.structuredDataMarkupExample < lib.structuredDataMarkup
-lib.structuredDataMarkupExample {
+lib.structuredDataMarkupPageExample < lib.structuredDataMarkup
+lib.structuredDataMarkupPageExample {
     settings {
         # classname of the entity (root) which should be rendered
         entity = Portrino\PxSemantic\SchemaOrg\CreativeWork
@@ -83,6 +83,55 @@ lib.structuredDataMarkupExample {
                     media {
                         height = 800
                         width = 800
+                    }
+                }
+            }
+        }
+    }
+}
+# Renders static information about the corporate contact
+# see here: https://developers.google.com/structured-data/customize/contact-points
+# or here: https://developers.google.com/schemas/reference/types/Organization
+lib.structuredDataMarkupOrganizationExample < lib.structuredDataMarkup
+lib.structuredDataMarkupOrganizationExample {
+    settings {
+        entity = Portrino\PxSemantic\SchemaOrg\Organization
+        processors {
+            # processor to set properties of an entity via TypoScript
+            0 {
+                className = Portrino\PxSemantic\Processor\TypoScriptProcessor
+                settings {
+                    # for string values you do not have to use TEXT datatype, you can just write "key = value"
+                    # US, GB, DE
+                    areaServed = DE
+
+                    contactPoint {
+                        # "customer support", "technical support", "billing support", ...
+                        contactType = customer support
+                        telephone = +49-123-456-78
+                    }
+
+                    logo {
+                        # get the logo image uri via TS and prepend the baseUrl to get the absolute path
+                        url = IMG_RESOURCE
+                        url {
+                            file = fileadmin/company_logo.
+                            stdWrap.wrap = {TSFE:baseUrl}|
+                            stdWrap.insertData = 1
+                        }
+                    }
+                    # special datatype from px_semantic EXT to define arrays
+                    sameAs = PX_SEMANTIC_ARRAY
+                    sameAs {
+                        0 = http://www.facebook.com/foo
+                        1 = http://www.youtube.com/user/bar
+                        2 = http://www.pinterest.com/fooBar/
+                    }
+                    # use typolink to generate link to the root page
+                    url = TEXT
+                    url.typolink {
+                        parameter = 1
+                        returnLast = url
                     }
                 }
             }

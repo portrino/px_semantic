@@ -3,19 +3,18 @@
 namespace Portrino\PxSemantic\SchemaOrg;
 
 /**
- * The basic data types such as Integers, Strings, etc.
+ * Entities that have a somewhat fixed, physical extension.
  *
- * @see http://schema.org/DataType Documentation on Schema.org
+ * @see http://schema.org/Place Documentation on Schema.org
  *
  * @author Andre Wuttig<wuttig@portrino.de>
  */
-class DataType extends extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
+class Place extends Thing {
 
     /**
      * @var int
      */
-    private
-    $id;
+    private $id;
 
     /**
      * Sets id.
@@ -24,8 +23,7 @@ class DataType extends extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
      *
      * @return $this
      */
-    public
-    function setId($id) {
+    public function setId($id) {
         $this->id = $id;
 
         return $this;
@@ -36,8 +34,7 @@ class DataType extends extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
      *
      * @return int
      */
-    public
-    function getId() {
+    public function getId() {
         return $this->id;
     }
 }

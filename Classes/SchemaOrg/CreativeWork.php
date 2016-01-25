@@ -8,36 +8,33 @@ namespace Portrino\PxSemantic\SchemaOrg;
  * @see http://schema.org/CreativeWork Documentation on Schema.org
  *
  * @author Andre Wuttig<wuttig@portrino.de>
- *
- *
- * @package Portrino\PxSemantic\SchemaOrg
  */
-class CreativeWork extends Thing {
+abstract class CreativeWork extends Thing {
 
     /**
      * @var AggregateRating The overall rating, based on a collection of reviews or ratings, of the item.
      */
-    protected $aggregateRating;
+    private $aggregateRating;
 
     /**
      * @var Person The author of this content. Please note that author is special in that HTML 5 provides a special mechanism for indicating authorship via the rel tag. That is equivalent to this and may be used interchangeably.
      */
-    protected $author;
+    private $author;
 
     /**
      * @var \DateTime The date on which the CreativeWork was created or the item was added to a DataFeed.
      */
-    protected $dateCreated;
+    private $dateCreated;
 
     /**
      * @var \DateTime The date on which the CreativeWork was most recently modified or when the item's entry was modified within a DataFeed.
      */
-    protected $dateModified;
+    private $dateModified;
 
     /**
      * @var \DateTime Date of first broadcast/publication.
      */
-    protected $datePublished;
+    private $datePublished;
 
     /**
      * Sets aggregateRating.

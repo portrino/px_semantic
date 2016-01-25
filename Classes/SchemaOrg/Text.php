@@ -9,6 +9,6 @@ namespace Portrino\PxSemantic\SchemaOrg;
  *
  * @author Andre Wuttig<wuttig@portrino.de>
  */
-abstract class Text extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
+abstract class Text {
 
 }

@@ -126,7 +126,7 @@ class PageProcessor implements \Portrino\PxSemantic\Processor\ProcessorInterface
                     $width = $settings['media']['width'] ? (int)$settings['media']['width'] : 696;
                     $height = $settings['media']['height'] ? (int)$settings['media']['height'] : 'auto';
 
-                    $processingInstructions = array(
+                    $processingInstructions = array (
                         'width' => $width,
                         'height' => $height,
                     );

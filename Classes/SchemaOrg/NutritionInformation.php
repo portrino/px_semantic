@@ -19,17 +19,17 @@ class NutritionInformation extends StructuredValue {
     /**
      * @var Energy The number of calories.
      */
-    protected $calories;
+    private $calories;
 
     /**
      * @var Mass The number of grams of fat.
      */
-    protected $fatContent;
+    private $fatContent;
 
     /**
      * @var string The serving size, in terms of the number of volume or mass.
      */
-    protected $servingSize;
+    private $servingSize;
 
     /**
      * Sets id.

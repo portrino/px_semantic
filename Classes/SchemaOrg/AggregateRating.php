@@ -19,7 +19,7 @@ class AggregateRating extends Rating {
     /**
      * @var int The count of total number of ratings.
      */
-    protected $ratingCount;
+    private $ratingCount;
 
     /**
      * Sets id.

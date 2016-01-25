@@ -23,7 +23,7 @@ class ItemList extends Intangible {
      *
      *             Note: The order of elements in your mark-up is not sufficient for indicating the order or elements. Use ListItem with a 'position' property in such cases.
      */
-    protected $itemListElement;
+    private $itemListElement;
 
     /**
      * Sets id.

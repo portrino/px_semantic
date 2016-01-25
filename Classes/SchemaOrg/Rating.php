@@ -14,22 +14,22 @@ abstract class Rating extends Intangible {
     /**
      * @var string The highest value allowed in this rating system. If bestRating is omitted, 5 is assumed.
      */
-    protected $bestRating;
+    private $bestRating;
 
     /**
      * @var string The rating for the content.
      */
-    protected $ratingValue;
+    private $ratingValue;
 
     /**
      * @var string The lowest value allowed in this rating system. If worstRating is omitted, 1 is assumed.
      */
-    protected $worstRating;
+    private $worstRating;
 
     /**
      * @var string
      */
-    protected $ratingCount;
+    private $ratingCount;
 
     /**
      * Sets bestRating.

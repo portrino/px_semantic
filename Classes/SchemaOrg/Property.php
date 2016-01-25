@@ -17,24 +17,24 @@ class Property extends Intangible {
     private $id;
 
     /**
-     * @var SchemaOrgClass Relates a property to a class that is (one of) the type(s) the property is expected to be used on.
+     * @var Class Relates a property to a class that is (one of) the type(s) the property is expected to be used on.
      */
-    protected $domainIncludes;
+    private $domainIncludes;
 
     /**
      * @var Property Relates a property to a property that is its inverse. Inverse properties relate the same pairs of items to each other, but in reversed direction. For example, the 'alumni' and 'alumniOf' properties are inverseOf each other. Some properties don't have explicit inverses; in these situations RDFa and JSON-LD syntax for reverse properties can be used.
      */
-    protected $inverseOf;
+    private $inverseOf;
 
     /**
-     * @var SchemaOrgClass Relates a term (i.e. a property, class or enumeration) to one that supersedes it.
+     * @var Class Relates a term (i.e. a property, class or enumeration) to one that supersedes it.
      */
-    protected $supersededBy;
+    private $supersededBy;
 
     /**
-     * @var SchemaOrgClass Relates a property to a class that constitutes (one of) the expected type(s) for values of the property.
+     * @var Class Relates a property to a class that constitutes (one of) the expected type(s) for values of the property.
      */
-    protected $rangeIncludes;
+    private $rangeIncludes;
 
     /**
      * Sets id.
@@ -61,11 +61,11 @@ class Property extends Intangible {
     /**
      * Sets domainIncludes.
      *
-     * @param SchemaOrgClass $domainIncludes
+     * @param SchemaClass $domainIncludes
      *
      * @return $this
      */
-    public function setDomainIncludes(SchemaOrgClass $domainIncludes = NULL) {
+    public function setDomainIncludes(SchemaClass $domainIncludes = NULL) {
         $this->domainIncludes = $domainIncludes;
 
         return $this;
@@ -74,10 +74,9 @@ class Property extends Intangible {
     /**
      * Gets domainIncludes.
      *
-     * @return SchemaOrgClass
+     * @return SchemaClass
      */
-    public
-    function getDomainIncludes() {
+    public function getDomainIncludes() {
         return $this->domainIncludes;
     }
 
@@ -108,12 +107,11 @@ class Property extends Intangible {
     /**
      * Sets supersededBy.
      *
-     * @param SchemaOrgClass $supersededBy
+     * @param SchemaClass $supersededBy
      *
      * @return $this
      */
-    public
-    function setSupersededBy(SchemaOrgClass $supersededBy = NULL) {
+    public function setSupersededBy(SchemaClass $supersededBy = NULL) {
         $this->supersededBy = $supersededBy;
 
         return $this;
@@ -122,7 +120,7 @@ class Property extends Intangible {
     /**
      * Gets supersededBy.
      *
-     * @return SchemaOrgClass
+     * @return SchemaClass
      */
     public function getSupersededBy() {
         return $this->supersededBy;
@@ -131,11 +129,11 @@ class Property extends Intangible {
     /**
      * Sets rangeIncludes.
      *
-     * @param SchemaOrgClass $rangeIncludes
+     * @param SchemaClass $rangeIncludes
      *
      * @return $this
      */
-    public function setRangeIncludes(SchemaOrgClass $rangeIncludes = NULL) {
+    public function setRangeIncludes(SchemaClass $rangeIncludes = NULL) {
         $this->rangeIncludes = $rangeIncludes;
 
         return $this;
@@ -144,7 +142,7 @@ class Property extends Intangible {
     /**
      * Gets rangeIncludes.
      *
-     * @return SchemaOrgClass
+     * @return SchemaClass
      */
     public function getRangeIncludes() {
         return $this->rangeIncludes;

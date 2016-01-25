@@ -19,7 +19,7 @@ class Duration extends Quantity {
     /**
      * @var string The name of the item.
      */
-    protected $name;
+    private $name;
 
     /**
      * Sets id.
