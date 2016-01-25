@@ -55,7 +55,7 @@ lib.structuredDataMarkup {
     settings {
         context = http://schema.org
         # classname of the entity (root) which should be rendered
-        # entity = Portrino\PxSemantic\SchemaOrg\Thing
+        entity = Portrino\PxSemantic\SchemaOrg\Thing
         processors {
             # Processors should implement Portrino\PxSemantic\Processors\ProcessorInterface
             # Processors will be executed in order of the array keys

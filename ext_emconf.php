@@ -12,12 +12,12 @@
 
 $EM_CONF[$_EXTKEY] = array(
 	'title' => 'Portrino Semantic Web Library',
-	'description' => 'Adds feature to render your models (page, content,...) as json-ld code and embed it into your website to make use the benefits of structured data',
+	'description' => 'Structured Data Rendering for TYPO3',
 	'category' => 'fe',
 	'author' => 'Andre Wuttig',
 	'author_email' => 'wuttig@portrino.de',
 	'author_company' => 'portrino GmbH',
-	'state' => 'alpha',
+	'state' => 'beta',
 	'uploadfolder' => '0',
 	'clearCacheOnLoad' => 0,
 	'version' => '1.0.0',

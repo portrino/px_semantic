@@ -4,7 +4,7 @@ Structured Data Markup Rendering for TYPO3 with JSON-LD
 **PxSemantic** provides an extrem dynamic and highly customizable solution to embed structured data on your website 
 and enrich them with information about your website. The currently supported classes are a subset of the vocabulary 
 defined on https://schema.org/ and were generated with the schema generator from https://api-platform.com/. At the
-moment we only support [json-ld](http://json-ld.org/) format to encode Linked Data.
+moment we only support [json-ld](http://json-ld.org/) format to encode LinkedData.
 
 Before you start: 
 * Download / Import from [TER](http://typo3.org/extensions/repository/view/px_semantic) or [GitHub](https://github.com/portrino/px_semantic)
@@ -15,7 +15,6 @@ Before you start:
 
 For example you want to markup your official website with information about your corporate contacts 
 (https://developers.google.com/structured-data/customize/contact-points) you can do it this way:
-
 
 Declare your organization information and corporate contact via TypoScript. 
 
@@ -102,9 +101,8 @@ If you want to put it in your template you could make use fluids `cObject`-ViewH
 ```
 
 This will result in the following JSON-LD Markup on your page
-```html
-<pre>
 
+```html
 <script type="application/ld+json">
 {
     "@context" : "http://schema.org",
@@ -128,5 +126,4 @@ This will result in the following JSON-LD Markup on your page
     ]
 }
 </script>
-</pre>
 ```
