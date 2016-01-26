@@ -52,7 +52,7 @@ Wether you run your TYPO3 in Classic Mode or Composer Mode you should install th
 
 Configure
 ---------
-Configure the extension as you wish after you have successfully installed it.
+Configure the extension as you wish after you have successfully installed it easily via TypoScript.
 
 .. toctree::
    :maxdepth: 5

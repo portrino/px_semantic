@@ -8,4 +8,6 @@
 Todos
 -----
 
-- allow overwrite of validation rules on model and property level - for now we are only be able to add validators on controller level
+- optimize documentation
+- add more default processors for common scenarios to promote events, provide actions or enable rich snippets as
+  described on https://developers.google.com/structured-data/

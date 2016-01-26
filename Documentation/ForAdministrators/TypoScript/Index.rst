@@ -17,13 +17,15 @@ Include PxSemantic in yout TypoScript Template
 
 Please include the static template of *PxSemantic* either through an include or through the general options.
 
-| To include the PxSemantic TS directly in your TS please use the following code:
+To include the PxSemantic TS directly in your TS please use the following code:
 
 setup:
-| ``<INCLUDE_TYPOSCRIPT: source="FILE:EXT:px_semantic/Configuration/TypoScript/setup.txt">``
+
+- ``<INCLUDE_TYPOSCRIPT: source="FILE:EXT:px_semantic/Configuration/TypoScript/setup.txt">``
 
 constants:
-| ``<INCLUDE_TYPOSCRIPT: source="FILE:EXT:px_semantic/Configuration/TypoScript/constants.txt">``
+
+- ``<INCLUDE_TYPOSCRIPT: source="FILE:EXT:px_semantic/Configuration/TypoScript/constants.txt">``
 
 TypoScript values
 '''''''''''''''''
@@ -41,8 +43,8 @@ processors.[index].className                                                    
 processors.[index].settings                                                             array        Array of options to configure the processor. Settings depend on the processor.
 ======================================================================================  ===========  =======================================================================================================  =========
 
-Example - Rendering of Page Information
-'''''''''''''''''''''''''''''''''''''''
+Example - Render Page Information
+'''''''''''''''''''''''''''''''''
 
 The class ``Portrino\PxSemantic\Processor\PageProcessor`` brings you the possibility to embed structured data about
 the current page into your website as json-ld code. In detail it extracts information like:
@@ -81,7 +83,7 @@ from the current page and adds it to the ``Portrino\PxSemantic\SchemaOrg\Creativ
 
 .. hint::
 
-    You can implement your own processors in your extension and add them to the chain of processors.
+    You can implement your own processors in your extension and add them to the chain of processors. Have a look in the "For Developers" section for this.
 
 Use the TS to render the resulting JSON-LD code somewhere on your website. We put it into the `<HEAD>` because other
 meta information are also located within the `<HEAD>` tag. But it doesn`t matter.
@@ -129,8 +131,8 @@ The result could be look like that. Google and other search engines are now able
         }
     </script>
 
-Example - Rendering Corporate Contacts
-''''''''''''''''''''''''''''''''''''''
+Example - Render Corporate Contacts
+'''''''''''''''''''''''''''''''''''
 
 For example you want to markup your official website with information about your corporate contacts
 (https://developers.google.com/structured-data/customize/contact-points) you can do it this way:

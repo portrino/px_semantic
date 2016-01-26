@@ -9,7 +9,7 @@ namespace Portrino\PxSemantic\SchemaOrg;
  *
  * @author Andre Wuttig<wuttig@portrino.de>
  */
-abstract class CreativeWork extends Thing {
+class CreativeWork extends Thing {
 
     /**
      * @var AggregateRating The overall rating, based on a collection of reviews or ratings, of the item.
