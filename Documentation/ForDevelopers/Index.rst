@@ -11,7 +11,7 @@
 For Developers
 ==============
 
-.. _example:
+.. _own-processors:
 
 Implement your own processors
 '''''''''''''''''''''''''''''

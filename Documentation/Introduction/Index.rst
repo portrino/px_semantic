@@ -22,10 +22,4 @@ and enrich them with information about your website. The currently supported cla
 defined on https://schema.org/ and were generated with the schema generator from https://api-platform.com/. At the
 moment we only support `json-ld <http://json-ld.org/>`_ format to encode LinkedData.
 
-
-
-
-
-
-
-
+More information to structured data you can get here https://developers.google.com/structured-data/.
