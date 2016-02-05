@@ -1,0 +1,185 @@
+rdfa:
+  - http://schema.org/docs/schema_org_rdfa.html
+relations:
+  - http://purl.org/goodrelations/v1.owl
+
+#rdfa:
+# - tests/data/schema.rdfa
+#relations:
+# - tests/data/v1.owl
+
+# Debug mode
+debug: true
+
+# Automatically add an id field to entities
+generateId: true
+
+# Generate interfaces and use Doctrine's Resolve Target Entity feature
+useInterface: false
+
+# Emit a warning if a property is not derived from GoodRelations
+checkIsGoodRelations:  false
+
+# PHP namespaces
+namespaces:
+  entity: Portrino\PxSemantic\SchemaOrg
+
+# The value of the phpDoc's @author annotation
+author: Andre Wuttig<wuttig@portrino.de> # Example: Kévin Dunglas <dunglas@gmail.com>
+
+# Schema.org's types to use
+types:
+  Action:
+  AggregateRating:
+    properties:
+      ratingCount: ~
+  Article:
+    properties:
+      articleBody: ~
+      articleSection: ~
+      pageEnd: { range: "Text" }
+      pageStart: { range: "Text" }
+      pagination: ~
+      wordCount: ~
+  Class:
+  ContactPoint:
+    properties:
+      areaServed: { range: "Text" }
+      availableLanguage: ~
+      contactType: ~
+      email: ~
+      faxNumber: ~
+      telephone: ~
+  CreativeWork:
+    properties:
+      author: { range: "Person" }
+      aggregateRating: ~
+      dateCreated: { range: "DateTime" }
+      datePublished: ~
+      dateModified: { range: "DateTime" }
+      headline: ~
+      publisher: { range: "Organization" }
+  Date:
+  DateTime:
+  DataType:
+  Duration:
+      properties:
+        name: ~
+  Energy:
+  ImageObject:
+    properties:
+      url: ~
+      height: { range: "Integer" }
+      width: { range: "Integer" }
+  Intangible:
+  Integer:
+  ItemList:
+    properties:
+      itemListElement: { range: "Text" }
+  Language:
+  Mass:
+  MediaObject:
+  Number:
+  NutritionInformation:
+    properties:
+      servingSize: ~
+      calories: ~
+      fatContent: ~
+  Organization:
+    properties:
+      address: { range: "PostalAddress" }
+      aggregateRating: { range: "AggregateRating" }
+      alumni: ~
+      areaServed: { range: "Text" }
+      award: ~
+      brand: { range: "Organization" }
+      contactPoint: { range: "ContactPoint" }
+      contactPoints: ~
+      department: ~
+      dissolutionDate: ~
+      duns: ~
+      email: ~
+      employee: ~
+      faxNumber: ~
+      founder: ~
+      foundingDate: ~
+      foundingLocation: ~
+      globalLocationNumber: ~
+      hasPOS: ~
+      isicV4: ~
+      legalName: ~
+      location: { range: "Place" }
+      logo: { range: "ImageObject" }
+      member: { range: "Organization" }
+      memberOf: { range: "Organization" }
+      naics: ~
+      numberOfEmployees: ~
+      parentOrganization: ~
+      review: ~
+      subOrganization: ~
+      taxID: ~
+      telephone: ~
+      vatID: ~
+  Person:
+  Place:
+    properties:
+  PostalAddress:
+    properties:
+      addressCountry: { range: "Text" }
+      addressLocality: ~
+      addressRegion: ~
+      postOfficeBoxNumber: ~
+      postalCode: ~
+      streetAddress: ~
+  Property:
+      properties:
+        domainIncludes: ~
+        inverseOf: ~
+        rangeIncludes: ~
+        supersededBy: { range: "Class" }
+  Quantity:
+  QuantitativeValue:
+  Rating:
+    properties:
+      bestRating: { range: "Text" }
+      ratingCount: { range: "Text" }
+      ratingValue: ~
+      worstRating: { range: "Text" }
+  Recipe:
+    properties:
+      prepTime: { range: "Text" }
+      cookTime: { range: "Text" }
+      totalTime: { range: "Text" }
+      recipeYield: ~
+      nutrition: ~
+      recipeIngredient: { range: "Text" }
+      recipeInstructions: { range: "Text" }
+  Review:
+  StructuredValue:
+  TechArticle:
+    properties:
+      dependencies: ~
+      proficiencyLevel: ~
+  Text:
+  Thing:
+    parent: false
+    properties:
+      additionalType: ~
+      alternateName: ~
+      description: ~
+      image: { range: "ImageObject" }
+      mainEntityOfPage: { range: "WebPage" }
+      name: ~
+      potentialAction: ~
+      sameAs: ~
+      url: ~
+  URL:
+  WebPage:
+    properties:
+      breadcrumb: { range: "Text" }
+      lastReviewed: ~
+      primaryImageOfPage: ~
+      relatedLink: ~
+  WebSite:
+annotationGenerators:
+  - ApiPlatform\SchemaGenerator\AnnotationGenerator\PhpDocAnnotationGenerator

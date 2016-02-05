@@ -3,19 +3,17 @@
 namespace Portrino\PxSemantic\SchemaOrg;
 
 /**
- * The basic data types such as Integers, Strings, etc.
+ * A WebSite is a set of related web pages and other items typically served from a single web domain and accessible via URLs.
  *
- * @see http://schema.org/DataType Documentation on Schema.org
+ * @see http://schema.org/WebSite Documentation on Schema.org
  *
  * @author Andre Wuttig<wuttig@portrino.de>
  */
-class DataType extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
-
+class WebSite extends CreativeWork {
     /**
      * @var int
      */
-    private
-    $id;
+    private $id;
 
     /**
      * Sets id.
@@ -24,8 +22,7 @@ class DataType extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
      *
      * @return $this
      */
-    public
-    function setId($id) {
+    public function setId($id) {
         $this->id = $id;
 
         return $this;
@@ -36,8 +33,7 @@ class DataType extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
      *
      * @return int
      */
-    public
-    function getId() {
+    public function getId() {
         return $this->id;
     }
 }

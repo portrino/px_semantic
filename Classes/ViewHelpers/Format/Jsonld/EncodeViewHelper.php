@@ -76,6 +76,10 @@ class EncodeViewHelper extends \FluidTYPO3\Vhs\ViewHelpers\Format\Json\EncodeVie
 		if ($reflect) {
 			$converted['@type'] = $reflect->getShortName();
 			$converted['@context'] = $this->context;
+            if(method_exists($domainObject,'getId') && empty($domainObject->getId()) === FALSE) {
+                $converted['@id'] = $domainObject->getId();
+                unset($converted['id']);
+            }
 		}
 
 		foreach ($converted as $key => $item) {
