@@ -97,7 +97,8 @@ class PageProcessor implements \Portrino\PxSemantic\Processor\ProcessorInterface
         if ($this->currentPage && $entity instanceof \Portrino\PxSemantic\SchemaOrg\CreativeWork) {
                 // set the name to the page title
             $entity->setName($this->currentPage->getTitle());
-
+                // set the url to the uri of the current page
+            $entity->setUrl($this->uriBuilder->setTargetPageUid($this->currentPageUid)->build());
                 // set the datePublished to the starttime if set, if not take the crDate
             $datePublished = $this->currentPage->getStarttime() ? $this->currentPage->getStarttime() : $this->currentPage->getCrdate();
             $entity->setDatePublished($datePublished);

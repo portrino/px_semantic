@@ -39,7 +39,7 @@ class EntityController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         /** @var \TYPO3\CMS\Extbase\DomainObject\AbstractEntity $entity */
         $entity = $this->objectManager->get($this->settings['entity']);
         foreach ($this->settings['processors'] as $key => $processorConfiguration) {
-            /** @var \Portrino\PxSemantic\StructuredData\Processor\ProcessorInterface $processor */
+            /** @var \Portrino\PxSemantic\Processor\ProcessorInterface $processor */
             $processor = $this->objectManager->get($processorConfiguration['className']);
             $settings = isset($processorConfiguration['settings']) ? $processorConfiguration['settings'] : array();
             $processor->process($entity, $settings);
