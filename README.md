@@ -1,4 +1,4 @@
-# px_semantic 1.1.0 (beta)
+# px_semantic 1.2.0 (beta)
 Structured Data Markup Rendering for TYPO3 with JSON-LD
 
 **PxSemantic** provides an extrem dynamic and highly customizable solution to embed structured data on your website 
@@ -11,7 +11,7 @@ Before you start:
 * Install the Extension
 * Include Static Template Files!
 
-### Example:
+### Example 1 - Render Organization Information
 
 For example you want to markup your official website with information about your corporate contacts 
 (https://developers.google.com/structured-data/customize/contact-points) you can do it this way:
@@ -126,4 +126,35 @@ This will result in the following JSON-LD Markup on your page
     ]
 }
 </script>
+```
+
+
+### Example 2 - Render Multiple Entities
+
+*TypoScript*:
+<pre>
+<code class="typoscript">
+    lib.structuredDataMarkupExample < lib.structuredDataMarkup
+    lib.structuredDataMarkupExample {
+        settings {
+            entity {
+                className = Portrino\PxSemantic\SchemaOrg\Question
+    
+                id = TEXT
+                id.data = field:uid
+            }
+            processors {
+                0 {
+                    className = Portrino\PxSemantic\Processor\ExampleProcessor
+                }
+            }
+        }
+    }
+</code>
+</pre>
+*Fluid*:
+```html
+    <f:for each="{entities}" as="entity">
+        {entity -> f:cObject(typoscriptObjectPath: 'lib.structuredDataMarkupExample')}
+    </f:for>
 ```

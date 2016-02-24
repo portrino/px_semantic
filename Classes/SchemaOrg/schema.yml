@@ -33,6 +33,7 @@ types:
   AggregateRating:
     properties:
       ratingCount: ~
+  Answer:
   Article:
     properties:
       articleBody: ~
@@ -42,6 +43,12 @@ types:
       pagination: ~
       wordCount: ~
   Class:
+  CollectionPage:
+  Comment:
+    properties:
+      downvoteCount: ~
+      parentItem: ~
+      upvoteCount: ~
   ContactPoint:
     properties:
       areaServed: { range: "Text" }
@@ -52,13 +59,17 @@ types:
       telephone: ~
   CreativeWork:
     properties:
+      about: ~
       author: { range: "Person" }
       aggregateRating: ~
+      comment: ~
+      commentCount: ~
       dateCreated: { range: "DateTime" }
       datePublished: ~
       dateModified: { range: "DateTime" }
       headline: ~
       publisher: { range: "Organization" }
+      text: ~
   Date:
   DateTime:
   DataType:
@@ -76,6 +87,7 @@ types:
   ItemList:
     properties:
       itemListElement: { range: "Text" }
+  ItemPage:
   Language:
   Mass:
   MediaObject:
@@ -137,8 +149,16 @@ types:
         inverseOf: ~
         rangeIncludes: ~
         supersededBy: { range: "Class" }
+  QAPage:
   Quantity:
   QuantitativeValue:
+  Question:
+    properties:
+      acceptedAnswer: ~
+      answerCount: ~
+      downvoteCount: ~
+      suggestedAnswer: ~
+      upvoteCount: ~
   Rating:
     properties:
       bestRating: { range: "Text" }
@@ -155,6 +175,7 @@ types:
       recipeIngredient: { range: "Text" }
       recipeInstructions: { range: "Text" }
   Review:
+  SearchResultsPage:
   StructuredValue:
   TechArticle:
     properties:

@@ -4,7 +4,7 @@ namespace Portrino\PxSemantic\Controller;
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2015 Andre Wuttig <wuttig@portrino.de>, portrino GmbH
+ *  (c) 2016 Andre Wuttig <wuttig@portrino.de>, portrino GmbH
  *
  *  All rights reserved
  *
@@ -36,8 +36,13 @@ class EntityController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
      * action render
      */
     public function renderAction() {
+        /**
+         * take the the className from className config of entity object, otherwise take the _typoScriptNodeValue for backwards compatibility
+         */
+        $entityClassName = (isset($this->settings['entity']['className'])) ? $this->settings['entity']['className'] : $this->settings['entity']['_typoScriptNodeValue'];
+
         /** @var \TYPO3\CMS\Extbase\DomainObject\AbstractEntity $entity */
-        $entity = $this->objectManager->get($this->settings['entity']);
+        $entity = $this->objectManager->get($entityClassName);
         foreach ($this->settings['processors'] as $key => $processorConfiguration) {
             /** @var \Portrino\PxSemantic\Processor\ProcessorInterface $processor */
             $processor = $this->objectManager->get($processorConfiguration['className']);

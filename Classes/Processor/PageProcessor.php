@@ -4,7 +4,7 @@ namespace Portrino\PxSemantic\Processor;
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2015 Andre Wuttig <wuttig@portrino.de>, portrino GmbH
+ *  (c) 2016 Andre Wuttig <wuttig@portrino.de>, portrino GmbH
  *
  *  All rights reserved
  *
@@ -94,30 +94,50 @@ class PageProcessor implements \Portrino\PxSemantic\Processor\ProcessorInterface
      * @param array $settings
      */
     public function process(&$entity, $settings = array()) {
-        if ($this->currentPage && $entity instanceof \Portrino\PxSemantic\SchemaOrg\CreativeWork) {
-                // set the name to the page title
-            $entity->setName($this->currentPage->getTitle());
-                // set the url to the uri of the current page
-            $entity->setUrl($this->uriBuilder->setTargetPageUid($this->currentPageUid)->build());
-                // set the datePublished to the starttime if set, if not take the crDate
-            $datePublished = $this->currentPage->getStarttime() ? $this->currentPage->getStarttime() : $this->currentPage->getCrdate();
+        $page = isset($settings['pageUid']) ? $this->pageRepository->findByUid((int)$settings['pageUid']) : $this->currentPage;
+
+        if ($page && $entity instanceof \Portrino\PxSemantic\SchemaOrg\CreativeWork) {
+            $url = $this->uriBuilder->setTargetPageUid($page->getUid())->build();
+
+                // set the name to the navTitle of the page
+            $entity->setName($page->getNavTitle());
+                // set the headline to the title of the page
+            $entity->setHeadline($page->getTitle());
+
+            /**
+             * set the url to the url of the page
+             */
+            $entity->setUrl($url);
+
+            /**
+             * set MainEntityOfPage to url of the page
+             *
+             * @var \Portrino\PxSemantic\SchemaOrg\WebPage $mainEntityOfPage
+             */
+            $mainEntityOfPage = $this->objectManager->get(\Portrino\PxSemantic\SchemaOrg\WebPage::class);
+            $mainEntityOfPage->setId($url);
+            $mainEntityOfPage->setUrl($url);
+            $entity->setMainEntityOfPage($mainEntityOfPage);
+
+                // set the datePublished to the starttime if set, if not take the crDate of the page
+            $datePublished = $page->getStarttime() ? $page->getStarttime() : $page->getCrdate();
             $entity->setDatePublished($datePublished);
 
                 // set the dateModified to the tstamp of the page
-            $dataModified = $this->currentPage->getTstamp();
+            $dataModified = $page->getTstamp();
             $entity->setDateModified($dataModified);
 
                 // set the description to the abstract of the page
-            $entity->setDescription($this->currentPage->getAbstract());
+            $entity->setDescription($page->getAbstract());
 
-                // set the author to the author of the page
+            // set the author to the author of the page
             /** @var \Portrino\PxSemantic\SchemaOrg\Person $author */
             $author = $this->objectManager->get('Portrino\\PxSemantic\\SchemaOrg\\Person');
-            $author->setName($this->currentPage->getAuthor());
+            $author->setName($page->getAuthor());
             $entity->setAuthor($author);
 
                 // set the image to the first image into resources/media list of the page
-            $media = $this->currentPage->getMedia();
+            $media = $page->getMedia();
             if ($media->count() > 0) {
                 /** @var \TYPO3\CMS\Extbase\Domain\Model\FileReference $image */
                 $image = $media->toArray()[0];

@@ -15,36 +15,44 @@ abstract class Thing extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
      * @var string An additional type for the item, typically used for adding more specific types from external vocabularies in microdata syntax. This is a relationship between something and a class that the thing is in. In RDFa syntax, it is better to use the native RDFa syntax - the 'typeof' attribute - for multiple types. Schema.org tools may have only weaker understanding of extra types, in particular those defined externally.
      */
     private $additionalType;
+
     /**
      * @var string An alias for the item.
      */
     private $alternateName;
+
     /**
      * @var string A short description of the item.
      */
     private $description;
+
     /**
      * @var ImageObject An image of the item. This can be a [URL](http://schema.org/URL) or a fully described [ImageObject](http://schema.org/ImageObject).
      */
     private $image;
+
     /**
      * @var WebPage Indicates a page (or other CreativeWork) for which this thing is the main entity being described.
      *
      *              See [background notes](/docs/datamodel.html#mainEntityBackground) for details.
      */
     private $mainEntityOfPage;
+
     /**
      * @var string The name of the item.
      */
     private $name;
+
     /**
      * @var string URL of a reference Web page that unambiguously indicates the item's identity. E.g. the URL of the item's Wikipedia page, Freebase page, or official website.
      */
     private $sameAs;
+
     /**
      * @var string URL of the item.
      */
     private $url;
+
     /**
      * @var Action Indicates a potential Action, which describes an idealized action in which this thing would play an 'object' role.
      */

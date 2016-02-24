@@ -3,13 +3,13 @@
 namespace Portrino\PxSemantic\SchemaOrg;
 
 /**
- * A WebSite is a set of related web pages and other items typically served from a single web domain and accessible via URLs.
+ * A QAPage is a WebPage focussed on a specific Question and its Answer(s), e.g. in a question answering site or documenting Frequently Asked Questions (FAQs).
  *
- * @see http://schema.org/WebSite Documentation on Schema.org
+ * @see http://schema.org/QAPage Documentation on Schema.org
  *
  * @author Andre Wuttig<wuttig@portrino.de>
  */
-class WebSite extends CreativeWork {
+class QAPage extends WebPage {
 
     /**
      * @var int

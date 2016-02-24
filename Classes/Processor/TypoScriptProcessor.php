@@ -4,7 +4,7 @@ namespace Portrino\PxSemantic\Processor;
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2015 Andre Wuttig <wuttig@portrino.de>, portrino GmbH
+ *  (c) 2016 Andre Wuttig <wuttig@portrino.de>, portrino GmbH
  *
  *  All rights reserved
  *
@@ -99,11 +99,6 @@ class TypoScriptProcessor implements \Portrino\PxSemantic\Processor\ProcessorInt
                 if (isset($typoScriptArray[$propertyName]) && isset($typoScriptArray[$propertyName . '.'])) {
                     if ($typoScriptArray[$propertyName] === 'PX_SEMANTIC_ARRAY') {
                         $value = $typoScriptArray[$propertyName . '.'];
-
-                        foreach ($value as $item) {
-                            
-                        }
-                        
                     } else {
                         $value = $this->typoScriptFrontendController->cObj->cObjGetSingle($typoScriptArray[$propertyName], $typoScriptArray[$propertyName . '.']);
                     }
@@ -115,7 +110,10 @@ class TypoScriptProcessor implements \Portrino\PxSemantic\Processor\ProcessorInt
                 $methodParameters = $this->reflectionService->getMethodParameters(get_class($entity), 'set' . $propertyName);
                 if (isset($methodParameters[$propertyName])) {
                     $type = $methodParameters[$propertyName]['class'];
-                    $subEntity = $this->objectManager->get($type);
+
+                    $subEntity = call_user_func(array($entity, 'get' . ucfirst($propertyName)));
+                    $subEntity = $subEntity ? $subEntity : $this->objectManager->get($type);
+
                     $this->process($subEntity, $propertyValue);
                     call_user_func_array(array($entity, 'set' . $propertyName), array($subEntity));
                 }

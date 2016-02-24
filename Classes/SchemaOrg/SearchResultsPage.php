@@ -3,13 +3,13 @@
 namespace Portrino\PxSemantic\SchemaOrg;
 
 /**
- * A WebSite is a set of related web pages and other items typically served from a single web domain and accessible via URLs.
+ * Web page type: Search results page.
  *
- * @see http://schema.org/WebSite Documentation on Schema.org
+ * @see http://schema.org/SearchResultsPage Documentation on Schema.org
  *
  * @author Andre Wuttig<wuttig@portrino.de>
  */
-class WebSite extends CreativeWork {
+class SearchResultsPage extends WebPage {
 
     /**
      * @var int

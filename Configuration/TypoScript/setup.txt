@@ -44,7 +44,8 @@ config.tx_extbase {
 
 lib.structuredDataMarkup = USER
 lib.structuredDataMarkup {
-    userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+    # we have to use custom userFunc here, to enable entity id set / write from outsite
+    userFunc = Portrino\PxSemantic\Core\Bootstrap->run
     extensionName = PxSemantic
     pluginName = StructuredDataMarkup
     vendorName = Portrino
@@ -54,8 +55,14 @@ lib.structuredDataMarkup {
     persistence < plugin.tx_pxsemantic.persistence
     settings {
         context = http://schema.org
-        # classname of the entity (root) which should be rendered
-        entity = Portrino\PxSemantic\SchemaOrg\Thing
+        entity {
+            # classname of the entity (root) which should be rendered
+#            className = Portrino\PxSemantic\SchemaOrg\Thing
+             # override the data attribute as you wish to change the uid of the entity you want to render
+#            id = TEXT
+#            id.data = field:uid
+        }
+
         processors {
             # Processors should implement Portrino\PxSemantic\Processors\ProcessorInterface
             # Processors will be executed in order of the array keys
@@ -72,8 +79,10 @@ lib.structuredDataMarkup {
 lib.structuredDataMarkupPageExample < lib.structuredDataMarkup
 lib.structuredDataMarkupPageExample {
     settings {
-        # classname of the entity (root) which should be rendered
-        entity = Portrino\PxSemantic\SchemaOrg\CreativeWork
+        entity {
+            # classname of the entity (root) which should be rendered
+            className = Portrino\PxSemantic\SchemaOrg\CreativeWork
+        }
         processors {
             # Processors should implement Portrino\PxSemantic\Processors\ProcessorInterface
             # Processors will be executed in order of the array keys
@@ -95,7 +104,9 @@ lib.structuredDataMarkupPageExample {
 lib.structuredDataMarkupOrganizationExample < lib.structuredDataMarkup
 lib.structuredDataMarkupOrganizationExample {
     settings {
-        entity = Portrino\PxSemantic\SchemaOrg\Organization
+        entity {
+            className = Portrino\PxSemantic\SchemaOrg\Organization
+        }
         processors {
             # processor to set properties of an entity via TypoScript
             0 {

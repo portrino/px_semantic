@@ -15,7 +15,7 @@ class DataType extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
      * @var int
      */
     private
-    $id;
+        $id;
 
     /**
      * Sets id.

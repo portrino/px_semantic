@@ -9,24 +9,28 @@ namespace Portrino\PxSemantic\SchemaOrg;
  *
  * @author Andre Wuttig<wuttig@portrino.de>
  */
-class WebPage extends CreativeWork
-{
+class WebPage extends CreativeWork {
+
     /**
      * @var int
      */
     private $id;
+
     /**
      * @var string A set of links that can help a user understand and navigate a website hierarchy.
      */
     private $breadcrumb;
+
     /**
      * @var \DateTime Date on which the content on this web page was last reviewed for accuracy and/or completeness.
      */
     private $lastReviewed;
+
     /**
      * @var ImageObject Indicates the main image on the page.
      */
     private $primaryImageOfPage;
+
     /**
      * @var string A link related to this web page, for example to other related web pages.
      */
@@ -35,12 +39,11 @@ class WebPage extends CreativeWork
     /**
      * Sets id.
      *
-     * @param int $id
+     * @param string $id
      *
      * @return $this
      */
-    public function setId($id)
-    {
+    public function setId($id) {
         $this->id = $id;
 
         return $this;
@@ -49,10 +52,9 @@ class WebPage extends CreativeWork
     /**
      * Gets id.
      *
-     * @return int
+     * @return string
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -63,8 +65,7 @@ class WebPage extends CreativeWork
      *
      * @return $this
      */
-    public function setBreadcrumb($breadcrumb)
-    {
+    public function setBreadcrumb($breadcrumb) {
         $this->breadcrumb = $breadcrumb;
 
         return $this;
@@ -75,8 +76,7 @@ class WebPage extends CreativeWork
      *
      * @return string
      */
-    public function getBreadcrumb()
-    {
+    public function getBreadcrumb() {
         return $this->breadcrumb;
     }
 
@@ -87,8 +87,7 @@ class WebPage extends CreativeWork
      *
      * @return $this
      */
-    public function setLastReviewed(\DateTime $lastReviewed = null)
-    {
+    public function setLastReviewed(\DateTime $lastReviewed = NULL) {
         $this->lastReviewed = $lastReviewed;
 
         return $this;
@@ -99,8 +98,7 @@ class WebPage extends CreativeWork
      *
      * @return \DateTime
      */
-    public function getLastReviewed()
-    {
+    public function getLastReviewed() {
         return $this->lastReviewed;
     }
 
@@ -111,8 +109,7 @@ class WebPage extends CreativeWork
      *
      * @return $this
      */
-    public function setPrimaryImageOfPage(ImageObject $primaryImageOfPage = null)
-    {
+    public function setPrimaryImageOfPage(ImageObject $primaryImageOfPage = NULL) {
         $this->primaryImageOfPage = $primaryImageOfPage;
 
         return $this;
@@ -123,8 +120,7 @@ class WebPage extends CreativeWork
      *
      * @return ImageObject
      */
-    public function getPrimaryImageOfPage()
-    {
+    public function getPrimaryImageOfPage() {
         return $this->primaryImageOfPage;
     }
 
@@ -135,8 +131,7 @@ class WebPage extends CreativeWork
      *
      * @return $this
      */
-    public function setRelatedLink($relatedLink)
-    {
+    public function setRelatedLink($relatedLink) {
         $this->relatedLink = $relatedLink;
 
         return $this;
@@ -147,8 +142,7 @@ class WebPage extends CreativeWork
      *
      * @return string
      */
-    public function getRelatedLink()
-    {
+    public function getRelatedLink() {
         return $this->relatedLink;
     }
 }

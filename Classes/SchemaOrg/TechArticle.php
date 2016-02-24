@@ -10,14 +10,17 @@ namespace Portrino\PxSemantic\SchemaOrg;
  * @author Andre Wuttig<wuttig@portrino.de>
  */
 class TechArticle extends Article {
+
     /**
      * @var int
      */
     private $id;
+
     /**
      * @var string Prerequisites needed to fulfill steps in article.
      */
     private $dependencies;
+
     /**
      * @var string Proficiency needed for this content; expected values: 'Beginner', 'Expert'.
      */

@@ -3,23 +3,23 @@
 namespace Portrino\PxSemantic\SchemaOrg;
 
 /**
- * A WebSite is a set of related web pages and other items typically served from a single web domain and accessible via URLs.
+ * An answer offered to a question; perhaps correct, perhaps opinionated or wrong.
  *
- * @see http://schema.org/WebSite Documentation on Schema.org
+ * @see http://schema.org/Answer Documentation on Schema.org
  *
  * @author Andre Wuttig<wuttig@portrino.de>
  */
-class WebSite extends CreativeWork {
+class Answer extends Comment {
 
     /**
-     * @var int
+     * @var string
      */
     private $id;
 
     /**
      * Sets id.
      *
-     * @param int $id
+     * @param string $id
      *
      * @return $this
      */
@@ -32,7 +32,7 @@ class WebSite extends CreativeWork {
     /**
      * Gets id.
      *
-     * @return int
+     * @return string
      */
     public function getId() {
         return $this->id;

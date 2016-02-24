@@ -386,7 +386,7 @@ class Organization extends Thing {
      *
      * @return $this
      */
-    public function setContactPoints($contactPoints = NULL) {
+    public function setContactPoints($contactPoints = array()) {
         $this->contactPoints = $contactPoints;
 
         return $this;
