@@ -2,6 +2,8 @@
 
 1.2.0 - 2016-02-24
 ------------------
+* adds the abstract class `AbstractProcessor` which should now be used as parent class for Processor classes
+    * it enables: easy use of entityId
 * adds some new classes from http://schema.org/
     * Answer, Comment, Question
     * CollectionPage, QAPage, ItemPage, SearchResultsPage

@@ -32,7 +32,7 @@ use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
  *
  * @package Portrino\PxSemantic\Processor
  */
-class PageProcessor implements \Portrino\PxSemantic\Processor\ProcessorInterface {
+class PageProcessor extends \Portrino\PxSemantic\Processor\AbstractProcessor {
 
     /**
      * @var \Portrino\PxSemantic\Domain\Model\Page
@@ -51,42 +51,14 @@ class PageProcessor implements \Portrino\PxSemantic\Processor\ProcessorInterface
     protected $pageRepository;
 
     /**
-     * @var \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController
-     */
-    protected $typoScriptFrontendController;
-
-    /**
-     * @var \TYPO3\CMS\Extbase\Object\ObjectManagerInterface
-     * @inject
-     */
-    protected $objectManager;
-
-    /**
-     * @var \TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder
-     * @inject
-     */
-    protected $uriBuilder;
-
-    /**
-     * @var \TYPO3\CMS\Extbase\Service\ImageService
-     * @inject
-     */
-    protected $imageService;
-
-    /**
-     * Initializes the controller before invoking an action method.
-     *
-     * Override this method to solve tasks which all actions have in
-     * common.
+     *  Initializes the processor before invoking the process method
      *
      * @return void
      */
     public function initializeObject() {
-        if (TYPO3_MODE === 'FE') {
-            $this->typoScriptFrontendController = $GLOBALS['TSFE'];
-            $this->currentPageUid = $this->typoScriptFrontendController->id;
-            $this->currentPage = $this->pageRepository->findByUid($this->currentPageUid);
-        }
+        parent::initializeObject();
+        $this->currentPageUid = $this->typoScriptFrontendController->id;
+        $this->currentPage = $this->pageRepository->findByUid($this->currentPageUid);
     }
 
     /**
@@ -94,7 +66,7 @@ class PageProcessor implements \Portrino\PxSemantic\Processor\ProcessorInterface
      * @param array $settings
      */
     public function process(&$entity, $settings = array()) {
-        $page = isset($settings['pageUid']) ? $this->pageRepository->findByUid((int)$settings['pageUid']) : $this->currentPage;
+        $page = $this->entityId != NULL ? $this->pageRepository->findByUid((int)$this->entityId) : $this->currentPage;
 
         if ($page && $entity instanceof \Portrino\PxSemantic\SchemaOrg\CreativeWork) {
             $url = $this->uriBuilder->setTargetPageUid($page->getUid())->build();

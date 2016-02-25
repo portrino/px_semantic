@@ -40,12 +40,6 @@ class TypoScriptProcessor implements \Portrino\PxSemantic\Processor\ProcessorInt
     protected $typoScriptFrontendController;
 
     /**
-     * @var \TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder
-     * @inject
-     */
-    protected $uriBuilder;
-
-    /**
      * @var \TYPO3\CMS\Extbase\Reflection\ReflectionService
      * @inject
      */
@@ -56,12 +50,6 @@ class TypoScriptProcessor implements \Portrino\PxSemantic\Processor\ProcessorInt
      * @inject
      */
     protected $objectManager;
-
-    /**
-     * @var \TYPO3\CMS\Fluid\ViewHelpers\CObjectViewHelper
-     * @inject
-     */
-    protected $cObjectViewHelper;
 
     /**
      * @var \TYPO3\CMS\Extbase\Service\TypoScriptService
@@ -84,7 +72,6 @@ class TypoScriptProcessor implements \Portrino\PxSemantic\Processor\ProcessorInt
     }
 
     /**
-     *
      *
      * @param \TYPO3\CMS\Extbase\DomainObject\AbstractEntity $entity
      * @param array $settings
