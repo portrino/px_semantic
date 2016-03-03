@@ -1,5 +1,9 @@
 # PxSemantic Change log
 
+1.2.1 - 2016-03-03
+------------------
+* sets vhs dep to `"typo3-ter/vhs": "2.4.*"` in composer.json
+
 1.2.0 - 2016-02-24
 ------------------
 * adds the abstract class `AbstractProcessor` which should now be used as parent class for Processor classes
