@@ -13,12 +13,6 @@
   "replace": {
     "px_semantic": "*"
   },
-  "repositories": [
-    {
-      "type": "git",
-      "url": "https://github.com/FluidTYPO3/vhs"
-    }
-  ],
   "require": {
     "typo3-ter/vhs": "2.4.*"
   },
