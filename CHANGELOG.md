@@ -1,5 +1,9 @@
 # PxSemantic Change log
 
+1.2.2 - 2016-03-03
+------------------
+* removes repository from composer.json
+
 1.2.1 - 2016-03-03
 ------------------
 * sets vhs dep to `"typo3-ter/vhs": "2.4.*"` in composer.json
