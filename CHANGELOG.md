@@ -1,5 +1,13 @@
 # PxSemantic Change log
 
+1.2.3 - 2016-05-03
+------------------
+* removes require `typo3-ter/vhs` from composer.json and moves it to suggest part to prevent exception in Extension 
+  Manager unter TYPO3 6.2
+  * this problem was described in [#54491](https://forge.typo3.org/issues/54491) 
+* adds anonymous function call around commands in `extTables.php` and `ext_localconf.php`
+* adds ext_icon.png to get icon in TER
+
 1.2.2 - 2016-03-03
 ------------------
 * removes repository from composer.json

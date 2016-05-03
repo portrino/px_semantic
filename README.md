@@ -1,4 +1,4 @@
-# px_semantic 1.2.2 (beta)
+# px_semantic 1.2.3 (beta)
 Structured Data Markup Rendering for TYPO3 with JSON-LD
 
 **PxSemantic** provides an extrem dynamic and highly customizable solution to embed structured data on your website 
