@@ -71,8 +71,12 @@ class PageProcessor extends \Portrino\PxSemantic\Processor\AbstractProcessor {
         if ($page && $entity instanceof \Portrino\PxSemantic\SchemaOrg\CreativeWork) {
             $url = $this->uriBuilder->setTargetPageUid($page->getUid())->build();
 
-                // set the name to the navTitle of the page
-            $entity->setName($page->getNavTitle());
+                // set the name to the navTitle / title of the page
+            $name = $page->getNavTitle() ? $page->getNavTitle() : $page->getTitle();
+            if ($name != '') {
+                $entity->setName($name);
+            }
+
                 // set the headline to the title of the page
             $entity->setHeadline($page->getTitle());
 
@@ -100,7 +104,10 @@ class PageProcessor extends \Portrino\PxSemantic\Processor\AbstractProcessor {
             $entity->setDateModified($dataModified);
 
                 // set the description to the abstract of the page
-            $entity->setDescription($page->getAbstract());
+            $description = $page->getAbstract() ? $page->getAbstract() : $page->getDescription();
+            if ($description != '') {
+                $entity->setDescription($description);
+            }
 
             // set the author to the author of the page
             /** @var \Portrino\PxSemantic\SchemaOrg\Person $author */

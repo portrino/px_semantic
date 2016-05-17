@@ -30,6 +30,7 @@ author: Andre Wuttig<wuttig@portrino.de> # Example: Kévin Dunglas <dunglas@gmai
 # Schema.org's types to use
 types:
   Action:
+  AdministrativeArea:
   AggregateRating:
     properties:
       ratingCount: ~
@@ -57,6 +58,7 @@ types:
       email: ~
       faxNumber: ~
       telephone: ~
+  Country:
   CreativeWork:
     properties:
       about: ~
@@ -133,8 +135,53 @@ types:
       telephone: ~
       vatID: ~
   Person:
+    properties:
+      additionalName: ~
+      address: { range: "PostalAddress" }
+      affiliation: ~
+      alumniOf: { range: "Organization" }
+      award: ~
+      birthDate: ~
+      birthPlace: ~
+      brand: { range: "Organization" }
+      children: ~
+      colleague: ~
+      contactPoint: ~
+      deathDate: ~
+      duns: ~
+      email: ~
+      familyName: ~
+      faxNumber: ~
+      follows: ~
+      gender: ~
+      givenName: ~
+      globalLocationNumber: ~
+      height: ~
+      homeLocation: ~
+      honorificPrefix: ~
+      honorificSuffix: ~
+      isicV4: ~
+      jobTitle: ~
+      knows: ~
+      memberOf: ~
+      naics: ~
+      nationality: ~
+      parent: ~
+      relatedTo: ~
+      sibling: ~
+      sponsor: ~
+      taxID: ~
+      telephone: ~
+      vatID: ~
+      weight: ~
+      workLocation: ~
+      worksFor: ~
   Place:
     properties:
+      aggregateRating: ~
+      address: ~
+      branchCode: ~
+      globalLocationNumber: ~
   PostalAddress:
     properties:
       addressCountry: { range: "Text" }
@@ -176,6 +223,13 @@ types:
       recipeInstructions: { range: "Text" }
   Review:
   SearchResultsPage:
+  SportsOrganization:
+    properties:
+      sport: ~
+  SportsTeam:
+    properties:
+        athlete: ~
+        coach: ~
   StructuredValue:
   TechArticle:
     properties:

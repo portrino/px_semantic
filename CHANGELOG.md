@@ -1,5 +1,16 @@
 # PxSemantic Change log
 
+1.3.0 - 2016-05-03
+------------------
+* adds the following [schema.org](http://schema.org/) entities
+    * AdministrativeArea
+    * Country
+    * Person
+    * Place
+    * SportsOrganization
+    * SportsTeam
+* fixes some stuff in PageProcessor
+
 1.2.3 - 2016-05-03
 ------------------
 * removes require `typo3-ter/vhs` from composer.json and moves it to suggest part to prevent exception in Extension 
