@@ -53,7 +53,7 @@ types:
   ContactPoint:
     properties:
       areaServed: { range: "Text" }
-      availableLanguage: ~
+      availableLanguage: { range: "Language" }
       contactType: ~
       email: ~
       faxNumber: ~
@@ -145,7 +145,7 @@ types:
       birthPlace: ~
       brand: { range: "Organization" }
       children: ~
-      colleague: ~
+      colleague: { range: "Person" }
       contactPoint: ~
       deathDate: ~
       duns: ~
@@ -156,8 +156,8 @@ types:
       gender: ~
       givenName: ~
       globalLocationNumber: ~
-      height: ~
-      homeLocation: ~
+      height: { range: "QuantitativeValue" }
+      homeLocation: { range: "ContactPoint" }
       honorificPrefix: ~
       honorificSuffix: ~
       isicV4: ~
@@ -169,17 +169,17 @@ types:
       parent: ~
       relatedTo: ~
       sibling: ~
-      sponsor: ~
+      sponsor: { range: "Organization" }
       taxID: ~
       telephone: ~
       vatID: ~
       weight: ~
-      workLocation: ~
+      workLocation: { range: "ContactPoint" }
       worksFor: ~
   Place:
     properties:
       aggregateRating: ~
-      address: ~
+      address: { range: "PostalAddress" }
       branchCode: ~
       globalLocationNumber: ~
   PostalAddress:
@@ -199,6 +199,12 @@ types:
   QAPage:
   Quantity:
   QuantitativeValue:
+    properties:
+      maxValue: ~
+      minValue: ~
+      unitCode: { range: "Text" }
+      unitText: ~
+      value: { range: "Text" }
   Question:
     properties:
       acceptedAnswer: ~
@@ -225,7 +231,7 @@ types:
   SearchResultsPage:
   SportsOrganization:
     properties:
-      sport: ~
+      sport: { range: "Text" }
   SportsTeam:
     properties:
         athlete: ~

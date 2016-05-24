@@ -25,6 +25,7 @@ namespace Portrino\PxSemantic\Processor;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use Portrino\PxSemantic\Converter\TypoScriptTypeConverterInterface;
 use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
 
 /**
@@ -58,6 +59,12 @@ class TypoScriptProcessor implements \Portrino\PxSemantic\Processor\ProcessorInt
     protected $typoScriptService;
 
     /**
+     * @var \Portrino\PxSemantic\Converter\TypoScriptTypeConverterFactory
+     * @inject
+     */
+    protected $typoScriptTypeConverterFactory;
+
+    /**
      * Initializes the controller before invoking an action method.
      *
      * Override this method to solve tasks which all actions have in
@@ -84,11 +91,14 @@ class TypoScriptProcessor implements \Portrino\PxSemantic\Processor\ProcessorInt
                 // if it is a content object
             if (is_array($propertyValue) && array_key_exists('_typoScriptNodeValue', $propertyValue)) {
                 if (isset($typoScriptArray[$propertyName]) && isset($typoScriptArray[$propertyName . '.'])) {
-                    if ($typoScriptArray[$propertyName] === 'PX_SEMANTIC_ARRAY') {
-                        $value = $typoScriptArray[$propertyName . '.'];
+                    /** @var TypoScriptTypeConverterInterface|NULL $converter */
+                    $converter = $this->typoScriptTypeConverterFactory->get($typoScriptArray[$propertyName]);
+                    if ($converter != NULL) {
+                        $value = $converter->convert($typoScriptArray[$propertyName . '.']);
                     } else {
                         $value = $this->typoScriptFrontendController->cObj->cObjGetSingle($typoScriptArray[$propertyName], $typoScriptArray[$propertyName . '.']);
                     }
+
                     call_user_func_array(array($entity, 'set' . $propertyName), array($value));
                 }
                 // if it is a property which is an entity (called subEntity)

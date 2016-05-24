@@ -9,7 +9,7 @@ namespace Portrino\PxSemantic\SchemaOrg;
  *
  * @author Andre Wuttig<wuttig@portrino.de>
  */
-class ContactPoint extends StructuredValue {
+abstract class ContactPoint extends StructuredValue {
 
     /**
      * @var string The geographic area where a service or offered item is provided.
@@ -17,7 +17,7 @@ class ContactPoint extends StructuredValue {
     private $areaServed;
 
     /**
-     * @var Language A language someone may use with the item.
+     * @var Language A language someone may use with the item. Please use one of the language codes from the [IETF BCP 47 standard](http://tools.ietf.org/html/bcp47). See also [[inLanguage]].
      */
     private $availableLanguage;
 

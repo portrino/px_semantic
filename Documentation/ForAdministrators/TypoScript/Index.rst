@@ -171,7 +171,7 @@ We build a special TypoScriptProcessor which could be used to embed information 
                             }
                         }
                         # special datatype from px_semantic EXT to define arrays
-                        sameAs = PX_SEMANTIC_ARRAY
+                        sameAs = Portrino\PxSemantic\Converter\ArrayConverter
                         sameAs {
                             0 = http://www.facebook.com/yourSite/
                             1 = http://www.youtube.com/user/yourSite/

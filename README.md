@@ -1,4 +1,4 @@
-# px_semantic 1.3.0 (beta)
+# px_semantic 1.4.0 (beta)
 Structured Data Markup Rendering for TYPO3 with JSON-LD
 
 **PxSemantic** provides an extrem dynamic and highly customizable solution to embed structured data on your website 
@@ -50,7 +50,7 @@ lib.structuredDataMarkupOrganization {
                         }
                     }
                     # special datatype from px_semantic EXT to define arrays
-                    sameAs = PX_SEMANTIC_ARRAY
+                    sameAs = Portrino\PxSemantic\Converter\ArrayConverter
                     sameAs {
                         0 = http://www.facebook.com/yourSite/
                         1 = http://www.youtube.com/user/yourSite/

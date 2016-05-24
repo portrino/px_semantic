@@ -1,6 +1,17 @@
 # PxSemantic Change log
 
-1.3.0 - 2016-05-03
+1.4.0 - 2016-05-23
+------------------
+* refactors special typoscript objects like PX_SEMANTIC_ARRAY
+    * we now have one `typoscriptTypeConverter` class for each special type
+    * that makes it even easier to develop own custom `typoscriptTypeConverter` classes
+        * own custom `typoscriptTypeConverter` just have to implement `Portrino\PxSemantic\Converter\TypoScriptTypeConverterInterface`
+    * in conjunction we add `Portrino\PxSemantic\Converter\DateTimeConverter` to set DateTime via typoscript config
+* adds some more properties to [schema.org](http://schema.org/) entities
+    * QuantitativeValue
+    * Person
+    
+1.3.0 - 2016-05-17
 ------------------
 * adds the following [schema.org](http://schema.org/) entities
     * AdministrativeArea
