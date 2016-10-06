@@ -1,5 +1,29 @@
 <?php
 
+/***************************************************************
+ *  Copyright notice
+ *
+ *  (c) 2016 Andre Wuttig <wuttig@portrino.de>, portrino GmbH
+ *
+ *  All rights reserved
+ *
+ *  This script is part of the TYPO3 project. The TYPO3 project is
+ *  free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  The GNU General Public License can be found at
+ *  http://www.gnu.org/copyleft/gpl.html.
+ *
+ *  This script is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  This copyright notice MUST APPEAR in all copies of the script!
+ ***************************************************************/
+
 namespace Portrino\PxSemantic\SchemaOrg;
 
 /**
@@ -9,60 +33,61 @@ namespace Portrino\PxSemantic\SchemaOrg;
  *
  * @author Andre Wuttig<wuttig@portrino.de>
  */
-abstract class CreativeWork extends Thing {
+class CreativeWork extends Thing
+{
 
     /**
-     * @var Thing The subject matter of the content.
+     * @var Thing The subject matter of the content
      */
     private $about;
 
     /**
-     * @var AggregateRating The overall rating, based on a collection of reviews or ratings, of the item.
+     * @var AggregateRating The overall rating, based on a collection of reviews or ratings, of the item
      */
     private $aggregateRating;
 
     /**
-     * @var Person The author of this content. Please note that author is special in that HTML 5 provides a special mechanism for indicating authorship via the rel tag. That is equivalent to this and may be used interchangeably.
+     * @var Person The author of this content or rating. Please note that author is special in that HTML 5 provides a special mechanism for indicating authorship via the rel tag. That is equivalent to this and may be used interchangeably
      */
     private $author;
 
     /**
-     * @var Comment Comments, typically from users.
+     * @var Comment Comments, typically from users
      */
     private $comment;
 
     /**
-     * @var \DateTime The date on which the CreativeWork was created or the item was added to a DataFeed.
+     * @var \DateTime The date on which the CreativeWork was created or the item was added to a DataFeed
      */
     private $dateCreated;
 
     /**
-     * @var \DateTime The date on which the CreativeWork was most recently modified or when the item's entry was modified within a DataFeed.
+     * @var \DateTime The date on which the CreativeWork was most recently modified or when the item's entry was modified within a DataFeed
      */
     private $dateModified;
 
     /**
-     * @var \DateTime Date of first broadcast/publication.
+     * @var \DateTime Date of first broadcast/publication
      */
     private $datePublished;
 
     /**
-     * @var string Headline of the article.
+     * @var string Headline of the article
      */
     private $headline;
 
     /**
-     * @var Organization The publisher of the creative work.
+     * @var Organization The publisher of the creative work
      */
     private $publisher;
 
     /**
-     * @var string The textual content of this CreativeWork.
+     * @var string The textual content of this CreativeWork
      */
     private $text;
 
     /**
-     * @var int The number of comments this CreativeWork (e.g. Article, Question or Answer) has received. This is most applicable to works published in Web sites with commenting system; additional comments may exist elsewhere.
+     * @var int The number of comments this CreativeWork (e.g. Article, Question or Answer) has received. This is most applicable to works published in Web sites with commenting system; additional comments may exist elsewhere
      */
     private $commentCount;
 
@@ -73,7 +98,8 @@ abstract class CreativeWork extends Thing {
      *
      * @return $this
      */
-    public function setAbout(Thing $about = NULL) {
+    public function setAbout(Thing $about = null)
+    {
         $this->about = $about;
 
         return $this;
@@ -84,7 +110,8 @@ abstract class CreativeWork extends Thing {
      *
      * @return Thing
      */
-    public function getAbout() {
+    public function getAbout()
+    {
         return $this->about;
     }
 
@@ -95,7 +122,8 @@ abstract class CreativeWork extends Thing {
      *
      * @return $this
      */
-    public function setAggregateRating(AggregateRating $aggregateRating = NULL) {
+    public function setAggregateRating(AggregateRating $aggregateRating = null)
+    {
         $this->aggregateRating = $aggregateRating;
 
         return $this;
@@ -106,7 +134,8 @@ abstract class CreativeWork extends Thing {
      *
      * @return AggregateRating
      */
-    public function getAggregateRating() {
+    public function getAggregateRating()
+    {
         return $this->aggregateRating;
     }
 
@@ -117,7 +146,8 @@ abstract class CreativeWork extends Thing {
      *
      * @return $this
      */
-    public function setAuthor(Person $author = NULL) {
+    public function setAuthor(Person $author = null)
+    {
         $this->author = $author;
 
         return $this;
@@ -128,7 +158,8 @@ abstract class CreativeWork extends Thing {
      *
      * @return Person
      */
-    public function getAuthor() {
+    public function getAuthor()
+    {
         return $this->author;
     }
 
@@ -139,7 +170,8 @@ abstract class CreativeWork extends Thing {
      *
      * @return $this
      */
-    public function setComment(Comment $comment = NULL) {
+    public function setComment(Comment $comment = null)
+    {
         $this->comment = $comment;
 
         return $this;
@@ -150,7 +182,8 @@ abstract class CreativeWork extends Thing {
      *
      * @return Comment
      */
-    public function getComment() {
+    public function getComment()
+    {
         return $this->comment;
     }
 
@@ -161,7 +194,8 @@ abstract class CreativeWork extends Thing {
      *
      * @return $this
      */
-    public function setDateCreated(\DateTime $dateCreated = NULL) {
+    public function setDateCreated(\DateTime $dateCreated = null)
+    {
         $this->dateCreated = $dateCreated;
 
         return $this;
@@ -172,7 +206,8 @@ abstract class CreativeWork extends Thing {
      *
      * @return \DateTime
      */
-    public function getDateCreated() {
+    public function getDateCreated()
+    {
         return $this->dateCreated;
     }
 
@@ -183,7 +218,8 @@ abstract class CreativeWork extends Thing {
      *
      * @return $this
      */
-    public function setDateModified(\DateTime $dateModified = NULL) {
+    public function setDateModified(\DateTime $dateModified = null)
+    {
         $this->dateModified = $dateModified;
 
         return $this;
@@ -194,7 +230,8 @@ abstract class CreativeWork extends Thing {
      *
      * @return \DateTime
      */
-    public function getDateModified() {
+    public function getDateModified()
+    {
         return $this->dateModified;
     }
 
@@ -205,7 +242,8 @@ abstract class CreativeWork extends Thing {
      *
      * @return $this
      */
-    public function setDatePublished(\DateTime $datePublished = NULL) {
+    public function setDatePublished(\DateTime $datePublished = null)
+    {
         $this->datePublished = $datePublished;
 
         return $this;
@@ -216,7 +254,8 @@ abstract class CreativeWork extends Thing {
      *
      * @return \DateTime
      */
-    public function getDatePublished() {
+    public function getDatePublished()
+    {
         return $this->datePublished;
     }
 
@@ -227,7 +266,8 @@ abstract class CreativeWork extends Thing {
      *
      * @return $this
      */
-    public function setHeadline($headline) {
+    public function setHeadline($headline)
+    {
         $this->headline = $headline;
 
         return $this;
@@ -238,7 +278,8 @@ abstract class CreativeWork extends Thing {
      *
      * @return string
      */
-    public function getHeadline() {
+    public function getHeadline()
+    {
         return $this->headline;
     }
 
@@ -249,7 +290,8 @@ abstract class CreativeWork extends Thing {
      *
      * @return $this
      */
-    public function setPublisher(Organization $publisher = NULL) {
+    public function setPublisher(Organization $publisher = null)
+    {
         $this->publisher = $publisher;
 
         return $this;
@@ -260,7 +302,8 @@ abstract class CreativeWork extends Thing {
      *
      * @return Organization
      */
-    public function getPublisher() {
+    public function getPublisher()
+    {
         return $this->publisher;
     }
 
@@ -271,7 +314,8 @@ abstract class CreativeWork extends Thing {
      *
      * @return $this
      */
-    public function setText($text) {
+    public function setText($text)
+    {
         $this->text = $text;
 
         return $this;
@@ -282,7 +326,8 @@ abstract class CreativeWork extends Thing {
      *
      * @return string
      */
-    public function getText() {
+    public function getText()
+    {
         return $this->text;
     }
 
@@ -293,7 +338,8 @@ abstract class CreativeWork extends Thing {
      *
      * @return $this
      */
-    public function setCommentCount($commentCount) {
+    public function setCommentCount($commentCount)
+    {
         $this->commentCount = $commentCount;
 
         return $this;
@@ -304,7 +350,8 @@ abstract class CreativeWork extends Thing {
      *
      * @return int
      */
-    public function getCommentCount() {
+    public function getCommentCount()
+    {
         return $this->commentCount;
     }
 }

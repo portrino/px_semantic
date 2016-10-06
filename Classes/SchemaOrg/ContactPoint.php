@@ -1,5 +1,29 @@
 <?php
 
+/***************************************************************
+ *  Copyright notice
+ *
+ *  (c) 2016 Andre Wuttig <wuttig@portrino.de>, portrino GmbH
+ *
+ *  All rights reserved
+ *
+ *  This script is part of the TYPO3 project. The TYPO3 project is
+ *  free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  The GNU General Public License can be found at
+ *  http://www.gnu.org/copyleft/gpl.html.
+ *
+ *  This script is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  This copyright notice MUST APPEAR in all copies of the script!
+ ***************************************************************/
+
 namespace Portrino\PxSemantic\SchemaOrg;
 
 /**
@@ -9,35 +33,36 @@ namespace Portrino\PxSemantic\SchemaOrg;
  *
  * @author Andre Wuttig<wuttig@portrino.de>
  */
-abstract class ContactPoint extends StructuredValue {
+class ContactPoint extends StructuredValue
+{
 
     /**
-     * @var string The geographic area where a service or offered item is provided.
+     * @var string The geographic area where a service or offered item is provided
      */
     private $areaServed;
 
     /**
-     * @var Language A language someone may use with the item. Please use one of the language codes from the [IETF BCP 47 standard](http://tools.ietf.org/html/bcp47). See also [[inLanguage]].
+     * @var Language A language someone may use with the item. Please use one of the language codes from the [IETF BCP 47 standard](http://tools.ietf.org/html/bcp47). See also [[inLanguage]]
      */
     private $availableLanguage;
 
     /**
-     * @var string A person or organization can have different contact points, for different purposes. For example, a sales contact point, a PR contact point and so on. This property is used to specify the kind of contact point.
+     * @var string A person or organization can have different contact points, for different purposes. For example, a sales contact point, a PR contact point and so on. This property is used to specify the kind of contact point
      */
     private $contactType;
 
     /**
-     * @var string Email address.
+     * @var string Email address
      */
     private $email;
 
     /**
-     * @var string The fax number.
+     * @var string The fax number
      */
     private $faxNumber;
 
     /**
-     * @var string The telephone number.
+     * @var string The telephone number
      */
     private $telephone;
 
@@ -48,7 +73,8 @@ abstract class ContactPoint extends StructuredValue {
      *
      * @return $this
      */
-    public function setAreaServed($areaServed) {
+    public function setAreaServed($areaServed)
+    {
         $this->areaServed = $areaServed;
 
         return $this;
@@ -59,7 +85,8 @@ abstract class ContactPoint extends StructuredValue {
      *
      * @return string
      */
-    public function getAreaServed() {
+    public function getAreaServed()
+    {
         return $this->areaServed;
     }
 
@@ -70,7 +97,8 @@ abstract class ContactPoint extends StructuredValue {
      *
      * @return $this
      */
-    public function setAvailableLanguage(Language $availableLanguage = NULL) {
+    public function setAvailableLanguage(Language $availableLanguage = null)
+    {
         $this->availableLanguage = $availableLanguage;
 
         return $this;
@@ -81,7 +109,8 @@ abstract class ContactPoint extends StructuredValue {
      *
      * @return Language
      */
-    public function getAvailableLanguage() {
+    public function getAvailableLanguage()
+    {
         return $this->availableLanguage;
     }
 
@@ -92,7 +121,8 @@ abstract class ContactPoint extends StructuredValue {
      *
      * @return $this
      */
-    public function setContactType($contactType) {
+    public function setContactType($contactType)
+    {
         $this->contactType = $contactType;
 
         return $this;
@@ -103,7 +133,8 @@ abstract class ContactPoint extends StructuredValue {
      *
      * @return string
      */
-    public function getContactType() {
+    public function getContactType()
+    {
         return $this->contactType;
     }
 
@@ -114,7 +145,8 @@ abstract class ContactPoint extends StructuredValue {
      *
      * @return $this
      */
-    public function setEmail($email) {
+    public function setEmail($email)
+    {
         $this->email = $email;
 
         return $this;
@@ -125,7 +157,8 @@ abstract class ContactPoint extends StructuredValue {
      *
      * @return string
      */
-    public function getEmail() {
+    public function getEmail()
+    {
         return $this->email;
     }
 
@@ -136,7 +169,8 @@ abstract class ContactPoint extends StructuredValue {
      *
      * @return $this
      */
-    public function setFaxNumber($faxNumber) {
+    public function setFaxNumber($faxNumber)
+    {
         $this->faxNumber = $faxNumber;
 
         return $this;
@@ -147,7 +181,8 @@ abstract class ContactPoint extends StructuredValue {
      *
      * @return string
      */
-    public function getFaxNumber() {
+    public function getFaxNumber()
+    {
         return $this->faxNumber;
     }
 
@@ -158,7 +193,8 @@ abstract class ContactPoint extends StructuredValue {
      *
      * @return $this
      */
-    public function setTelephone($telephone) {
+    public function setTelephone($telephone)
+    {
         $this->telephone = $telephone;
 
         return $this;
@@ -169,7 +205,8 @@ abstract class ContactPoint extends StructuredValue {
      *
      * @return string
      */
-    public function getTelephone() {
+    public function getTelephone()
+    {
         return $this->telephone;
     }
 }

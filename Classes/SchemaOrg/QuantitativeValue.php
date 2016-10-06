@@ -1,5 +1,29 @@
 <?php
 
+/***************************************************************
+ *  Copyright notice
+ *
+ *  (c) 2016 Andre Wuttig <wuttig@portrino.de>, portrino GmbH
+ *
+ *  All rights reserved
+ *
+ *  This script is part of the TYPO3 project. The TYPO3 project is
+ *  free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  The GNU General Public License can be found at
+ *  http://www.gnu.org/copyleft/gpl.html.
+ *
+ *  This script is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  This copyright notice MUST APPEAR in all copies of the script!
+ ***************************************************************/
+
 namespace Portrino\PxSemantic\SchemaOrg;
 
 /**
@@ -9,7 +33,8 @@ namespace Portrino\PxSemantic\SchemaOrg;
  *
  * @author Andre Wuttig<wuttig@portrino.de>
  */
-class QuantitativeValue extends StructuredValue {
+class QuantitativeValue extends StructuredValue
+{
 
     /**
      * @var int
@@ -17,29 +42,27 @@ class QuantitativeValue extends StructuredValue {
     private $id;
 
     /**
-     * @var float The upper value of some characteristic or property.
+     * @var float The upper value of some characteristic or property
      */
     private $maxValue;
 
     /**
-     * @var float The lower value of some characteristic or property.
+     * @var float The lower value of some characteristic or property
      */
     private $minValue;
 
     /**
-     * @var string The unit of measurement given using the UN/CEFACT Common Code (3 characters) or a URL. Other codes than the UN/CEFACT Common Code may be used with a prefix followed by a colon.
+     * @var string The unit of measurement given using the UN/CEFACT Common Code (3 characters) or a URL. Other codes than the UN/CEFACT Common Code may be used with a prefix followed by a colon
      */
     private $unitCode;
 
     /**
-     * @var string The value of the quantitative value or property value node.
-     *             For QuantitativeValue and MonetaryValue, the recommended type for values is 'Number'.
-     *             For PropertyValue, it can be 'Text;', 'Number', 'Boolean', or 'StructuredValue'.
+     * @var string The value of the quantitative value or property value node.\\n\\n\* For [[QuantitativeValue]] and [[MonetaryAmount]], the recommended type for values is 'Number'.\\n\* For [[PropertyValue]], it can be 'Text;', 'Number', 'Boolean', or 'StructuredValue'
      */
     private $value;
 
     /**
-     * @var string A string or text indicating the unit of measurement. Useful if you cannot provide a standard unit code for <unitCode>.
+     * @var string A string or text indicating the unit of measurement. Useful if you cannot provide a standard unit code for <unitCode>
      */
     private $unitText;
 
@@ -50,7 +73,8 @@ class QuantitativeValue extends StructuredValue {
      *
      * @return $this
      */
-    public function setId($id) {
+    public function setId($id)
+    {
         $this->id = $id;
 
         return $this;
@@ -61,7 +85,8 @@ class QuantitativeValue extends StructuredValue {
      *
      * @return int
      */
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
@@ -72,7 +97,8 @@ class QuantitativeValue extends StructuredValue {
      *
      * @return $this
      */
-    public function setMaxValue($maxValue) {
+    public function setMaxValue($maxValue)
+    {
         $this->maxValue = $maxValue;
 
         return $this;
@@ -83,7 +109,8 @@ class QuantitativeValue extends StructuredValue {
      *
      * @return float
      */
-    public function getMaxValue() {
+    public function getMaxValue()
+    {
         return $this->maxValue;
     }
 
@@ -94,7 +121,8 @@ class QuantitativeValue extends StructuredValue {
      *
      * @return $this
      */
-    public function setMinValue($minValue) {
+    public function setMinValue($minValue)
+    {
         $this->minValue = $minValue;
 
         return $this;
@@ -105,7 +133,8 @@ class QuantitativeValue extends StructuredValue {
      *
      * @return float
      */
-    public function getMinValue() {
+    public function getMinValue()
+    {
         return $this->minValue;
     }
 
@@ -116,7 +145,8 @@ class QuantitativeValue extends StructuredValue {
      *
      * @return $this
      */
-    public function setUnitCode($unitCode) {
+    public function setUnitCode($unitCode)
+    {
         $this->unitCode = $unitCode;
 
         return $this;
@@ -127,7 +157,8 @@ class QuantitativeValue extends StructuredValue {
      *
      * @return string
      */
-    public function getUnitCode() {
+    public function getUnitCode()
+    {
         return $this->unitCode;
     }
 
@@ -138,7 +169,8 @@ class QuantitativeValue extends StructuredValue {
      *
      * @return $this
      */
-    public function setValue($value) {
+    public function setValue($value)
+    {
         $this->value = $value;
 
         return $this;
@@ -149,7 +181,8 @@ class QuantitativeValue extends StructuredValue {
      *
      * @return string
      */
-    public function getValue() {
+    public function getValue()
+    {
         return $this->value;
     }
 
@@ -160,7 +193,8 @@ class QuantitativeValue extends StructuredValue {
      *
      * @return $this
      */
-    public function setUnitText($unitText) {
+    public function setUnitText($unitText)
+    {
         $this->unitText = $unitText;
 
         return $this;
@@ -171,7 +205,8 @@ class QuantitativeValue extends StructuredValue {
      *
      * @return string
      */
-    public function getUnitText() {
+    public function getUnitText()
+    {
         return $this->unitText;
     }
 }

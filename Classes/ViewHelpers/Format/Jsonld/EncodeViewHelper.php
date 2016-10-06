@@ -34,63 +34,76 @@ use TYPO3\CMS\Fluid\Core\ViewHelper\Exception;
  *
  * @package Portrino\PxSemantic\ViewHelpers\Format\Jsonld
  */
-class EncodeViewHelper extends \FluidTYPO3\Vhs\ViewHelpers\Format\Json\EncodeViewHelper {
+class EncodeViewHelper extends \FluidTYPO3\Vhs\ViewHelpers\Format\Json\EncodeViewHelper
+{
 
-	/**
-	 *  @var string
-	 */
-	protected $context = 'http://schema.org';
+    /**
+     * @var string
+     */
+    protected $context = 'http://schema.org';
 
-	/**
-	 * @param mixed $value Array or Traversable
-	 * @param boolean $useTraversableKeys If TRUE, preserves keys from Traversables converted to arrays. Not recommended for ObjectStorages!
-	 * @param boolean $preventRecursion If FALSE, allows recursion to occur which could potentially be fatal to the output unless managed
-	 * @param mixed $recursionMarker Any value - string, integer, boolean, object or NULL - inserted instead of recursive instances of objects
-	 * @param string $dateTimeFormat A date() format for converting DateTime values to JSON-compatible values. NULL means JS UNIXTIME (time()*1000)
-	 * @param string $context context (e.g.: http://schema.org)
-	 * @return string
-	 */
-	public function render($value = NULL, $useTraversableKeys = FALSE, $preventRecursion = TRUE, $recursionMarker = NULL, $dateTimeFormat = NULL, $context = 'http://schema.org') {
-		$this->context = $context;
-		return parent::render($value, $useTraversableKeys, $preventRecursion,$recursionMarker,$dateTimeFormat);
-	}
+    /**
+     * @param mixed $value Array or Traversable
+     * @param boolean $useTraversableKeys If TRUE, preserves keys from Traversables converted to arrays. Not recommended for ObjectStorages!
+     * @param boolean $preventRecursion If FALSE, allows recursion to occur which could potentially be fatal to the output unless managed
+     * @param mixed $recursionMarker Any value - string, integer, boolean, object or NULL - inserted instead of recursive instances of objects
+     * @param string $dateTimeFormat A date() format for converting DateTime values to JSON-compatible values. NULL means JS UNIXTIME (time()*1000)
+     * @param string $context context (e.g.: http://schema.org)
+     *
+     * @return string
+     */
+    public function render(
+        $value = null,
+        $useTraversableKeys = false,
+        $preventRecursion = true,
+        $recursionMarker = null,
+        $dateTimeFormat = null,
+        $context = 'http://schema.org'
+    ) {
+        $this->context = $context;
+        return parent::render($value, $useTraversableKeys, $preventRecursion, $recursionMarker, $dateTimeFormat);
+    }
 
-	/**
-	 * Convert a single DomainObject instance first to an array, then pass
-	 * that array through recursive DomainObject detection. This will convert
-	 * any 1:1, 1:n, n:1 and m:n relations.
-	 *
-	 * @param DomainObjectInterface $domainObject
-	 * @param boolean $preventRecursion
-	 * @param mixed $recursionMarker
-	 * @return array
-	 */
-	protected function recursiveDomainObjectToArray(DomainObjectInterface $domainObject, $preventRecursion, $recursionMarker) {
-		$hash = spl_object_hash($domainObject);
-		if (TRUE === $preventRecursion && TRUE === in_array($hash, $this->encounteredClasses)) {
-			return $recursionMarker;
-		}
-		$converted = ObjectAccess::getGettableProperties($domainObject);
-
-		$reflect = new \ReflectionClass($domainObject);
-		if ($reflect) {
-			$converted['@type'] = $reflect->getShortName();
-			$converted['@context'] = $this->context;
-            if(method_exists($domainObject,'getId') && empty($domainObject->getId()) === FALSE) {
+    /**
+     * Convert a single DomainObject instance first to an array, then pass
+     * that array through recursive DomainObject detection. This will convert
+     * any 1:1, 1:n, n:1 and m:n relations.
+     *
+     * @param DomainObjectInterface $domainObject
+     * @param boolean $preventRecursion
+     * @param mixed $recursionMarker
+     *
+     * @return array
+     */
+    protected function recursiveDomainObjectToArray(
+        DomainObjectInterface $domainObject,
+        $preventRecursion,
+        $recursionMarker
+    ) {
+        $hash = spl_object_hash($domainObject);
+        if (true === $preventRecursion && true === in_array($hash, $this->encounteredClasses)) {
+            return $recursionMarker;
+        }
+        $converted = ObjectAccess::getGettableProperties($domainObject);
+        $reflect = new \ReflectionClass($domainObject);
+        if ($reflect) {
+            $converted['@type'] = $reflect->getShortName();
+            $converted['@context'] = $this->context;
+            if (method_exists($domainObject, 'getId') && empty($domainObject->getId()) === false) {
                 $converted['@id'] = $domainObject->getId();
                 unset($converted['id']);
             }
-		}
+        }
 
-		foreach ($converted as $key => $item) {
-			if ($item === NULL) {
-				unset($converted[$key]);
-			}
-		}
+        foreach ($converted as $key => $item) {
+            if ($item === null) {
+                unset($converted[$key]);
+            }
+        }
 
-		array_push($this->encounteredClasses, $hash);
-		$converted = $this->recursiveArrayOfDomainObjectsToArray($converted, $preventRecursion, $recursionMarker);
-		return $converted;
-	}
+        array_push($this->encounteredClasses, $hash);
+        $converted = $this->recursiveArrayOfDomainObjectsToArray($converted, $preventRecursion, $recursionMarker);
+        return $converted;
+    }
 
 }

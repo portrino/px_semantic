@@ -1,5 +1,29 @@
 <?php
 
+/***************************************************************
+ *  Copyright notice
+ *
+ *  (c) 2016 Andre Wuttig <wuttig@portrino.de>, portrino GmbH
+ *
+ *  All rights reserved
+ *
+ *  This script is part of the TYPO3 project. The TYPO3 project is
+ *  free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  The GNU General Public License can be found at
+ *  http://www.gnu.org/copyleft/gpl.html.
+ *
+ *  This script is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  This copyright notice MUST APPEAR in all copies of the script!
+ ***************************************************************/
+
 namespace Portrino\PxSemantic\SchemaOrg;
 
 /**
@@ -9,36 +33,38 @@ namespace Portrino\PxSemantic\SchemaOrg;
  *
  * @author Andre Wuttig<wuttig@portrino.de>
  */
-abstract class Rating extends Intangible {
+class Rating extends Intangible
+{
 
     /**
-     * @var string The highest value allowed in this rating system. If bestRating is omitted, 5 is assumed.
+     * @var float The highest value allowed in this rating system. If bestRating is omitted, 5 is assumed
      */
     private $bestRating;
 
     /**
-     * @var string The rating for the content.
+     * @var float The rating for the content
      */
     private $ratingValue;
 
     /**
-     * @var string The lowest value allowed in this rating system. If worstRating is omitted, 1 is assumed.
+     * @var float The lowest value allowed in this rating system. If worstRating is omitted, 1 is assumed
      */
     private $worstRating;
 
     /**
-     * @var string
+     * @var float
      */
     private $ratingCount;
 
     /**
      * Sets bestRating.
      *
-     * @param string $bestRating
+     * @param float $bestRating
      *
      * @return $this
      */
-    public function setBestRating($bestRating) {
+    public function setBestRating($bestRating)
+    {
         $this->bestRating = $bestRating;
 
         return $this;
@@ -47,20 +73,22 @@ abstract class Rating extends Intangible {
     /**
      * Gets bestRating.
      *
-     * @return string
+     * @return float
      */
-    public function getBestRating() {
+    public function getBestRating()
+    {
         return $this->bestRating;
     }
 
     /**
      * Sets ratingValue.
      *
-     * @param string $ratingValue
+     * @param float $ratingValue
      *
      * @return $this
      */
-    public function setRatingValue($ratingValue) {
+    public function setRatingValue($ratingValue)
+    {
         $this->ratingValue = $ratingValue;
 
         return $this;
@@ -69,20 +97,22 @@ abstract class Rating extends Intangible {
     /**
      * Gets ratingValue.
      *
-     * @return string
+     * @return float
      */
-    public function getRatingValue() {
+    public function getRatingValue()
+    {
         return $this->ratingValue;
     }
 
     /**
      * Sets worstRating.
      *
-     * @param string $worstRating
+     * @param float $worstRating
      *
      * @return $this
      */
-    public function setWorstRating($worstRating) {
+    public function setWorstRating($worstRating)
+    {
         $this->worstRating = $worstRating;
 
         return $this;
@@ -91,20 +121,22 @@ abstract class Rating extends Intangible {
     /**
      * Gets worstRating.
      *
-     * @return string
+     * @return float
      */
-    public function getWorstRating() {
+    public function getWorstRating()
+    {
         return $this->worstRating;
     }
 
     /**
      * Sets ratingCount.
      *
-     * @param string $ratingCount
+     * @param float $ratingCount
      *
      * @return $this
      */
-    public function setRatingCount($ratingCount) {
+    public function setRatingCount($ratingCount)
+    {
         $this->ratingCount = $ratingCount;
 
         return $this;
@@ -113,9 +145,10 @@ abstract class Rating extends Intangible {
     /**
      * Gets ratingCount.
      *
-     * @return string
+     * @return float
      */
-    public function getRatingCount() {
+    public function getRatingCount()
+    {
         return $this->ratingCount;
     }
 }

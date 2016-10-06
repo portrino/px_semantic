@@ -31,7 +31,8 @@ use TYPO3\CMS\Core\SingletonInterface;
  *
  * @package Portrino\PxSemantic\Converter
  */
-class TypoScriptTypeConverterFactory implements SingletonInterface {
+class TypoScriptTypeConverterFactory implements SingletonInterface
+{
 
     /**
      * @var \TYPO3\CMS\Extbase\Object\ObjectManagerInterface
@@ -44,8 +45,9 @@ class TypoScriptTypeConverterFactory implements SingletonInterface {
      *
      * @return TypoScriptTypeConverterInterface|NULL
      */
-    public function get($className = '') {
-        $typoScriptTypeConverter = NULL;
+    public function get($className = '')
+    {
+        $typoScriptTypeConverter = null;
         if ($className != '') {
             /**
              * for legacy reasons we check if the "old" PX_ syntax was used for custom typoscript converters
@@ -61,15 +63,16 @@ class TypoScriptTypeConverterFactory implements SingletonInterface {
                         $className = \Portrino\PxSemantic\Converter\DateTimeConverter::class;
                         break;
                     default:
-                        $className = NULL;
+                        $className = null;
                         break;
                 }
             }
-            if ($className != NULL) {
+            if ($className != null) {
                 $typoScriptTypeConverter = $this->objectManager->get($className);
 
                 if (!$typoScriptTypeConverter instanceof TypoScriptTypeConverterInterface) {
-                    throw new \Exception('The given Converter "' . $className . '"implement \Portrino\PxSemantic\Converter\TypoScriptTypeConverterInterface', 1464072320);
+                    throw new \Exception('The given Converter "' . $className . '"implement \Portrino\PxSemantic\Converter\TypoScriptTypeConverterInterface',
+                        1464072320);
                 }
             }
         }

@@ -1,36 +1,37 @@
 <?php
 namespace Portrino\PxSemantic\Converter;
 
-/***************************************************************
- *  Copyright notice
- *
- *  (c) 2016 Andre Wuttig <wuttig@portrino.de>, portrino GmbH
- *
- *  All rights reserved
- *
- *  This script is part of the TYPO3 project. The TYPO3 project is
- *  free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  The GNU General Public License can be found at
- *  http://www.gnu.org/copyleft/gpl.html.
- *
- *  This script is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
+    /***************************************************************
+     *  Copyright notice
+     *
+     *  (c) 2016 Andre Wuttig <wuttig@portrino.de>, portrino GmbH
+     *
+     *  All rights reserved
+     *
+     *  This script is part of the TYPO3 project. The TYPO3 project is
+     *  free software; you can redistribute it and/or modify
+     *  it under the terms of the GNU General Public License as published by
+     *  the Free Software Foundation; either version 3 of the License, or
+     *  (at your option) any later version.
+     *
+     *  The GNU General Public License can be found at
+     *  http://www.gnu.org/copyleft/gpl.html.
+     *
+     *  This script is distributed in the hope that it will be useful,
+     *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+     *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+     *  GNU General Public License for more details.
+     *
+     *  This copyright notice MUST APPEAR in all copies of the script!
+     ***************************************************************/
 
 /**
  * Class DateTimeConverter
  *
  * @package Portrino\PxSemantic\Converter
  */
-class DateTimeConverter implements TypoScriptTypeConverterInterface {
+class DateTimeConverter implements TypoScriptTypeConverterInterface
+{
 
     /**
      * The default date format is "YYYY-MM-DDT##:##:##+##:##", for example "2005-08-15T15:52:01+00:00"
@@ -46,7 +47,8 @@ class DateTimeConverter implements TypoScriptTypeConverterInterface {
      * @return \DateTime|null|\TYPO3\CMS\Extbase\Validation\Error
      * @throws \TYPO3\CMS\Extbase\Property\Exception\TypeConverterException
      */
-    public function convert($source) {
+    public function convert($source)
+    {
 
         $dateFormat = self::DEFAULT_DATE_FORMAT;
 
@@ -68,14 +70,16 @@ class DateTimeConverter implements TypoScriptTypeConverterInterface {
             try {
                 $timezone = new \DateTimeZone($source['timezone']);
             } catch (\Exception $e) {
-                throw new \TYPO3\CMS\Extbase\Property\Exception\TypeConverterException('The specified timezone "' . $source['timezone'] . '" is invalid.', 1308240974);
+                throw new \TYPO3\CMS\Extbase\Property\Exception\TypeConverterException('The specified timezone "' . $source['timezone'] . '" is invalid.',
+                    1308240974);
             }
             $date = \DateTime::createFromFormat($dateFormat, $dateAsString, $timezone);
         } else {
             $date = \DateTime::createFromFormat($dateFormat, $dateAsString);
         }
         if ($date === false) {
-            return new \TYPO3\CMS\Extbase\Validation\Error('The date "%s" was not recognized (for format "%s").', 1307719788, array($dateAsString, $dateFormat));
+            return new \TYPO3\CMS\Extbase\Validation\Error('The date "%s" was not recognized (for format "%s").',
+                1307719788, [$dateAsString, $dateFormat]);
         }
         if (is_array($source)) {
             $this->overrideTimeIfSpecified($date, $source);
@@ -88,9 +92,11 @@ class DateTimeConverter implements TypoScriptTypeConverterInterface {
      *
      * @param \DateTime $date
      * @param array $source
+     *
      * @return void
      */
-    protected function overrideTimeIfSpecified(\DateTime $date, array $source) {
+    protected function overrideTimeIfSpecified(\DateTime $date, array $source)
+    {
         if (!isset($source['hour']) && !isset($source['minute']) && !isset($source['second'])) {
             return;
         }

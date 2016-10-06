@@ -1,5 +1,29 @@
 <?php
 
+/***************************************************************
+ *  Copyright notice
+ *
+ *  (c) 2016 Andre Wuttig <wuttig@portrino.de>, portrino GmbH
+ *
+ *  All rights reserved
+ *
+ *  This script is part of the TYPO3 project. The TYPO3 project is
+ *  free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  The GNU General Public License can be found at
+ *  http://www.gnu.org/copyleft/gpl.html.
+ *
+ *  This script is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  This copyright notice MUST APPEAR in all copies of the script!
+ ***************************************************************/
+
 namespace Portrino\PxSemantic\SchemaOrg;
 
 /**
@@ -9,199 +33,173 @@ namespace Portrino\PxSemantic\SchemaOrg;
  *
  * @author Andre Wuttig<wuttig@portrino.de>
  */
-class Organization extends Thing {
+class Organization extends Thing
+{
 
     /**
-     * @var int
-     */
-    private $id;
-
-    /**
-     * @var PostalAddress Physical address of the item.
+     * @var PostalAddress Physical address of the item
      */
     private $address;
 
     /**
-     * @var AggregateRating The overall rating, based on a collection of reviews or ratings, of the item.
+     * @var AggregateRating The overall rating, based on a collection of reviews or ratings, of the item
      */
     private $aggregateRating;
 
     /**
-     * @var Person Alumni of an organization.
+     * @var Person Alumni of an organization
      */
     private $alumni;
 
     /**
-     * @var string The geographic area where a service or offered item is provided.
+     * @var string The geographic area where a service or offered item is provided
      */
     private $areaServed;
 
     /**
-     * @var string An award won by or for this item.
+     * @var string An award won by or for this item
      */
     private $award;
 
     /**
-     * @var Organization The larger organization that this organization is a branch of, if any.
+     * @var Organization The larger organization that this local business is a branch of, if any
      */
     private $parentOrganization;
 
     /**
-     * @var Organization The brand(s) associated with a product or service, or the brand(s) maintained by an organization or business person.
+     * @var Organization The brand(s) associated with a product or service, or the brand(s) maintained by an organization or business person
      */
     private $brand;
 
     /**
-     * @var ContactPoint A contact point for a person or organization.
+     * @var ContactPoint A contact point for a person or organization
      */
     private $contactPoint;
 
     /**
-     * @var array A contact point for a person or organization.
+     * @var ContactPoint A contact point for a person or organization
      */
     private $contactPoints;
 
     /**
-     * @var Organization A relationship between an organization and a department of that organization, also described as an organization (allowing different urls, logos, opening hours). For example: a store with a pharmacy, or a bakery with a cafe.
+     * @var Organization A relationship between an organization and a department of that organization, also described as an organization (allowing different urls, logos, opening hours). For example: a store with a pharmacy, or a bakery with a cafe
      */
     private $department;
 
     /**
-     * @var string The Dun & Bradstreet DUNS number for identifying an organization or business person.
+     * @var string The Dun & Bradstreet DUNS number for identifying an organization or business person
      */
     private $duns;
 
     /**
-     * @var string Email address.
+     * @var string Email address
      */
     private $email;
 
     /**
-     * @var Person Someone working for this organization.
+     * @var Person Someone working for this organization
      */
     private $employee;
 
     /**
-     * @var string The fax number.
+     * @var string The fax number
      */
     private $faxNumber;
 
     /**
-     * @var Person A person who founded this organization.
+     * @var Person A person who founded this organization
      */
     private $founder;
 
     /**
-     * @var \DateTime The date that this organization was dissolved.
+     * @var \DateTime The date that this organization was dissolved
      */
     private $dissolutionDate;
 
     /**
-     * @var \DateTime The date that this organization was founded.
+     * @var \DateTime The date that this organization was founded
      */
     private $foundingDate;
 
     /**
-     * @var string The [Global Location Number](http://www.gs1.org/gln) (GLN, sometimes also referred to as International Location Number or ILN) of the respective organization, person, or place. The GLN is a 13-digit number used to identify parties and physical locations.
+     * @var string The [Global Location Number](http://www.gs1.org/gln) (GLN, sometimes also referred to as International Location Number or ILN) of the respective organization, person, or place. The GLN is a 13-digit number used to identify parties and physical locations
      */
     private $globalLocationNumber;
 
     /**
-     * @var Place Points-of-Sales operated by the organization or person.
+     * @var Place Points-of-Sales operated by the organization or person
      */
     private $hasPOS;
 
     /**
-     * @var string The International Standard of Industrial Classification of All Economic Activities (ISIC), Revision 4 code for a particular organization, business person, or place.
+     * @var string The International Standard of Industrial Classification of All Economic Activities (ISIC), Revision 4 code for a particular organization, business person, or place
      */
     private $isicV4;
 
     /**
-     * @var string The official name of the organization, e.g. the registered company name.
+     * @var string The official name of the organization, e.g. the registered company name
      */
     private $legalName;
 
     /**
-     * @var Place The location of for example where the event is happening, an organization is located, or where an action takes place.
+     * @var Place The location of for example where the event is happening, an organization is located, or where an action takes place
      */
     private $location;
 
     /**
-     * @var ImageObject An associated logo.
+     * @var ImageObject An associated logo
      */
     private $logo;
 
     /**
-     * @var Organization A member of an Organization or a ProgramMembership. Organizations can be members of organizations; ProgramMembership is typically for individuals.
+     * @var Organization A member of an Organization or a ProgramMembership. Organizations can be members of organizations; ProgramMembership is typically for individuals
      */
     private $member;
 
     /**
-     * @var Organization An Organization (or ProgramMembership) to which this Person or Organization belongs.
+     * @var Organization An Organization (or ProgramMembership) to which this Person or Organization belongs
      */
     private $memberOf;
 
     /**
-     * @var string The North American Industry Classification System (NAICS) code for a particular organization or business person.
+     * @var string The North American Industry Classification System (NAICS) code for a particular organization or business person
      */
     private $naics;
 
     /**
-     * @var QuantitativeValue The number of employees in an organization e.g. business.
+     * @var QuantitativeValue The number of employees in an organization e.g. business
      */
     private $numberOfEmployees;
 
     /**
-     * @var Review A review of the item.
+     * @var Review A review of the item
      */
     private $review;
 
     /**
-     * @var Organization A relationship between two organizations where the first includes the second, e.g., as a subsidiary. See also: the more specific 'department' property.
+     * @var Organization A relationship between two organizations where the first includes the second, e.g., as a subsidiary. See also: the more specific 'department' property
      */
     private $subOrganization;
 
     /**
-     * @var string The Tax / Fiscal ID of the organization or person, e.g. the TIN in the US or the CIF/NIF in Spain.
+     * @var string The Tax / Fiscal ID of the organization or person, e.g. the TIN in the US or the CIF/NIF in Spain
      */
     private $taxID;
 
     /**
-     * @var string The telephone number.
+     * @var string The telephone number
      */
     private $telephone;
 
     /**
-     * @var string The Value-added Tax ID of the organization or person.
+     * @var string The Value-added Tax ID of the organization or person
      */
     private $vatID;
 
     /**
-     * @var Place The place where the Organization was founded.
+     * @var Place The place where the Organization was founded
      */
     private $foundingLocation;
-
-    /**
-     * Sets id.
-     *
-     * @param int $id
-     *
-     * @return $this
-     */
-    public function setId($id) {
-        $this->id = $id;
-
-        return $this;
-    }
-
-    /**
-     * Gets id.
-     *
-     * @return int
-     */
-    public function getId() {
-        return $this->id;
-    }
 
     /**
      * Sets address.
@@ -210,7 +208,8 @@ class Organization extends Thing {
      *
      * @return $this
      */
-    public function setAddress(PostalAddress $address = NULL) {
+    public function setAddress(PostalAddress $address = null)
+    {
         $this->address = $address;
 
         return $this;
@@ -221,7 +220,8 @@ class Organization extends Thing {
      *
      * @return PostalAddress
      */
-    public function getAddress() {
+    public function getAddress()
+    {
         return $this->address;
     }
 
@@ -232,7 +232,8 @@ class Organization extends Thing {
      *
      * @return $this
      */
-    public function setAggregateRating(AggregateRating $aggregateRating = NULL) {
+    public function setAggregateRating(AggregateRating $aggregateRating = null)
+    {
         $this->aggregateRating = $aggregateRating;
 
         return $this;
@@ -243,7 +244,8 @@ class Organization extends Thing {
      *
      * @return AggregateRating
      */
-    public function getAggregateRating() {
+    public function getAggregateRating()
+    {
         return $this->aggregateRating;
     }
 
@@ -254,7 +256,8 @@ class Organization extends Thing {
      *
      * @return $this
      */
-    public function setAlumni(Person $alumni = NULL) {
+    public function setAlumni(Person $alumni = null)
+    {
         $this->alumni = $alumni;
 
         return $this;
@@ -265,7 +268,8 @@ class Organization extends Thing {
      *
      * @return Person
      */
-    public function getAlumni() {
+    public function getAlumni()
+    {
         return $this->alumni;
     }
 
@@ -276,7 +280,8 @@ class Organization extends Thing {
      *
      * @return $this
      */
-    public function setAreaServed($areaServed) {
+    public function setAreaServed($areaServed)
+    {
         $this->areaServed = $areaServed;
 
         return $this;
@@ -287,7 +292,8 @@ class Organization extends Thing {
      *
      * @return string
      */
-    public function getAreaServed() {
+    public function getAreaServed()
+    {
         return $this->areaServed;
     }
 
@@ -298,7 +304,8 @@ class Organization extends Thing {
      *
      * @return $this
      */
-    public function setAward($award) {
+    public function setAward($award)
+    {
         $this->award = $award;
 
         return $this;
@@ -309,7 +316,8 @@ class Organization extends Thing {
      *
      * @return string
      */
-    public function getAward() {
+    public function getAward()
+    {
         return $this->award;
     }
 
@@ -320,7 +328,8 @@ class Organization extends Thing {
      *
      * @return $this
      */
-    public function setParentOrganization(Organization $parentOrganization = NULL) {
+    public function setParentOrganization(Organization $parentOrganization = null)
+    {
         $this->parentOrganization = $parentOrganization;
 
         return $this;
@@ -331,7 +340,8 @@ class Organization extends Thing {
      *
      * @return Organization
      */
-    public function getParentOrganization() {
+    public function getParentOrganization()
+    {
         return $this->parentOrganization;
     }
 
@@ -342,7 +352,8 @@ class Organization extends Thing {
      *
      * @return $this
      */
-    public function setBrand(Organization $brand = NULL) {
+    public function setBrand(Organization $brand = null)
+    {
         $this->brand = $brand;
 
         return $this;
@@ -353,7 +364,8 @@ class Organization extends Thing {
      *
      * @return Organization
      */
-    public function getBrand() {
+    public function getBrand()
+    {
         return $this->brand;
     }
 
@@ -364,7 +376,8 @@ class Organization extends Thing {
      *
      * @return $this
      */
-    public function setContactPoint(ContactPoint $contactPoint = NULL) {
+    public function setContactPoint(ContactPoint $contactPoint = null)
+    {
         $this->contactPoint = $contactPoint;
 
         return $this;
@@ -375,18 +388,20 @@ class Organization extends Thing {
      *
      * @return ContactPoint
      */
-    public function getContactPoint() {
+    public function getContactPoint()
+    {
         return $this->contactPoint;
     }
 
     /**
      * Sets contactPoints.
      *
-     * @param array $contactPoints
+     * @param ContactPoint $contactPoints
      *
      * @return $this
      */
-    public function setContactPoints($contactPoints = array()) {
+    public function setContactPoints(ContactPoint $contactPoints = null)
+    {
         $this->contactPoints = $contactPoints;
 
         return $this;
@@ -395,9 +410,10 @@ class Organization extends Thing {
     /**
      * Gets contactPoints.
      *
-     * @return array
+     * @return ContactPoint
      */
-    public function getContactPoints() {
+    public function getContactPoints()
+    {
         return $this->contactPoints;
     }
 
@@ -408,7 +424,8 @@ class Organization extends Thing {
      *
      * @return $this
      */
-    public function setDepartment(Organization $department = NULL) {
+    public function setDepartment(Organization $department = null)
+    {
         $this->department = $department;
 
         return $this;
@@ -419,7 +436,8 @@ class Organization extends Thing {
      *
      * @return Organization
      */
-    public function getDepartment() {
+    public function getDepartment()
+    {
         return $this->department;
     }
 
@@ -430,7 +448,8 @@ class Organization extends Thing {
      *
      * @return $this
      */
-    public function setDuns($duns) {
+    public function setDuns($duns)
+    {
         $this->duns = $duns;
 
         return $this;
@@ -441,7 +460,8 @@ class Organization extends Thing {
      *
      * @return string
      */
-    public function getDuns() {
+    public function getDuns()
+    {
         return $this->duns;
     }
 
@@ -452,7 +472,8 @@ class Organization extends Thing {
      *
      * @return $this
      */
-    public function setEmail($email) {
+    public function setEmail($email)
+    {
         $this->email = $email;
 
         return $this;
@@ -463,7 +484,8 @@ class Organization extends Thing {
      *
      * @return string
      */
-    public function getEmail() {
+    public function getEmail()
+    {
         return $this->email;
     }
 
@@ -474,7 +496,8 @@ class Organization extends Thing {
      *
      * @return $this
      */
-    public function setEmployee(Person $employee = NULL) {
+    public function setEmployee(Person $employee = null)
+    {
         $this->employee = $employee;
 
         return $this;
@@ -485,7 +508,8 @@ class Organization extends Thing {
      *
      * @return Person
      */
-    public function getEmployee() {
+    public function getEmployee()
+    {
         return $this->employee;
     }
 
@@ -496,7 +520,8 @@ class Organization extends Thing {
      *
      * @return $this
      */
-    public function setFaxNumber($faxNumber) {
+    public function setFaxNumber($faxNumber)
+    {
         $this->faxNumber = $faxNumber;
 
         return $this;
@@ -507,7 +532,8 @@ class Organization extends Thing {
      *
      * @return string
      */
-    public function getFaxNumber() {
+    public function getFaxNumber()
+    {
         return $this->faxNumber;
     }
 
@@ -518,7 +544,8 @@ class Organization extends Thing {
      *
      * @return $this
      */
-    public function setFounder(Person $founder = NULL) {
+    public function setFounder(Person $founder = null)
+    {
         $this->founder = $founder;
 
         return $this;
@@ -529,7 +556,8 @@ class Organization extends Thing {
      *
      * @return Person
      */
-    public function getFounder() {
+    public function getFounder()
+    {
         return $this->founder;
     }
 
@@ -540,7 +568,8 @@ class Organization extends Thing {
      *
      * @return $this
      */
-    public function setDissolutionDate(\DateTime $dissolutionDate = NULL) {
+    public function setDissolutionDate(\DateTime $dissolutionDate = null)
+    {
         $this->dissolutionDate = $dissolutionDate;
 
         return $this;
@@ -551,7 +580,8 @@ class Organization extends Thing {
      *
      * @return \DateTime
      */
-    public function getDissolutionDate() {
+    public function getDissolutionDate()
+    {
         return $this->dissolutionDate;
     }
 
@@ -562,7 +592,8 @@ class Organization extends Thing {
      *
      * @return $this
      */
-    public function setFoundingDate(\DateTime $foundingDate = NULL) {
+    public function setFoundingDate(\DateTime $foundingDate = null)
+    {
         $this->foundingDate = $foundingDate;
 
         return $this;
@@ -573,7 +604,8 @@ class Organization extends Thing {
      *
      * @return \DateTime
      */
-    public function getFoundingDate() {
+    public function getFoundingDate()
+    {
         return $this->foundingDate;
     }
 
@@ -584,7 +616,8 @@ class Organization extends Thing {
      *
      * @return $this
      */
-    public function setGlobalLocationNumber($globalLocationNumber) {
+    public function setGlobalLocationNumber($globalLocationNumber)
+    {
         $this->globalLocationNumber = $globalLocationNumber;
 
         return $this;
@@ -595,7 +628,8 @@ class Organization extends Thing {
      *
      * @return string
      */
-    public function getGlobalLocationNumber() {
+    public function getGlobalLocationNumber()
+    {
         return $this->globalLocationNumber;
     }
 
@@ -606,7 +640,8 @@ class Organization extends Thing {
      *
      * @return $this
      */
-    public function setHasPOS(Place $hasPOS = NULL) {
+    public function setHasPOS(Place $hasPOS = null)
+    {
         $this->hasPOS = $hasPOS;
 
         return $this;
@@ -617,7 +652,8 @@ class Organization extends Thing {
      *
      * @return Place
      */
-    public function getHasPOS() {
+    public function getHasPOS()
+    {
         return $this->hasPOS;
     }
 
@@ -628,7 +664,8 @@ class Organization extends Thing {
      *
      * @return $this
      */
-    public function setIsicV4($isicV4) {
+    public function setIsicV4($isicV4)
+    {
         $this->isicV4 = $isicV4;
 
         return $this;
@@ -639,7 +676,8 @@ class Organization extends Thing {
      *
      * @return string
      */
-    public function getIsicV4() {
+    public function getIsicV4()
+    {
         return $this->isicV4;
     }
 
@@ -650,7 +688,8 @@ class Organization extends Thing {
      *
      * @return $this
      */
-    public function setLegalName($legalName) {
+    public function setLegalName($legalName)
+    {
         $this->legalName = $legalName;
 
         return $this;
@@ -661,7 +700,8 @@ class Organization extends Thing {
      *
      * @return string
      */
-    public function getLegalName() {
+    public function getLegalName()
+    {
         return $this->legalName;
     }
 
@@ -672,7 +712,8 @@ class Organization extends Thing {
      *
      * @return $this
      */
-    public function setLocation(Place $location = NULL) {
+    public function setLocation(Place $location = null)
+    {
         $this->location = $location;
 
         return $this;
@@ -683,7 +724,8 @@ class Organization extends Thing {
      *
      * @return Place
      */
-    public function getLocation() {
+    public function getLocation()
+    {
         return $this->location;
     }
 
@@ -694,7 +736,8 @@ class Organization extends Thing {
      *
      * @return $this
      */
-    public function setLogo(ImageObject $logo = NULL) {
+    public function setLogo(ImageObject $logo = null)
+    {
         $this->logo = $logo;
 
         return $this;
@@ -705,7 +748,8 @@ class Organization extends Thing {
      *
      * @return ImageObject
      */
-    public function getLogo() {
+    public function getLogo()
+    {
         return $this->logo;
     }
 
@@ -716,7 +760,8 @@ class Organization extends Thing {
      *
      * @return $this
      */
-    public function setMember(Organization $member = NULL) {
+    public function setMember(Organization $member = null)
+    {
         $this->member = $member;
 
         return $this;
@@ -727,7 +772,8 @@ class Organization extends Thing {
      *
      * @return Organization
      */
-    public function getMember() {
+    public function getMember()
+    {
         return $this->member;
     }
 
@@ -738,7 +784,8 @@ class Organization extends Thing {
      *
      * @return $this
      */
-    public function setMemberOf(Organization $memberOf = NULL) {
+    public function setMemberOf(Organization $memberOf = null)
+    {
         $this->memberOf = $memberOf;
 
         return $this;
@@ -749,7 +796,8 @@ class Organization extends Thing {
      *
      * @return Organization
      */
-    public function getMemberOf() {
+    public function getMemberOf()
+    {
         return $this->memberOf;
     }
 
@@ -760,7 +808,8 @@ class Organization extends Thing {
      *
      * @return $this
      */
-    public function setNaics($naics) {
+    public function setNaics($naics)
+    {
         $this->naics = $naics;
 
         return $this;
@@ -771,7 +820,8 @@ class Organization extends Thing {
      *
      * @return string
      */
-    public function getNaics() {
+    public function getNaics()
+    {
         return $this->naics;
     }
 
@@ -782,7 +832,8 @@ class Organization extends Thing {
      *
      * @return $this
      */
-    public function setNumberOfEmployees(QuantitativeValue $numberOfEmployees = NULL) {
+    public function setNumberOfEmployees(QuantitativeValue $numberOfEmployees = null)
+    {
         $this->numberOfEmployees = $numberOfEmployees;
 
         return $this;
@@ -793,7 +844,8 @@ class Organization extends Thing {
      *
      * @return QuantitativeValue
      */
-    public function getNumberOfEmployees() {
+    public function getNumberOfEmployees()
+    {
         return $this->numberOfEmployees;
     }
 
@@ -804,7 +856,8 @@ class Organization extends Thing {
      *
      * @return $this
      */
-    public function setReview(Review $review = NULL) {
+    public function setReview(Review $review = null)
+    {
         $this->review = $review;
 
         return $this;
@@ -815,7 +868,8 @@ class Organization extends Thing {
      *
      * @return Review
      */
-    public function getReview() {
+    public function getReview()
+    {
         return $this->review;
     }
 
@@ -826,7 +880,8 @@ class Organization extends Thing {
      *
      * @return $this
      */
-    public function setSubOrganization(Organization $subOrganization = NULL) {
+    public function setSubOrganization(Organization $subOrganization = null)
+    {
         $this->subOrganization = $subOrganization;
 
         return $this;
@@ -837,7 +892,8 @@ class Organization extends Thing {
      *
      * @return Organization
      */
-    public function getSubOrganization() {
+    public function getSubOrganization()
+    {
         return $this->subOrganization;
     }
 
@@ -848,7 +904,8 @@ class Organization extends Thing {
      *
      * @return $this
      */
-    public function setTaxID($taxID) {
+    public function setTaxID($taxID)
+    {
         $this->taxID = $taxID;
 
         return $this;
@@ -859,7 +916,8 @@ class Organization extends Thing {
      *
      * @return string
      */
-    public function getTaxID() {
+    public function getTaxID()
+    {
         return $this->taxID;
     }
 
@@ -870,7 +928,8 @@ class Organization extends Thing {
      *
      * @return $this
      */
-    public function setTelephone($telephone) {
+    public function setTelephone($telephone)
+    {
         $this->telephone = $telephone;
 
         return $this;
@@ -881,7 +940,8 @@ class Organization extends Thing {
      *
      * @return string
      */
-    public function getTelephone() {
+    public function getTelephone()
+    {
         return $this->telephone;
     }
 
@@ -892,7 +952,8 @@ class Organization extends Thing {
      *
      * @return $this
      */
-    public function setVatID($vatID) {
+    public function setVatID($vatID)
+    {
         $this->vatID = $vatID;
 
         return $this;
@@ -903,7 +964,8 @@ class Organization extends Thing {
      *
      * @return string
      */
-    public function getVatID() {
+    public function getVatID()
+    {
         return $this->vatID;
     }
 
@@ -914,7 +976,8 @@ class Organization extends Thing {
      *
      * @return $this
      */
-    public function setFoundingLocation(Place $foundingLocation = NULL) {
+    public function setFoundingLocation(Place $foundingLocation = null)
+    {
         $this->foundingLocation = $foundingLocation;
 
         return $this;
@@ -925,7 +988,8 @@ class Organization extends Thing {
      *
      * @return Place
      */
-    public function getFoundingLocation() {
+    public function getFoundingLocation()
+    {
         return $this->foundingLocation;
     }
 }

@@ -51,8 +51,8 @@ lib.structuredDataMarkup {
     vendorName = Portrino
     controller = Entity
     action = render
-    view < plugin.tx_pxsemantic.view
-    persistence < plugin.tx_pxsemantic.persistence
+    view =< plugin.tx_pxsemantic.view
+    persistence =< plugin.tx_pxsemantic.persistence
     settings {
         context = http://schema.org
         entity {

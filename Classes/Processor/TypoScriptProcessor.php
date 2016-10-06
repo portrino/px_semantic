@@ -33,7 +33,8 @@ use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
  *
  * @package Portrino\PxSemantic\Processor
  */
-class TypoScriptProcessor implements \Portrino\PxSemantic\Processor\ProcessorInterface {
+class TypoScriptProcessor implements \Portrino\PxSemantic\Processor\ProcessorInterface
+{
 
     /**
      * @var \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController
@@ -72,7 +73,8 @@ class TypoScriptProcessor implements \Portrino\PxSemantic\Processor\ProcessorInt
      *
      * @return void
      */
-    public function initializeObject() {
+    public function initializeObject()
+    {
         if (TYPO3_MODE === 'FE') {
             $this->typoScriptFrontendController = $GLOBALS['TSFE'];
         }
@@ -83,39 +85,44 @@ class TypoScriptProcessor implements \Portrino\PxSemantic\Processor\ProcessorInt
      * @param \TYPO3\CMS\Extbase\DomainObject\AbstractEntity $entity
      * @param array $settings
      */
-    public function process(&$entity, $settings = array()) {
+    public function process(&$entity, $settings = [])
+    {
 
-        $typoScriptArray= $this->typoScriptService->convertPlainArrayToTypoScriptArray($settings);
+        $typoScriptArray = $this->typoScriptService->convertPlainArrayToTypoScriptArray($settings);
 
         foreach ($settings as $propertyName => $propertyValue) {
-                // if it is a content object
+            // if it is a content object
             if (is_array($propertyValue) && array_key_exists('_typoScriptNodeValue', $propertyValue)) {
                 if (isset($typoScriptArray[$propertyName]) && isset($typoScriptArray[$propertyName . '.'])) {
                     /** @var TypoScriptTypeConverterInterface|NULL $converter */
                     $converter = $this->typoScriptTypeConverterFactory->get($typoScriptArray[$propertyName]);
-                    if ($converter != NULL) {
+                    if ($converter != null) {
                         $value = $converter->convert($typoScriptArray[$propertyName . '.']);
                     } else {
-                        $value = $this->typoScriptFrontendController->cObj->cObjGetSingle($typoScriptArray[$propertyName], $typoScriptArray[$propertyName . '.']);
+                        $value = $this->typoScriptFrontendController->cObj->cObjGetSingle($typoScriptArray[$propertyName],
+                            $typoScriptArray[$propertyName . '.']);
                     }
 
-                    call_user_func_array(array($entity, 'set' . $propertyName), array($value));
+                    call_user_func_array([$entity, 'set' . $propertyName], [$value]);
                 }
                 // if it is a property which is an entity (called subEntity)
-            } else if (is_array($propertyValue) && !array_key_exists('_typoScriptNodeValue', $propertyValue)) {
-
-                $methodParameters = $this->reflectionService->getMethodParameters(get_class($entity), 'set' . $propertyName);
-                if (isset($methodParameters[$propertyName])) {
-                    $type = $methodParameters[$propertyName]['class'];
-
-                    $subEntity = call_user_func(array($entity, 'get' . ucfirst($propertyName)));
-                    $subEntity = $subEntity ? $subEntity : $this->objectManager->get($type);
-
-                    $this->process($subEntity, $propertyValue);
-                    call_user_func_array(array($entity, 'set' . $propertyName), array($subEntity));
-                }
             } else {
-                call_user_func_array(array($entity, 'set' . $propertyName), array($propertyValue));
+                if (is_array($propertyValue) && !array_key_exists('_typoScriptNodeValue', $propertyValue)) {
+
+                    $methodParameters = $this->reflectionService->getMethodParameters(get_class($entity),
+                        'set' . $propertyName);
+                    if (isset($methodParameters[$propertyName])) {
+                        $type = $methodParameters[$propertyName]['class'];
+
+                        $subEntity = call_user_func([$entity, 'get' . ucfirst($propertyName)]);
+                        $subEntity = $subEntity ? $subEntity : $this->objectManager->get($type);
+
+                        $this->process($subEntity, $propertyValue);
+                        call_user_func_array([$entity, 'set' . $propertyName], [$subEntity]);
+                    }
+                } else {
+                    call_user_func_array([$entity, 'set' . $propertyName], [$propertyValue]);
+                }
             }
         }
     }

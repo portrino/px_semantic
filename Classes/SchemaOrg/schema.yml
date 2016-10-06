@@ -1,33 +1,34 @@
-rdfa:
-  - http://schema.org/docs/schema_org_rdfa.html
-relations:
-  - http://purl.org/goodrelations/v1.owl
-
-#rdfa:
-# - tests/data/schema.rdfa
-#relations:
-# - tests/data/v1.owl
-
-# Debug mode
-debug: true
-
-# Automatically add an id field to entities
-generateId: true
-
-# Generate interfaces and use Doctrine's Resolve Target Entity feature
-useInterface: false
-
-# Emit a warning if a property is not derived from GoodRelations
-checkIsGoodRelations:  false
-
-# PHP namespaces
+header: |
+  /***************************************************************
+   *  Copyright notice
+   *
+   *  (c) 2016 Andre Wuttig <wuttig@portrino.de>, portrino GmbH
+   *
+   *  All rights reserved
+   *
+   *  This script is part of the TYPO3 project. The TYPO3 project is
+   *  free software; you can redistribute it and/or modify
+   *  it under the terms of the GNU General Public License as published by
+   *  the Free Software Foundation; either version 3 of the License, or
+   *  (at your option) any later version.
+   *
+   *  The GNU General Public License can be found at
+   *  http://www.gnu.org/copyleft/gpl.html.
+   *
+   *  This script is distributed in the hope that it will be useful,
+   *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+   *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   *  GNU General Public License for more details.
+   *
+   *  This copyright notice MUST APPEAR in all copies of the script!
+   ***************************************************************/
 namespaces:
   entity: Portrino\PxSemantic\SchemaOrg
 
-# The value of the phpDoc's @author annotation
-author: Andre Wuttig<wuttig@portrino.de> # Example: Kévin Dunglas <dunglas@gmail.com>
-
-# Schema.org's types to use
+annotationGenerators:
+  - ApiPlatform\SchemaGenerator\AnnotationGenerator\PhpDocAnnotationGenerator
+author: "Andre Wuttig<wuttig@portrino.de>"
+debug: true
 types:
   Action:
   AdministrativeArea:
@@ -43,7 +44,6 @@ types:
       pageStart: { range: "Text" }
       pagination: ~
       wordCount: ~
-  Class:
   CollectionPage:
   Comment:
     properties:
@@ -74,7 +74,6 @@ types:
       text: ~
   Date:
   DateTime:
-  DataType:
   Duration:
       properties:
         name: ~
@@ -190,12 +189,6 @@ types:
       postOfficeBoxNumber: ~
       postalCode: ~
       streetAddress: ~
-  Property:
-      properties:
-        domainIncludes: ~
-        inverseOf: ~
-        rangeIncludes: ~
-        supersededBy: { range: "Class" }
   QAPage:
   Quantity:
   QuantitativeValue:
@@ -214,10 +207,10 @@ types:
       upvoteCount: ~
   Rating:
     properties:
-      bestRating: { range: "Text" }
-      ratingCount: { range: "Text" }
-      ratingValue: ~
-      worstRating: { range: "Text" }
+      bestRating: { range: "Number" }
+      ratingCount: { range: "Number" }
+      ratingValue: { range: "Number" }
+      worstRating: { range: "Number" }
   Recipe:
     properties:
       prepTime: { range: "Text" }
@@ -249,7 +242,7 @@ types:
       alternateName: ~
       description: ~
       image: { range: "ImageObject" }
-      mainEntityOfPage: { range: "WebPage" }
+      mainEntityOfPage: { range: "URL" }
       name: ~
       potentialAction: ~
       sameAs: ~
@@ -262,5 +255,3 @@ types:
       primaryImageOfPage: ~
       relatedLink: ~
   WebSite:
-annotationGenerators:
-  - ApiPlatform\SchemaGenerator\AnnotationGenerator\PhpDocAnnotationGenerator

@@ -1,5 +1,29 @@
 <?php
 
+/***************************************************************
+ *  Copyright notice
+ *
+ *  (c) 2016 Andre Wuttig <wuttig@portrino.de>, portrino GmbH
+ *
+ *  All rights reserved
+ *
+ *  This script is part of the TYPO3 project. The TYPO3 project is
+ *  free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  The GNU General Public License can be found at
+ *  http://www.gnu.org/copyleft/gpl.html.
+ *
+ *  This script is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  This copyright notice MUST APPEAR in all copies of the script!
+ ***************************************************************/
+
 namespace Portrino\PxSemantic\SchemaOrg;
 
 /**
@@ -9,7 +33,8 @@ namespace Portrino\PxSemantic\SchemaOrg;
  *
  * @author Andre Wuttig<wuttig@portrino.de>
  */
-class PostalAddress extends ContactPoint {
+class PostalAddress extends ContactPoint
+{
 
     /**
      * @var int
@@ -17,32 +42,32 @@ class PostalAddress extends ContactPoint {
     private $id;
 
     /**
-     * @var string The country. For example, USA. You can also provide the two-letter [ISO 3166-1 alpha-2 country code](http://en.wikipedia.org/wiki/ISO_3166-1).
+     * @var string The country. For example, USA. You can also provide the two-letter [ISO 3166-1 alpha-2 country code](http://en.wikipedia.org/wiki/ISO\_3166-1)
      */
     private $addressCountry;
 
     /**
-     * @var string The locality. For example, Mountain View.
+     * @var string The locality. For example, Mountain View
      */
     private $addressLocality;
 
     /**
-     * @var string The region. For example, CA.
+     * @var string The region. For example, CA
      */
     private $addressRegion;
 
     /**
-     * @var string The postal code. For example, 94043.
+     * @var string The postal code. For example, 94043
      */
     private $postalCode;
 
     /**
-     * @var string The post office box number for PO box addresses.
+     * @var string The post office box number for PO box addresses
      */
     private $postOfficeBoxNumber;
 
     /**
-     * @var string The street address. For example, 1600 Amphitheatre Pkwy.
+     * @var string The street address. For example, 1600 Amphitheatre Pkwy
      */
     private $streetAddress;
 
@@ -53,7 +78,8 @@ class PostalAddress extends ContactPoint {
      *
      * @return $this
      */
-    public function setId($id) {
+    public function setId($id)
+    {
         $this->id = $id;
 
         return $this;
@@ -64,7 +90,8 @@ class PostalAddress extends ContactPoint {
      *
      * @return int
      */
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
@@ -75,7 +102,8 @@ class PostalAddress extends ContactPoint {
      *
      * @return $this
      */
-    public function setAddressCountry($addressCountry) {
+    public function setAddressCountry($addressCountry)
+    {
         $this->addressCountry = $addressCountry;
 
         return $this;
@@ -86,7 +114,8 @@ class PostalAddress extends ContactPoint {
      *
      * @return string
      */
-    public function getAddressCountry() {
+    public function getAddressCountry()
+    {
         return $this->addressCountry;
     }
 
@@ -97,7 +126,8 @@ class PostalAddress extends ContactPoint {
      *
      * @return $this
      */
-    public function setAddressLocality($addressLocality) {
+    public function setAddressLocality($addressLocality)
+    {
         $this->addressLocality = $addressLocality;
 
         return $this;
@@ -108,7 +138,8 @@ class PostalAddress extends ContactPoint {
      *
      * @return string
      */
-    public function getAddressLocality() {
+    public function getAddressLocality()
+    {
         return $this->addressLocality;
     }
 
@@ -119,7 +150,8 @@ class PostalAddress extends ContactPoint {
      *
      * @return $this
      */
-    public function setAddressRegion($addressRegion) {
+    public function setAddressRegion($addressRegion)
+    {
         $this->addressRegion = $addressRegion;
 
         return $this;
@@ -130,7 +162,8 @@ class PostalAddress extends ContactPoint {
      *
      * @return string
      */
-    public function getAddressRegion() {
+    public function getAddressRegion()
+    {
         return $this->addressRegion;
     }
 
@@ -141,7 +174,8 @@ class PostalAddress extends ContactPoint {
      *
      * @return $this
      */
-    public function setPostalCode($postalCode) {
+    public function setPostalCode($postalCode)
+    {
         $this->postalCode = $postalCode;
 
         return $this;
@@ -152,7 +186,8 @@ class PostalAddress extends ContactPoint {
      *
      * @return string
      */
-    public function getPostalCode() {
+    public function getPostalCode()
+    {
         return $this->postalCode;
     }
 
@@ -163,7 +198,8 @@ class PostalAddress extends ContactPoint {
      *
      * @return $this
      */
-    public function setPostOfficeBoxNumber($postOfficeBoxNumber) {
+    public function setPostOfficeBoxNumber($postOfficeBoxNumber)
+    {
         $this->postOfficeBoxNumber = $postOfficeBoxNumber;
 
         return $this;
@@ -174,7 +210,8 @@ class PostalAddress extends ContactPoint {
      *
      * @return string
      */
-    public function getPostOfficeBoxNumber() {
+    public function getPostOfficeBoxNumber()
+    {
         return $this->postOfficeBoxNumber;
     }
 
@@ -185,7 +222,8 @@ class PostalAddress extends ContactPoint {
      *
      * @return $this
      */
-    public function setStreetAddress($streetAddress) {
+    public function setStreetAddress($streetAddress)
+    {
         $this->streetAddress = $streetAddress;
 
         return $this;
@@ -196,7 +234,8 @@ class PostalAddress extends ContactPoint {
      *
      * @return string
      */
-    public function getStreetAddress() {
+    public function getStreetAddress()
+    {
         return $this->streetAddress;
     }
 }

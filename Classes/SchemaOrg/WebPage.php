@@ -1,5 +1,29 @@
 <?php
 
+/***************************************************************
+ *  Copyright notice
+ *
+ *  (c) 2016 Andre Wuttig <wuttig@portrino.de>, portrino GmbH
+ *
+ *  All rights reserved
+ *
+ *  This script is part of the TYPO3 project. The TYPO3 project is
+ *  free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  The GNU General Public License can be found at
+ *  http://www.gnu.org/copyleft/gpl.html.
+ *
+ *  This script is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  This copyright notice MUST APPEAR in all copies of the script!
+ ***************************************************************/
+
 namespace Portrino\PxSemantic\SchemaOrg;
 
 /**
@@ -9,54 +33,28 @@ namespace Portrino\PxSemantic\SchemaOrg;
  *
  * @author Andre Wuttig<wuttig@portrino.de>
  */
-class WebPage extends CreativeWork {
+class WebPage extends CreativeWork
+{
 
     /**
-     * @var int
-     */
-    private $id;
-
-    /**
-     * @var string A set of links that can help a user understand and navigate a website hierarchy.
+     * @var string A set of links that can help a user understand and navigate a website hierarchy
      */
     private $breadcrumb;
 
     /**
-     * @var \DateTime Date on which the content on this web page was last reviewed for accuracy and/or completeness.
+     * @var \DateTime Date on which the content on this web page was last reviewed for accuracy and/or completeness
      */
     private $lastReviewed;
 
     /**
-     * @var ImageObject Indicates the main image on the page.
+     * @var ImageObject Indicates the main image on the page
      */
     private $primaryImageOfPage;
 
     /**
-     * @var string A link related to this web page, for example to other related web pages.
+     * @var string A link related to this web page, for example to other related web pages
      */
     private $relatedLink;
-
-    /**
-     * Sets id.
-     *
-     * @param string $id
-     *
-     * @return $this
-     */
-    public function setId($id) {
-        $this->id = $id;
-
-        return $this;
-    }
-
-    /**
-     * Gets id.
-     *
-     * @return string
-     */
-    public function getId() {
-        return $this->id;
-    }
 
     /**
      * Sets breadcrumb.
@@ -65,7 +63,8 @@ class WebPage extends CreativeWork {
      *
      * @return $this
      */
-    public function setBreadcrumb($breadcrumb) {
+    public function setBreadcrumb($breadcrumb)
+    {
         $this->breadcrumb = $breadcrumb;
 
         return $this;
@@ -76,7 +75,8 @@ class WebPage extends CreativeWork {
      *
      * @return string
      */
-    public function getBreadcrumb() {
+    public function getBreadcrumb()
+    {
         return $this->breadcrumb;
     }
 
@@ -87,7 +87,8 @@ class WebPage extends CreativeWork {
      *
      * @return $this
      */
-    public function setLastReviewed(\DateTime $lastReviewed = NULL) {
+    public function setLastReviewed(\DateTime $lastReviewed = null)
+    {
         $this->lastReviewed = $lastReviewed;
 
         return $this;
@@ -98,7 +99,8 @@ class WebPage extends CreativeWork {
      *
      * @return \DateTime
      */
-    public function getLastReviewed() {
+    public function getLastReviewed()
+    {
         return $this->lastReviewed;
     }
 
@@ -109,7 +111,8 @@ class WebPage extends CreativeWork {
      *
      * @return $this
      */
-    public function setPrimaryImageOfPage(ImageObject $primaryImageOfPage = NULL) {
+    public function setPrimaryImageOfPage(ImageObject $primaryImageOfPage = null)
+    {
         $this->primaryImageOfPage = $primaryImageOfPage;
 
         return $this;
@@ -120,7 +123,8 @@ class WebPage extends CreativeWork {
      *
      * @return ImageObject
      */
-    public function getPrimaryImageOfPage() {
+    public function getPrimaryImageOfPage()
+    {
         return $this->primaryImageOfPage;
     }
 
@@ -131,7 +135,8 @@ class WebPage extends CreativeWork {
      *
      * @return $this
      */
-    public function setRelatedLink($relatedLink) {
+    public function setRelatedLink($relatedLink)
+    {
         $this->relatedLink = $relatedLink;
 
         return $this;
@@ -142,7 +147,8 @@ class WebPage extends CreativeWork {
      *
      * @return string
      */
-    public function getRelatedLink() {
+    public function getRelatedLink()
+    {
         return $this->relatedLink;
     }
 }

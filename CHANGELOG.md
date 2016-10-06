@@ -1,5 +1,13 @@
 # PxSemantic Change log
 
+1.5.0 - 2016-10-06
+------------------
+* [TASK] generates new SchemaOrg Entities
+* [TASK] reformats code to PSR-0 / 1 
+* [TASK] replaces traditional array syntax with shorthand syntax
+* [BUGFIX] changes mainEntityOfPage to string and therefore only adds the current url for this property in 
+  `PageProcessor`
+  
 1.4.0 - 2016-05-23
 ------------------
 * refactors special typoscript objects like PX_SEMANTIC_ARRAY

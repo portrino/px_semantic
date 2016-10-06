@@ -1,5 +1,29 @@
 <?php
 
+/***************************************************************
+ *  Copyright notice
+ *
+ *  (c) 2016 Andre Wuttig <wuttig@portrino.de>, portrino GmbH
+ *
+ *  All rights reserved
+ *
+ *  This script is part of the TYPO3 project. The TYPO3 project is
+ *  free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  The GNU General Public License can be found at
+ *  http://www.gnu.org/copyleft/gpl.html.
+ *
+ *  This script is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  This copyright notice MUST APPEAR in all copies of the script!
+ ***************************************************************/
+
 namespace Portrino\PxSemantic\SchemaOrg;
 
 /**
@@ -9,7 +33,8 @@ namespace Portrino\PxSemantic\SchemaOrg;
  *
  * @author Andre Wuttig<wuttig@portrino.de>
  */
-class AggregateRating extends Rating {
+class AggregateRating extends Rating
+{
 
     /**
      * @var int
@@ -17,7 +42,7 @@ class AggregateRating extends Rating {
     private $id;
 
     /**
-     * @var int The count of total number of ratings.
+     * @var int The count of total number of ratings
      */
     private $ratingCount;
 
@@ -28,7 +53,8 @@ class AggregateRating extends Rating {
      *
      * @return $this
      */
-    public function setId($id) {
+    public function setId($id)
+    {
         $this->id = $id;
 
         return $this;
@@ -39,7 +65,8 @@ class AggregateRating extends Rating {
      *
      * @return int
      */
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
@@ -50,7 +77,8 @@ class AggregateRating extends Rating {
      *
      * @return $this
      */
-    public function setRatingCount($ratingCount) {
+    public function setRatingCount($ratingCount)
+    {
         $this->ratingCount = $ratingCount;
 
         return $this;
@@ -61,7 +89,8 @@ class AggregateRating extends Rating {
      *
      * @return int
      */
-    public function getRatingCount() {
+    public function getRatingCount()
+    {
         return $this->ratingCount;
     }
 }

@@ -1,5 +1,29 @@
 <?php
 
+/***************************************************************
+ *  Copyright notice
+ *
+ *  (c) 2016 Andre Wuttig <wuttig@portrino.de>, portrino GmbH
+ *
+ *  All rights reserved
+ *
+ *  This script is part of the TYPO3 project. The TYPO3 project is
+ *  free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  The GNU General Public License can be found at
+ *  http://www.gnu.org/copyleft/gpl.html.
+ *
+ *  This script is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  This copyright notice MUST APPEAR in all copies of the script!
+ ***************************************************************/
+
 namespace Portrino\PxSemantic\SchemaOrg;
 
 /**
@@ -9,7 +33,8 @@ namespace Portrino\PxSemantic\SchemaOrg;
  *
  * @author Andre Wuttig<wuttig@portrino.de>
  */
-class Person extends Thing {
+class Person extends Thing
+{
 
     /**
      * @var int
@@ -17,202 +42,202 @@ class Person extends Thing {
     private $id;
 
     /**
-     * @var string An additional name for a Person, can be used for a middle name.
+     * @var string An additional name for a Person, can be used for a middle name
      */
     private $additionalName;
 
     /**
-     * @var PostalAddress Physical address of the item.
+     * @var PostalAddress Physical address of the item
      */
     private $address;
 
     /**
-     * @var Organization An organization that this person is affiliated with. For example, a school/university, a club, or a team.
+     * @var Organization An organization that this person is affiliated with. For example, a school/university, a club, or a team
      */
     private $affiliation;
 
     /**
-     * @var Organization An organization that the person is an alumni of.
+     * @var Organization An organization that the person is an alumni of
      */
     private $alumniOf;
 
     /**
-     * @var string An award won by or for this item.
+     * @var string An award won by or for this item
      */
     private $award;
 
     /**
-     * @var \DateTime Date of birth.
+     * @var \DateTime Date of birth
      */
     private $birthDate;
 
     /**
-     * @var Organization The brand(s) associated with a product or service, or the brand(s) maintained by an organization or business person.
+     * @var Organization The brand(s) associated with a product or service, or the brand(s) maintained by an organization or business person
      */
     private $brand;
 
     /**
-     * @var Person A child of the person.
+     * @var Person A child of the person
      */
     private $children;
 
     /**
-     * @var Person A colleague of the person.
+     * @var Person A colleague of the person
      */
     private $colleague;
 
     /**
-     * @var ContactPoint A contact point for a person or organization.
+     * @var ContactPoint A contact point for a person or organization
      */
     private $contactPoint;
 
     /**
-     * @var \DateTime Date of death.
+     * @var \DateTime Date of death
      */
     private $deathDate;
 
     /**
-     * @var string The Dun & Bradstreet DUNS number for identifying an organization or business person.
+     * @var string The Dun & Bradstreet DUNS number for identifying an organization or business person
      */
     private $duns;
 
     /**
-     * @var string Email address.
+     * @var string Email address
      */
     private $email;
 
     /**
-     * @var string Family name. In the U.S., the last name of an Person. This can be used along with givenName instead of the name property.
+     * @var string Family name. In the U.S., the last name of an Person. This can be used along with givenName instead of the name property
      */
     private $familyName;
 
     /**
-     * @var string The fax number.
+     * @var string The fax number
      */
     private $faxNumber;
 
     /**
-     * @var Person The most generic uni-directional social relation.
+     * @var Person The most generic uni-directional social relation
      */
     private $follows;
 
     /**
-     * @var string Gender of the person. While http://schema.org/Male and http://schema.org/Female may be used, text strings are also acceptable for people who do not identify as a binary gender.
+     * @var string Gender of the person. While http://schema.org/Male and http://schema.org/Female may be used, text strings are also acceptable for people who do not identify as a binary gender
      */
     private $gender;
 
     /**
-     * @var string Given name. In the U.S., the first name of a Person. This can be used along with familyName instead of the name property.
+     * @var string Given name. In the U.S., the first name of a Person. This can be used along with familyName instead of the name property
      */
     private $givenName;
 
     /**
-     * @var string The [Global Location Number](http://www.gs1.org/gln) (GLN, sometimes also referred to as International Location Number or ILN) of the respective organization, person, or place. The GLN is a 13-digit number used to identify parties and physical locations.
+     * @var string The [Global Location Number](http://www.gs1.org/gln) (GLN, sometimes also referred to as International Location Number or ILN) of the respective organization, person, or place. The GLN is a 13-digit number used to identify parties and physical locations
      */
     private $globalLocationNumber;
 
     /**
-     * @var QuantitativeValue The height of the item.
+     * @var QuantitativeValue The height of the item
      */
     private $height;
 
     /**
-     * @var ContactPoint A contact location for a person's residence.
+     * @var ContactPoint A contact location for a person's residence
      */
     private $homeLocation;
 
     /**
-     * @var string An honorific prefix preceding a Person's name such as Dr/Mrs/Mr.
+     * @var string An honorific prefix preceding a Person's name such as Dr/Mrs/Mr
      */
     private $honorificPrefix;
 
     /**
-     * @var string An honorific suffix preceding a Person's name such as M.D. /PhD/MSCSW.
+     * @var string An honorific suffix preceding a Person's name such as M.D. /PhD/MSCSW
      */
     private $honorificSuffix;
 
     /**
-     * @var string The International Standard of Industrial Classification of All Economic Activities (ISIC), Revision 4 code for a particular organization, business person, or place.
+     * @var string The International Standard of Industrial Classification of All Economic Activities (ISIC), Revision 4 code for a particular organization, business person, or place
      */
     private $isicV4;
 
     /**
-     * @var string The job title of the person (for example, Financial Manager).
+     * @var string The job title of the person (for example, Financial Manager)
      */
     private $jobTitle;
 
     /**
-     * @var Person The most generic bi-directional social/work relation.
+     * @var Person The most generic bi-directional social/work relation
      */
     private $knows;
 
     /**
-     * @var Organization An Organization (or ProgramMembership) to which this Person or Organization belongs.
+     * @var Organization An Organization (or ProgramMembership) to which this Person or Organization belongs
      */
     private $memberOf;
 
     /**
-     * @var string The North American Industry Classification System (NAICS) code for a particular organization or business person.
+     * @var string The North American Industry Classification System (NAICS) code for a particular organization or business person
      */
     private $naics;
 
     /**
-     * @var Country Nationality of the person.
+     * @var Country Nationality of the person
      */
     private $nationality;
 
     /**
-     * @var Person A parent of this person.
+     * @var Person A parent of this person
      */
     private $parent;
 
     /**
-     * @var Person The most generic familial relation.
+     * @var Person The most generic familial relation
      */
     private $relatedTo;
 
     /**
-     * @var Person A sibling of the person.
+     * @var Person A sibling of the person
      */
     private $sibling;
 
     /**
-     * @var Organization A person or organization that supports a thing through a pledge, promise, or financial contribution. e.g. a sponsor of a Medical Study or a corporate sponsor of an event.
+     * @var Organization A person or organization that supports a thing through a pledge, promise, or financial contribution. e.g. a sponsor of a Medical Study or a corporate sponsor of an event
      */
     private $sponsor;
 
     /**
-     * @var string The Tax / Fiscal ID of the organization or person, e.g. the TIN in the US or the CIF/NIF in Spain.
+     * @var string The Tax / Fiscal ID of the organization or person, e.g. the TIN in the US or the CIF/NIF in Spain
      */
     private $taxID;
 
     /**
-     * @var string The telephone number.
+     * @var string The telephone number
      */
     private $telephone;
 
     /**
-     * @var string The Value-added Tax ID of the organization or person.
+     * @var string The Value-added Tax ID of the organization or person
      */
     private $vatID;
 
     /**
-     * @var QuantitativeValue The weight of the product or person.
+     * @var QuantitativeValue The weight of the product or person
      */
     private $weight;
 
     /**
-     * @var ContactPoint A contact location for a person's place of work.
+     * @var ContactPoint A contact location for a person's place of work
      */
     private $workLocation;
 
     /**
-     * @var Organization Organizations that the person works for.
+     * @var Organization Organizations that the person works for
      */
     private $worksFor;
 
     /**
-     * @var Place The place where the person was born.
+     * @var Place The place where the person was born
      */
     private $birthPlace;
 
@@ -223,7 +248,8 @@ class Person extends Thing {
      *
      * @return $this
      */
-    public function setId($id) {
+    public function setId($id)
+    {
         $this->id = $id;
 
         return $this;
@@ -234,7 +260,8 @@ class Person extends Thing {
      *
      * @return int
      */
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
@@ -245,7 +272,8 @@ class Person extends Thing {
      *
      * @return $this
      */
-    public function setAdditionalName($additionalName) {
+    public function setAdditionalName($additionalName)
+    {
         $this->additionalName = $additionalName;
 
         return $this;
@@ -256,7 +284,8 @@ class Person extends Thing {
      *
      * @return string
      */
-    public function getAdditionalName() {
+    public function getAdditionalName()
+    {
         return $this->additionalName;
     }
 
@@ -267,7 +296,8 @@ class Person extends Thing {
      *
      * @return $this
      */
-    public function setAddress(PostalAddress $address = NULL) {
+    public function setAddress(PostalAddress $address = null)
+    {
         $this->address = $address;
 
         return $this;
@@ -278,7 +308,8 @@ class Person extends Thing {
      *
      * @return PostalAddress
      */
-    public function getAddress() {
+    public function getAddress()
+    {
         return $this->address;
     }
 
@@ -289,7 +320,8 @@ class Person extends Thing {
      *
      * @return $this
      */
-    public function setAffiliation(Organization $affiliation = NULL) {
+    public function setAffiliation(Organization $affiliation = null)
+    {
         $this->affiliation = $affiliation;
 
         return $this;
@@ -300,7 +332,8 @@ class Person extends Thing {
      *
      * @return Organization
      */
-    public function getAffiliation() {
+    public function getAffiliation()
+    {
         return $this->affiliation;
     }
 
@@ -311,7 +344,8 @@ class Person extends Thing {
      *
      * @return $this
      */
-    public function setAlumniOf(Organization $alumniOf = NULL) {
+    public function setAlumniOf(Organization $alumniOf = null)
+    {
         $this->alumniOf = $alumniOf;
 
         return $this;
@@ -322,7 +356,8 @@ class Person extends Thing {
      *
      * @return Organization
      */
-    public function getAlumniOf() {
+    public function getAlumniOf()
+    {
         return $this->alumniOf;
     }
 
@@ -333,7 +368,8 @@ class Person extends Thing {
      *
      * @return $this
      */
-    public function setAward($award) {
+    public function setAward($award)
+    {
         $this->award = $award;
 
         return $this;
@@ -344,7 +380,8 @@ class Person extends Thing {
      *
      * @return string
      */
-    public function getAward() {
+    public function getAward()
+    {
         return $this->award;
     }
 
@@ -355,7 +392,8 @@ class Person extends Thing {
      *
      * @return $this
      */
-    public function setBirthDate(\DateTime $birthDate = NULL) {
+    public function setBirthDate(\DateTime $birthDate = null)
+    {
         $this->birthDate = $birthDate;
 
         return $this;
@@ -366,7 +404,8 @@ class Person extends Thing {
      *
      * @return \DateTime
      */
-    public function getBirthDate() {
+    public function getBirthDate()
+    {
         return $this->birthDate;
     }
 
@@ -377,7 +416,8 @@ class Person extends Thing {
      *
      * @return $this
      */
-    public function setBrand(Organization $brand = NULL) {
+    public function setBrand(Organization $brand = null)
+    {
         $this->brand = $brand;
 
         return $this;
@@ -388,7 +428,8 @@ class Person extends Thing {
      *
      * @return Organization
      */
-    public function getBrand() {
+    public function getBrand()
+    {
         return $this->brand;
     }
 
@@ -399,7 +440,8 @@ class Person extends Thing {
      *
      * @return $this
      */
-    public function setChildren(Person $children = NULL) {
+    public function setChildren(Person $children = null)
+    {
         $this->children = $children;
 
         return $this;
@@ -410,7 +452,8 @@ class Person extends Thing {
      *
      * @return Person
      */
-    public function getChildren() {
+    public function getChildren()
+    {
         return $this->children;
     }
 
@@ -421,7 +464,8 @@ class Person extends Thing {
      *
      * @return $this
      */
-    public function setColleague(Person $colleague = NULL) {
+    public function setColleague(Person $colleague = null)
+    {
         $this->colleague = $colleague;
 
         return $this;
@@ -432,7 +476,8 @@ class Person extends Thing {
      *
      * @return Person
      */
-    public function getColleague() {
+    public function getColleague()
+    {
         return $this->colleague;
     }
 
@@ -443,7 +488,8 @@ class Person extends Thing {
      *
      * @return $this
      */
-    public function setContactPoint(ContactPoint $contactPoint = NULL) {
+    public function setContactPoint(ContactPoint $contactPoint = null)
+    {
         $this->contactPoint = $contactPoint;
 
         return $this;
@@ -454,7 +500,8 @@ class Person extends Thing {
      *
      * @return ContactPoint
      */
-    public function getContactPoint() {
+    public function getContactPoint()
+    {
         return $this->contactPoint;
     }
 
@@ -465,7 +512,8 @@ class Person extends Thing {
      *
      * @return $this
      */
-    public function setDeathDate(\DateTime $deathDate = NULL) {
+    public function setDeathDate(\DateTime $deathDate = null)
+    {
         $this->deathDate = $deathDate;
 
         return $this;
@@ -476,7 +524,8 @@ class Person extends Thing {
      *
      * @return \DateTime
      */
-    public function getDeathDate() {
+    public function getDeathDate()
+    {
         return $this->deathDate;
     }
 
@@ -487,7 +536,8 @@ class Person extends Thing {
      *
      * @return $this
      */
-    public function setDuns($duns) {
+    public function setDuns($duns)
+    {
         $this->duns = $duns;
 
         return $this;
@@ -498,7 +548,8 @@ class Person extends Thing {
      *
      * @return string
      */
-    public function getDuns() {
+    public function getDuns()
+    {
         return $this->duns;
     }
 
@@ -509,7 +560,8 @@ class Person extends Thing {
      *
      * @return $this
      */
-    public function setEmail($email) {
+    public function setEmail($email)
+    {
         $this->email = $email;
 
         return $this;
@@ -520,7 +572,8 @@ class Person extends Thing {
      *
      * @return string
      */
-    public function getEmail() {
+    public function getEmail()
+    {
         return $this->email;
     }
 
@@ -531,7 +584,8 @@ class Person extends Thing {
      *
      * @return $this
      */
-    public function setFamilyName($familyName) {
+    public function setFamilyName($familyName)
+    {
         $this->familyName = $familyName;
 
         return $this;
@@ -542,7 +596,8 @@ class Person extends Thing {
      *
      * @return string
      */
-    public function getFamilyName() {
+    public function getFamilyName()
+    {
         return $this->familyName;
     }
 
@@ -553,7 +608,8 @@ class Person extends Thing {
      *
      * @return $this
      */
-    public function setFaxNumber($faxNumber) {
+    public function setFaxNumber($faxNumber)
+    {
         $this->faxNumber = $faxNumber;
 
         return $this;
@@ -564,7 +620,8 @@ class Person extends Thing {
      *
      * @return string
      */
-    public function getFaxNumber() {
+    public function getFaxNumber()
+    {
         return $this->faxNumber;
     }
 
@@ -575,7 +632,8 @@ class Person extends Thing {
      *
      * @return $this
      */
-    public function setFollows(Person $follows = NULL) {
+    public function setFollows(Person $follows = null)
+    {
         $this->follows = $follows;
 
         return $this;
@@ -586,7 +644,8 @@ class Person extends Thing {
      *
      * @return Person
      */
-    public function getFollows() {
+    public function getFollows()
+    {
         return $this->follows;
     }
 
@@ -597,7 +656,8 @@ class Person extends Thing {
      *
      * @return $this
      */
-    public function setGender($gender) {
+    public function setGender($gender)
+    {
         $this->gender = $gender;
 
         return $this;
@@ -608,7 +668,8 @@ class Person extends Thing {
      *
      * @return string
      */
-    public function getGender() {
+    public function getGender()
+    {
         return $this->gender;
     }
 
@@ -619,7 +680,8 @@ class Person extends Thing {
      *
      * @return $this
      */
-    public function setGivenName($givenName) {
+    public function setGivenName($givenName)
+    {
         $this->givenName = $givenName;
 
         return $this;
@@ -630,7 +692,8 @@ class Person extends Thing {
      *
      * @return string
      */
-    public function getGivenName() {
+    public function getGivenName()
+    {
         return $this->givenName;
     }
 
@@ -641,7 +704,8 @@ class Person extends Thing {
      *
      * @return $this
      */
-    public function setGlobalLocationNumber($globalLocationNumber) {
+    public function setGlobalLocationNumber($globalLocationNumber)
+    {
         $this->globalLocationNumber = $globalLocationNumber;
 
         return $this;
@@ -652,7 +716,8 @@ class Person extends Thing {
      *
      * @return string
      */
-    public function getGlobalLocationNumber() {
+    public function getGlobalLocationNumber()
+    {
         return $this->globalLocationNumber;
     }
 
@@ -663,7 +728,8 @@ class Person extends Thing {
      *
      * @return $this
      */
-    public function setHeight(QuantitativeValue $height = NULL) {
+    public function setHeight(QuantitativeValue $height = null)
+    {
         $this->height = $height;
 
         return $this;
@@ -674,7 +740,8 @@ class Person extends Thing {
      *
      * @return QuantitativeValue
      */
-    public function getHeight() {
+    public function getHeight()
+    {
         return $this->height;
     }
 
@@ -685,7 +752,8 @@ class Person extends Thing {
      *
      * @return $this
      */
-    public function setHomeLocation(ContactPoint $homeLocation = NULL) {
+    public function setHomeLocation(ContactPoint $homeLocation = null)
+    {
         $this->homeLocation = $homeLocation;
 
         return $this;
@@ -696,7 +764,8 @@ class Person extends Thing {
      *
      * @return ContactPoint
      */
-    public function getHomeLocation() {
+    public function getHomeLocation()
+    {
         return $this->homeLocation;
     }
 
@@ -707,7 +776,8 @@ class Person extends Thing {
      *
      * @return $this
      */
-    public function setHonorificPrefix($honorificPrefix) {
+    public function setHonorificPrefix($honorificPrefix)
+    {
         $this->honorificPrefix = $honorificPrefix;
 
         return $this;
@@ -718,7 +788,8 @@ class Person extends Thing {
      *
      * @return string
      */
-    public function getHonorificPrefix() {
+    public function getHonorificPrefix()
+    {
         return $this->honorificPrefix;
     }
 
@@ -729,7 +800,8 @@ class Person extends Thing {
      *
      * @return $this
      */
-    public function setHonorificSuffix($honorificSuffix) {
+    public function setHonorificSuffix($honorificSuffix)
+    {
         $this->honorificSuffix = $honorificSuffix;
 
         return $this;
@@ -740,7 +812,8 @@ class Person extends Thing {
      *
      * @return string
      */
-    public function getHonorificSuffix() {
+    public function getHonorificSuffix()
+    {
         return $this->honorificSuffix;
     }
 
@@ -751,7 +824,8 @@ class Person extends Thing {
      *
      * @return $this
      */
-    public function setIsicV4($isicV4) {
+    public function setIsicV4($isicV4)
+    {
         $this->isicV4 = $isicV4;
 
         return $this;
@@ -762,7 +836,8 @@ class Person extends Thing {
      *
      * @return string
      */
-    public function getIsicV4() {
+    public function getIsicV4()
+    {
         return $this->isicV4;
     }
 
@@ -773,7 +848,8 @@ class Person extends Thing {
      *
      * @return $this
      */
-    public function setJobTitle($jobTitle) {
+    public function setJobTitle($jobTitle)
+    {
         $this->jobTitle = $jobTitle;
 
         return $this;
@@ -784,7 +860,8 @@ class Person extends Thing {
      *
      * @return string
      */
-    public function getJobTitle() {
+    public function getJobTitle()
+    {
         return $this->jobTitle;
     }
 
@@ -795,7 +872,8 @@ class Person extends Thing {
      *
      * @return $this
      */
-    public function setKnows(Person $knows = NULL) {
+    public function setKnows(Person $knows = null)
+    {
         $this->knows = $knows;
 
         return $this;
@@ -806,7 +884,8 @@ class Person extends Thing {
      *
      * @return Person
      */
-    public function getKnows() {
+    public function getKnows()
+    {
         return $this->knows;
     }
 
@@ -817,7 +896,8 @@ class Person extends Thing {
      *
      * @return $this
      */
-    public function setMemberOf(Organization $memberOf = NULL) {
+    public function setMemberOf(Organization $memberOf = null)
+    {
         $this->memberOf = $memberOf;
 
         return $this;
@@ -828,7 +908,8 @@ class Person extends Thing {
      *
      * @return Organization
      */
-    public function getMemberOf() {
+    public function getMemberOf()
+    {
         return $this->memberOf;
     }
 
@@ -839,7 +920,8 @@ class Person extends Thing {
      *
      * @return $this
      */
-    public function setNaics($naics) {
+    public function setNaics($naics)
+    {
         $this->naics = $naics;
 
         return $this;
@@ -850,7 +932,8 @@ class Person extends Thing {
      *
      * @return string
      */
-    public function getNaics() {
+    public function getNaics()
+    {
         return $this->naics;
     }
 
@@ -861,7 +944,8 @@ class Person extends Thing {
      *
      * @return $this
      */
-    public function setNationality(Country $nationality = NULL) {
+    public function setNationality(Country $nationality = null)
+    {
         $this->nationality = $nationality;
 
         return $this;
@@ -872,7 +956,8 @@ class Person extends Thing {
      *
      * @return Country
      */
-    public function getNationality() {
+    public function getNationality()
+    {
         return $this->nationality;
     }
 
@@ -883,7 +968,8 @@ class Person extends Thing {
      *
      * @return $this
      */
-    public function setParent(Person $parent = NULL) {
+    public function setParent(Person $parent = null)
+    {
         $this->parent = $parent;
 
         return $this;
@@ -894,7 +980,8 @@ class Person extends Thing {
      *
      * @return Person
      */
-    public function getParent() {
+    public function getParent()
+    {
         return $this->parent;
     }
 
@@ -905,7 +992,8 @@ class Person extends Thing {
      *
      * @return $this
      */
-    public function setRelatedTo(Person $relatedTo = NULL) {
+    public function setRelatedTo(Person $relatedTo = null)
+    {
         $this->relatedTo = $relatedTo;
 
         return $this;
@@ -916,7 +1004,8 @@ class Person extends Thing {
      *
      * @return Person
      */
-    public function getRelatedTo() {
+    public function getRelatedTo()
+    {
         return $this->relatedTo;
     }
 
@@ -927,7 +1016,8 @@ class Person extends Thing {
      *
      * @return $this
      */
-    public function setSibling(Person $sibling = NULL) {
+    public function setSibling(Person $sibling = null)
+    {
         $this->sibling = $sibling;
 
         return $this;
@@ -938,7 +1028,8 @@ class Person extends Thing {
      *
      * @return Person
      */
-    public function getSibling() {
+    public function getSibling()
+    {
         return $this->sibling;
     }
 
@@ -949,7 +1040,8 @@ class Person extends Thing {
      *
      * @return $this
      */
-    public function setSponsor(Organization $sponsor = NULL) {
+    public function setSponsor(Organization $sponsor = null)
+    {
         $this->sponsor = $sponsor;
 
         return $this;
@@ -960,7 +1052,8 @@ class Person extends Thing {
      *
      * @return Organization
      */
-    public function getSponsor() {
+    public function getSponsor()
+    {
         return $this->sponsor;
     }
 
@@ -971,7 +1064,8 @@ class Person extends Thing {
      *
      * @return $this
      */
-    public function setTaxID($taxID) {
+    public function setTaxID($taxID)
+    {
         $this->taxID = $taxID;
 
         return $this;
@@ -982,7 +1076,8 @@ class Person extends Thing {
      *
      * @return string
      */
-    public function getTaxID() {
+    public function getTaxID()
+    {
         return $this->taxID;
     }
 
@@ -993,7 +1088,8 @@ class Person extends Thing {
      *
      * @return $this
      */
-    public function setTelephone($telephone) {
+    public function setTelephone($telephone)
+    {
         $this->telephone = $telephone;
 
         return $this;
@@ -1004,7 +1100,8 @@ class Person extends Thing {
      *
      * @return string
      */
-    public function getTelephone() {
+    public function getTelephone()
+    {
         return $this->telephone;
     }
 
@@ -1015,7 +1112,8 @@ class Person extends Thing {
      *
      * @return $this
      */
-    public function setVatID($vatID) {
+    public function setVatID($vatID)
+    {
         $this->vatID = $vatID;
 
         return $this;
@@ -1026,7 +1124,8 @@ class Person extends Thing {
      *
      * @return string
      */
-    public function getVatID() {
+    public function getVatID()
+    {
         return $this->vatID;
     }
 
@@ -1037,7 +1136,8 @@ class Person extends Thing {
      *
      * @return $this
      */
-    public function setWeight(QuantitativeValue $weight = NULL) {
+    public function setWeight(QuantitativeValue $weight = null)
+    {
         $this->weight = $weight;
 
         return $this;
@@ -1048,7 +1148,8 @@ class Person extends Thing {
      *
      * @return QuantitativeValue
      */
-    public function getWeight() {
+    public function getWeight()
+    {
         return $this->weight;
     }
 
@@ -1059,7 +1160,8 @@ class Person extends Thing {
      *
      * @return $this
      */
-    public function setWorkLocation(ContactPoint $workLocation = NULL) {
+    public function setWorkLocation(ContactPoint $workLocation = null)
+    {
         $this->workLocation = $workLocation;
 
         return $this;
@@ -1070,7 +1172,8 @@ class Person extends Thing {
      *
      * @return ContactPoint
      */
-    public function getWorkLocation() {
+    public function getWorkLocation()
+    {
         return $this->workLocation;
     }
 
@@ -1081,7 +1184,8 @@ class Person extends Thing {
      *
      * @return $this
      */
-    public function setWorksFor(Organization $worksFor = NULL) {
+    public function setWorksFor(Organization $worksFor = null)
+    {
         $this->worksFor = $worksFor;
 
         return $this;
@@ -1092,7 +1196,8 @@ class Person extends Thing {
      *
      * @return Organization
      */
-    public function getWorksFor() {
+    public function getWorksFor()
+    {
         return $this->worksFor;
     }
 
@@ -1103,7 +1208,8 @@ class Person extends Thing {
      *
      * @return $this
      */
-    public function setBirthPlace(Place $birthPlace = NULL) {
+    public function setBirthPlace(Place $birthPlace = null)
+    {
         $this->birthPlace = $birthPlace;
 
         return $this;
@@ -1114,7 +1220,8 @@ class Person extends Thing {
      *
      * @return Place
      */
-    public function getBirthPlace() {
+    public function getBirthPlace()
+    {
         return $this->birthPlace;
     }
 }
