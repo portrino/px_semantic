@@ -25,6 +25,7 @@ namespace Portrino\PxSemantic\Processor;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use Portrino\PxSemantic\SchemaOrg\Thing;
 use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
 
 /**
@@ -64,12 +65,21 @@ class PageProcessor extends \Portrino\PxSemantic\Processor\AbstractProcessor
     }
 
     /**
-     * @param \TYPO3\CMS\Extbase\DomainObject\AbstractEntity $entity
+     * @param Thing $entity
      * @param array $settings
+     * @param int|null $resourceId
      */
-    public function process(&$entity, $settings = [])
+    public function process(&$entity, $settings = [], $resourceId = null)
     {
-        $page = $this->entityId != null ? $this->pageRepository->findByUid((int)$this->entityId) : $this->currentPage;
+        if ($resourceId != null) {
+            $page = $this->pageRepository->findByUid((int)$resourceId);
+        } else {
+            if ($this->resourceId != null) {
+                $page = $this->pageRepository->findByUid((int)$this->resourceId);
+            } else {
+                $page = $this->currentPage;
+            }
+        }
 
         if ($page && $entity instanceof \Portrino\PxSemantic\SchemaOrg\CreativeWork) {
             $url = $this->uriBuilder->setTargetPageUid($page->getUid())->build();
@@ -105,15 +115,23 @@ class PageProcessor extends \Portrino\PxSemantic\Processor\AbstractProcessor
                 $entity->setDescription($description);
             }
 
-            // set the author to the author of the page
-            /** @var \Portrino\PxSemantic\SchemaOrg\Person $author */
-            $author = $this->objectManager->get(\Portrino\PxSemantic\SchemaOrg\Person::class);
-            $author->setName($page->getAuthor());
-            $entity->setAuthor($author);
+            if ($page->getAuthor() != '') {
+                /**
+                 * set the author to the author of the page if it is set
+                 *
+                 * @var \Portrino\PxSemantic\SchemaOrg\Person $author
+                 */
+                $author = $this->objectManager->get(\Portrino\PxSemantic\SchemaOrg\Person::class);
+                $author->setName($page->getAuthor());
+                $entity->setAuthor($author);
+            }
+
+
+
 
             // set the image to the first image into resources/media list of the page
             $media = $page->getMedia();
-            if ($media->count() > 0) {
+            if ($media != null && $media->count() > 0) {
                 /** @var \TYPO3\CMS\Extbase\Domain\Model\FileReference $image */
                 $image = $media->toArray()[0];
                 if ($image->getOriginalResource()->getType() === \TYPO3\CMS\Core\Resource\AbstractFile::FILETYPE_IMAGE) {

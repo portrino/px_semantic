@@ -28,19 +28,12 @@ namespace Portrino\PxSemantic\Domain\Repository;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 
 /**
- * Class PageRepository
+ * Interface RestRepositoryInterface
  *
  * @package Portrino\PxSemantic\Domain\Repository
  */
-class PageRepository extends \TYPO3\CMS\Extbase\Persistence\Repository implements RestRepositoryInterface
+interface RestRepositoryInterface
 {
-
-    /**
-     * @var array $defaultOrderings
-     */
-    protected $defaultOrderings = [
-        'sorting' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING
-    ];
 
     /**
      * Returns all objects of this repository limited by offset and limit constraint
@@ -50,20 +43,6 @@ class PageRepository extends \TYPO3\CMS\Extbase\Persistence\Repository implement
      *
      * @return QueryResultInterface|array
      */
-    public function findByOffsetAndLimit($offset = 0, $limit = -1)
-    {
-        $query = $this->createQuery();
-
-        if ($offset > 0) {
-            $query->setOffset($offset);
-        }
-
-        if ($limit > -1) {
-            $query->setLimit($limit);
-        }
-
-        return $query->execute();
-    }
-
+    public function findByOffsetAndLimit($offset = 0, $limit = -1);
 
 }

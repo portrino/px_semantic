@@ -17,24 +17,21 @@ plugin.tx_pxsemantic {
         storagePid = {$plugin.tx_pxsemantic.persistence.storagePid}
         recursive = {$plugin.tx_pxsemantic.persistence.recursive}
     }
-}
-
-# global extbase settings
-config.tx_extbase {
-    persistence {
-        storagePid = {$plugin.tx_pxsemantic.persistence.storagePid}
-        recursive = {$plugin.tx_pxsemantic.persistence.recursive}
-
-        classes {
-            Portrino\PxSemantic\Domain\Model\Page {
-                mapping {
-                    tableName = pages
-                    // disable single table inheritance
-                    recordType =
-                    columns {
-                        crdate.mapOnProperty = crdate
-                        tstamp.mapOnProperty = tstamp
-                        backend_layout.mapOnProperty = backendLayout
+    features {
+        skipDefaultArguments = 1
+    }
+    settings {
+        rest {
+            pid = {$plugin.tx_pxsemantic.settings.rest.pid}
+            typeNum = {$plugin.tx_pxsemantic.settings.rest.typeNum}
+            endpoints {
+                page {
+                    entity = Portrino\PxSemantic\SchemaOrg\CreativeWork
+                    resource = Portrino\PxSemantic\Domain\Model\Page
+                    processors {
+                        0 {
+                            className = Portrino\PxSemantic\Processor\PageProcessor
+                        }
                     }
                 }
             }
@@ -73,6 +70,39 @@ lib.structuredDataMarkup {
             #    }
             # }
         }
+    }
+}
+
+###
+### API
+###
+structuredDataApi = PAGE
+structuredDataApi {
+    typeNum = {$plugin.tx_pxsemantic.settings.rest.typeNum}
+    10 < lib.structuredDataMarkup
+    10 {
+        pluginName = StructuredDataApi
+        vendorName = Portrino
+        controller = Rest
+        switchableControllerActions {
+            Rest {
+                1 = index
+                2 = show
+            }
+        }
+        settings {
+            # will be set via GET param
+            entity >
+        }
+    }
+
+    config {
+        debug = 0
+        disableAllHeaderCode = 1
+        additionalHeaders = Content-type:application/ld+json
+        xhtml_cleaning = 0
+        admPanel = 0
+        no_cache = 1
     }
 }
 
@@ -143,6 +173,29 @@ lib.structuredDataMarkupOrganizationExample {
                     url.typolink {
                         parameter = 1
                         returnLast = url
+                    }
+                }
+            }
+        }
+    }
+}
+
+# global extbase settings
+config.tx_extbase {
+    persistence {
+        storagePid = {$plugin.tx_pxsemantic.persistence.storagePid}
+        recursive = {$plugin.tx_pxsemantic.persistence.recursive}
+
+        classes {
+            Portrino\PxSemantic\Domain\Model\Page {
+                mapping {
+                    tableName = pages
+                    // disable single table inheritance
+                    recordType =
+                    columns {
+                        crdate.mapOnProperty = crdate
+                        tstamp.mapOnProperty = tstamp
+                        backend_layout.mapOnProperty = backendLayout
                     }
                 }
             }

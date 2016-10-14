@@ -26,6 +26,8 @@
 
 namespace Portrino\PxSemantic\SchemaOrg;
 
+use Portrino\PxSemantic\Entity\EntityInterface;
+use TYPO3\CMS\Extbase\DomainObject\AbstractDomainObject;
 use TYPO3\CMS\Extbase\DomainObject\DomainObjectInterface;
 
 /**
@@ -35,8 +37,18 @@ use TYPO3\CMS\Extbase\DomainObject\DomainObjectInterface;
  *
  * @author Andre Wuttig<wuttig@portrino.de>
  */
-class Thing implements DomainObjectInterface
+class Thing implements EntityInterface
 {
+
+    /**
+     * @var int
+     */
+    private $id;
+
+    /**
+     * @var string
+     */
+    protected $context = 'http://schema.org';
 
     /**
      * @var string An additional type for the item, typically used for adding more specific types from external vocabularies in microdata syntax. This is a relationship between something and a class that the thing is in. In RDFa syntax, it is better to use the native RDFa syntax - the 'typeof' attribute - for multiple types. Schema.org tools may have only weaker understanding of extra types, in particular those defined externally
@@ -82,6 +94,64 @@ class Thing implements DomainObjectInterface
      * @var Action Indicates a potential Action, which describes an idealized action in which this thing would play an 'object' role
      */
     private $potentialAction;
+
+    /**
+     * Sets id.
+     *
+     * @param int $id
+     *
+     * @return $this
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets id.
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getContext()
+    {
+        return $this->context;
+    }
+
+    /**
+     * @return string
+     */
+    public function getType()
+    {
+        $reflect = new \ReflectionClass($this);
+        return $reflect->getShortName();
+    }
+
+    /**
+     * @param string $context
+     */
+    public function setContext($context)
+    {
+        $this->context = $context;
+    }
+
+    /**
+     * @param string $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
+
 
     /**
      * Sets additionalType.
@@ -299,93 +369,4 @@ class Thing implements DomainObjectInterface
         return $this->potentialAction;
     }
 
-    /**
-     * Getter for uid.
-     *
-     * @return integer The uid or NULL if none set yet.
-     */
-    public function getUid()
-    {
-        // TODO: Implement getUid() method.
-    }
-
-    /**
-     * Setter for the pid.
-     *
-     * @param integer $pid
-     *
-     * @return void
-     */
-    public function setPid($pid)
-    {
-        // TODO: Implement setPid() method.
-    }
-
-    /**
-     * Getter for the pid.
-     *
-     * @return integer The pid or NULL if none set yet.
-     */
-    public function getPid()
-    {
-        // TODO: Implement getPid() method.
-    }
-
-    /**
-     * Returns TRUE if the object is new (the uid was not set, yet). Only for internal use
-     *
-     * @return boolean
-     */
-    public function _isNew()
-    {
-        // TODO: Implement _isNew() method.
-    }
-
-    /**
-     * Reconstitutes a property. Only for internal use.
-     *
-     * @param string $propertyName
-     * @param string $value
-     *
-     * @return void
-     */
-    public function _setProperty($propertyName, $value)
-    {
-        // TODO: Implement _setProperty() method.
-    }
-
-    /**
-     * Returns the property value of the given property name. Only for internal use.
-     *
-     * @param string $propertyName
-     *
-     * @return mixed The propertyValue
-     */
-    public function _getProperty($propertyName)
-    {
-        // TODO: Implement _getProperty() method.
-    }
-
-    /**
-     * Returns a hash map of property names and property values
-     *
-     * @return array The properties
-     */
-    public function _getProperties()
-    {
-        // TODO: Implement _getProperties() method.
-    }
-
-    /**
-     * Returns the clean value of the given property. The returned value will be NULL if the clean state was not memorized before, or
-     * if the clean value is NULL.
-     *
-     * @param string $propertyName The name of the property to be memorized.
-     *
-     * @return mixed The clean property value or NULL
-     */
-    public function _getCleanProperty($propertyName)
-    {
-        // TODO: Implement _getCleanProperty() method.
-    }
 }

@@ -5,12 +5,23 @@ $boot = function ($_EXTKEY) {
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
         'Portrino.' . $_EXTKEY,
         'StructuredDataMarkup',
-        array(
+        [
             'Entity' => 'render'
-        ),
+        ],
         // non-cacheable actions
-        array(
-        )
+        []
+    );
+
+    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+        'Portrino.' . $_EXTKEY,
+        'StructuredDataApi',
+        [
+            'Rest' => 'index'
+        ],
+        // non-cacheable actions
+        [
+//            'Rest' => 'index'
+        ]
     );
 };
 

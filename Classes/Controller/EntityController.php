@@ -24,6 +24,7 @@ namespace Portrino\PxSemantic\Controller;
      *
      *  This copyright notice MUST APPEAR in all copies of the script!
      ***************************************************************/
+use TYPO3\CMS\Extbase\Mvc\View\JsonView;
 
 /**
  * Class EntityController
@@ -43,15 +44,18 @@ class EntityController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
          */
         $entityClassName = (isset($this->settings['entity']['className'])) ? $this->settings['entity']['className'] : $this->settings['entity']['_typoScriptNodeValue'];
 
-        /** @var \TYPO3\CMS\Extbase\DomainObject\AbstractEntity $entity */
-        $entity = $this->objectManager->get($entityClassName);
-        foreach ($this->settings['processors'] as $key => $processorConfiguration) {
-            /** @var \Portrino\PxSemantic\Processor\ProcessorInterface $processor */
-            $processor = $this->objectManager->get($processorConfiguration['className']);
-            $settings = isset($processorConfiguration['settings']) ? $processorConfiguration['settings'] : [];
-            $processor->process($entity, $settings);
+        if ($entityClassName != null) {
+            /** @var \TYPO3\CMS\Extbase\DomainObject\AbstractEntity $entity */
+            $entity = $this->objectManager->get($entityClassName);
+            foreach ($this->settings['processors'] as $key => $processorConfiguration) {
+                /** @var \Portrino\PxSemantic\Processor\ProcessorInterface $processor */
+                $processor = $this->objectManager->get($processorConfiguration['className']);
+                $settings = isset($processorConfiguration['settings']) ? $processorConfiguration['settings'] : [];
+                $processor->process($entity, $settings);
+            }
+            $this->view->assign('entity', $entity);
         }
-        $this->view->assign('entity', $entity);
+
     }
 
 }

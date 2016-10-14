@@ -81,11 +81,11 @@ class TypoScriptProcessor implements \Portrino\PxSemantic\Processor\ProcessorInt
     }
 
     /**
-     *
-     * @param \TYPO3\CMS\Extbase\DomainObject\AbstractEntity $entity
+     * @param Thing $entity
      * @param array $settings
+     * @param int|null $resourceId
      */
-    public function process(&$entity, $settings = [])
+    public function process(&$entity, $settings = [], $resourceId = null)
     {
 
         $typoScriptArray = $this->typoScriptService->convertPlainArrayToTypoScriptArray($settings);

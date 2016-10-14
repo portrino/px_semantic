@@ -24,6 +24,7 @@ namespace Portrino\PxSemantic\Domain\Model;
      *
      *  This copyright notice MUST APPEAR in all copies of the script!
      ***************************************************************/
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 /**
  * Class Page
@@ -128,6 +129,24 @@ class Page extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @inject
      */
     protected $pageRepository;
+
+    /**
+     * __construct
+     */
+    public function __construct() {
+        //Do not remove the next line: It would break the functionality
+        $this->initStorageObjects();
+    }
+
+    /**
+     * Initializes all ObjectStorage properties
+     *
+     * @return void
+     */
+    protected function initStorageObjects() {
+        $this->media = new ObjectStorage();
+    }
+
 
     /**
      * @param string $abstract
