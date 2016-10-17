@@ -163,6 +163,8 @@ class RestController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         /** @var \TYPO3\CMS\Extbase\Persistence\Repository $repository */
         $this->resourceRepository = $this->objectManager->get($resourceRepositoryClass);
 
+        header('Link: <http://www.markus-lanthaler.com/hydra/event-api/vocab>; rel="http://www.w3.org/ns/hydra/core#apiDocumentation"');
+
     }
 
     /**
