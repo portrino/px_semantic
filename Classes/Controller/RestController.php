@@ -226,30 +226,6 @@ class RestController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     }
 
     /**
-     * @param string $context
-     */
-    public function contextAction($context = '')
-    {
-        $context = [
-            '@context' => [
-                '@vocab' => 'http://dev.kueppersbusch.de/api/structured-data/EntryPointContext',
-                'hydra' => 'http://www.w3.org/ns/hydra/core#',
-            ],
-            '@id' => '/api/structured-data/',
-            '@type' => 'EntryPoint'
-        ];
-
-        $endpoints = $this->settings['rest']['endpoints'];
-
-        foreach ($endpoints as $endpoint => $endpointConfiguration) {
-            $entryPoint[$endpoint] = 'http://dev.kueppersbusch.de/api/structured-data/' . $endpoint;
-        };
-
-        $this->view->setVariablesToRender(['$context']);
-        $this->view->assign('context', $context);
-    }
-
-    /**
      * @param string $endpoint
      */
     public function listAction($endpoint = '')

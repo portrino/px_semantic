@@ -134,7 +134,7 @@ structuredDataContextApi {
         additionalHeaders = Content-type:application/ld+json
         xhtml_cleaning = 0
         admPanel = 0
-        no_cache = 1
+        no_cache = 0
     }
 }
 
@@ -166,7 +166,7 @@ structuredDataVocabularyApi {
         additionalHeaders = Content-type:application/ld+json
         xhtml_cleaning = 0
         admPanel = 0
-        no_cache = 1
+        no_cache = 0
     }
 }
 

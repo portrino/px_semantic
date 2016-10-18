@@ -23,8 +23,6 @@ $boot = function ($_EXTKEY) {
         // non-cacheable actions
         [
             'Rest' => 'index',
-            'Context' => 'index',
-            'Vocabulary' => 'index'
         ]
     );
 };

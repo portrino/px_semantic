@@ -87,6 +87,81 @@ class VocabularyController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContr
     public function indexAction()
     {
 
+        $endpoints = $this->settings['rest']['endpoints'];
+
+        foreach ($endpoints as $endpoint => $endpointConfiguration) {
+
+            $entryPoints[] = [
+                'property' => [
+                    '@id' => 'vocab:EntryPoint/' . $endpoint,
+                    '@type' => 'hydra:Link',
+                    'label' => 'events',
+                    'description' => 'The ' . $endpoint .' collection',
+                    'domain' => 'vocab:EntryPoint',
+                    'range' => 'vocab:Collection',
+                    'supportedOperation' => [
+                        0 => [
+                            '@id' => '_:' . $endpoint . '_collection_retrieve',
+                            '@type' => 'hydra:Operation',
+                            'method' => 'GET',
+                            'label' => 'Retrieves all entities of the entity',
+                            'description' => null,
+                            'expects' => null,
+                            'returns' => 'vocab:Collection',
+                            'statusCodes' =>[],
+                        ],
+                    ],
+                ],
+                'hydra:title' => $endpoint,
+                'hydra:description' => 'The ' . $endpoint . ' collection',
+                'required' => null,
+                'readonly' => true,
+                'writeonly' => false,
+            ];
+
+            /**
+             * take the the className from className config of entity object, otherwise take the _typoScriptNodeValue for backwards compatibility
+             */
+            $entityClassName = isset($endpointConfiguration['entity']) ? $endpointConfiguration['entity'] : null;
+            if (!class_exists($entityClassName)) {
+                throw new \TYPO3\CMS\Fluid\Exception('The entity class: "' . $entityClassName . '" does not exist.',
+                    1475830556);
+            }
+
+            /** @var EntityInterface $entity */
+            $entity = $this->objectManager->get($entityClassName);
+
+            $supportedClasses[] = [
+                '@id' => $entity->getContext() . $entity->getType(),
+                '@type' => 'hydra:Class',
+                'hydra:title' => $entity->getType(),
+                'hydra:description' => null,
+                'supportedOperation' => [
+                    0 => [
+                        '@id' => '_:' . $endpoint . '_retrieve',
+                        '@type' => 'hydra:Operation',
+                        'method' => 'GET',
+                        'label' => 'Retrieves a ' . $entity->getType() . ' entity',
+                        'description' => null,
+                        'expects' => null,
+                        'returns' =>  $entity->getContext() . $entity->getType(),
+                        'statusCodes' => [],
+                    ]
+                ],
+                'supportedProperty' => [
+                    0 => [
+                        'property' => 'http://schema.org/name',
+                        'hydra:title' => 'name',
+                        'hydra:description' => 'The name of the entity',
+                        'required' => true,
+                        'readonly' => false,
+                        'writeonly' => false,
+                    ]
+                ]
+            ];
+
+        };
+
         $vocabulary = [
             '@context' => [
                 'vocab' => 'http://dev.kueppersbusch.de/api/vocab#', // @todo: generate link to vocabularyController
@@ -133,51 +208,6 @@ class VocabularyController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContr
             '@type' => 'ApiDocumentation',
             'supportedClass' => [
                 [
-                    '@id' => 'http://www.w3.org/ns/hydra/core#Collection',
-                    '@type' => 'hydra:Class',
-                    'hydra:title' => 'Collection',
-                    'hydra:description' => null,
-                    'supportedOperation' => [],
-                    'supportedProperty' => [
-                        0 => [
-                            'property' => 'http://www.w3.org/ns/hydra/core#member',
-                            'hydra:title' => 'members',
-                            'hydra:description' => 'The members of this collection.',
-                            'required' => null,
-                            'readonly' => true,
-                            'writeonly' => false,
-                        ]
-                    ]
-                ],
-                [
-                    '@id' => 'http://schema.org/Recipe',
-                    '@type' => 'hydra:Class',
-                    'hydra:title' => 'Recipe',
-                    'hydra:description' => null,
-                    'supportedOperation' => [
-                        0 => [
-                            '@id' => '_:recipe_retrieve',
-                            '@type' => 'hydra:Operation',
-                            'method' => 'GET',
-                            'label' => 'Retrieves a Recipe entity',
-                            'description' => null,
-                            'expects' => null,
-                            'returns' => 'http://schema.org/Recipe',
-                            'statusCodes' => [],
-                        ]
-                    ],
-                    'supportedProperty' => [
-                        0 => [
-                            'property' => 'http://schema.org/name',
-                            'hydra:title' => 'name',
-                            'hydra:description' => 'The recipes name',
-                            'required' => true,
-                            'readonly' => false,
-                            'writeonly' => false,
-                        ]
-                    ]
-                ],
-                [
                     '@id' => 'vocab:EntryPoint',
                     '@type' => 'hydra:Class',
                     'subClassOf' => null,
@@ -195,38 +225,30 @@ class VocabularyController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContr
                             'statusCodes' => [],
                         ]
                     ],
-                    'supportedProperty' => [
-                        0 => [
-                            'property' => [
-                                '@id' => 'vocab:EntryPoint/recipes',
-                                '@type' => 'hydra:Link',
-                                'label' => 'events',
-                                'description' => 'The recipes collection',
-                                'domain' => 'vocab:EntryPoint',
-                                'range' => 'vocab:Collection',
-                                'supportedOperation' => [
-                                    0 => [
-                                        '@id' => '_:recipe_collection_retrieve',
-                                        '@type' => 'hydra:Operation',
-                                        'method' => 'GET',
-                                        'label' => 'Retrieves all recipe entities',
-                                        'description' => null,
-                                        'expects' => null,
-                                        'returns' => 'vocab:Collection',
-                                        'statusCodes' =>[],
-                                    ],
-                                ],
-                            ],
-                            'hydra:title' => 'recipes',
-                            'hydra:description' => 'The recipes collection',
+                    'supportedProperty' => $entryPoints
+                ],
+                [
+                '@id' => 'http://www.w3.org/ns/hydra/core#Collection',
+                '@type' => 'hydra:Class',
+                'hydra:title' => 'Collection',
+                'hydra:description' => null,
+                'supportedOperation' => [],
+                'supportedProperty' => [
+                    0 => [
+                            'property' => 'http://www.w3.org/ns/hydra/core#member',
+                            'hydra:title' => 'members',
+                            'hydra:description' => 'The members of this collection.',
                             'required' => null,
                             'readonly' => true,
                             'writeonly' => false,
                         ]
                     ]
-                ]
-            ]
+                ],
+            ],
         ];
+
+
+        ArrayUtility::mergeRecursiveWithOverrule($vocabulary['supportedClass'], $supportedClasses);
 
         $this->view->setVariablesToRender(['$vocabulary']);
         $this->view->assign('$vocabulary', $vocabulary);
