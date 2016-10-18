@@ -36,6 +36,11 @@ class PagedCollection extends Collection
 {
 
     /**
+     * @var int
+     */
+    protected $itemsPerPage;
+
+    /**
      * @var string
      */
     protected $firstPage;
@@ -54,6 +59,22 @@ class PagedCollection extends Collection
      * @var string
      */
     protected $lastPage;
+
+    /**
+     * @return int
+     */
+    public function getItemsPerPage()
+    {
+        return $this->itemsPerPage;
+    }
+
+    /**
+     * @param int $itemsPerPage
+     */
+    public function setItemsPerPage($itemsPerPage)
+    {
+        $this->itemsPerPage = $itemsPerPage;
+    }
 
     /**
      * @return string

@@ -74,7 +74,7 @@ class VocabularyController extends AbstractHydraController
                     'domain' => 'vocab:EntryPoint',
                     'range' => 'vocab:PagedCollection',
                     'supportedOperation' => [
-                        0 => [
+                        [
                             '@id' => '_:' . $endpoint . '_collection_retrieve',
                             '@type' => 'hydra:Operation',
                             'method' => 'GET',
@@ -83,7 +83,7 @@ class VocabularyController extends AbstractHydraController
                             'expects' => null,
                             'returns' => 'vocab:PagedCollection',
                             'statusCodes' => [],
-                        ],
+                        ]
                     ],
                 ],
                 'hydra:title' => $endpoint,
@@ -159,7 +159,7 @@ class VocabularyController extends AbstractHydraController
                 'hydra:title' => $entity->getType(),
                 'hydra:description' => null,
                 'supportedOperation' => [
-                    0 => [
+                    [
                         '@id' => '_:' . $endpoint . '_retrieve',
                         '@type' => 'hydra:Operation',
                         'method' => 'GET',
@@ -233,7 +233,7 @@ class VocabularyController extends AbstractHydraController
                     'label' => 'EntryPoint',
                     'description' => 'The main entry point or homepage of the API.',
                     'supportedOperation' => [
-                        0 => [
+                        [
                             '@id' => '_:entry_point',
                             '@type' => 'hydra:Operation',
                             'method' => 'GET',
@@ -251,26 +251,123 @@ class VocabularyController extends AbstractHydraController
                     '@type' => 'hydra:Class',
                     'label' => 'PagedCollection',
                     'hydra:title' => 'PagedCollection',
-                    'hydra:description' => 'PagedCollection of entities',
+                    'hydra:description' => 'A PagedCollection is a subclass of Collection with the only difference that its members are sorted and only a subset of all members are returned in a single PagedCollection. To get the other members, the nextPage/previousPage properties have to be used.',
                     'supportedOperation' => [],
                     'supportedProperty' => [
-                        0 => [
-                            'property' => 'http://www.w3.org/ns/hydra/core#member',
+                        [
+                            '@type' => 'hydra:SupportedProperty',
+                            'property' => [
+                                '@id' => 'http://www.w3.org/ns/hydra/core#member',
+                                '@type' => 'hydra:Link',
+                                'label' => 'members',
+                                'domain' => 'hydra:PagedCollection',
+                                'range' => 'hydra:PagedCollection'
+                            ],
+                            'label' =>'members',
                             'hydra:title' => 'members',
                             'hydra:description' => 'The members of this collection.',
-                            'readable' => true
+                            'required' => false,
+                            'readonly' => true,
+                            'writeonly' => false,
                         ],
-                        1 => [
-                            'property' => 'http://www.w3.org/ns/hydra/core#totalItems',
+                        [
+                            '@type' => 'hydra:SupportedProperty',
+                            'property' => [
+                                '@id' => 'http://www.w3.org/ns/hydra/core#totalItems',
+                                '@type' => 'rdf:Property',
+                                'label' => 'total items',
+                                'domain' => 'hydra:PagedCollection',
+                                'range' => 'xsd:integer'
+                            ],
+                            'label' =>'total items',
                             'hydra:title' => 'total items',
                             'hydra:description' => 'The total number of items referenced by a collection or a set of interlinked PagedCollections.',
-                            'readable' => true
+                            'required' => false,
+                            'readonly' => true,
+                            'writeonly' => false,
                         ],
-                        2 => [
-                            'property' => 'http://www.w3.org/ns/hydra/core#firstPage',
+                        [
+                            '@type' => 'hydra:SupportedProperty',
+                            'property' => [
+                                '@id' => 'http://www.w3.org/ns/hydra/core#itemsPerPage',
+                                '@type' => 'rdf:Property',
+                                'label' => 'items per page',
+                                'domain' => 'hydra:PagedCollection',
+                                'range' => 'xsd:integer'
+                            ],
+                            'label' =>'items per page',
+                            'hydra:title' => 'items per page',
+                            'hydra:description' => 'The maximum number of items referenced by each single PagedCollection in a set of interlinked PagedCollections..',
+                            'required' => false,
+                            'readonly' => true,
+                            'writeonly' => false,
+                        ],
+                        [
+
+                            '@type' => 'hydra:SupportedProperty',
+                            'property' => [
+                                '@id' => 'http://www.w3.org/ns/hydra/core#firstPage',
+                                '@type' => 'hydra:Link',
+                                'label' => 'first page',
+                                'domain' => 'hydra:PagedCollection',
+                                'range' => 'hydra:PagedCollection'
+                            ],
+                            'label' =>'first page',
                             'hydra:title' => 'first page',
                             'hydra:description' => 'The first page of an interlinked set of PagedCollections.',
-                            'readable' => true
+                            'required' => false,
+                            'readonly' => true,
+                            'writeonly' => false,
+                        ],
+                        [
+                            '@type' => 'hydra:SupportedProperty',
+                            'property' => [
+                                '@id' => 'http://www.w3.org/ns/hydra/core#lastPage',
+                                '@type' => 'hydra:Link',
+                                'label' => 'last page',
+                                'domain' => 'hydra:PagedCollection',
+                                'range' => 'hydra:PagedCollection'
+                            ],
+                            'label' =>'last page',
+                            'hydra:title' => 'last page',
+                            'hydra:description' => 'The last page of an interlinked set of PagedCollections.',
+                            'required' => false,
+                            'readonly' => true,
+                            'writeonly' => false,
+                        ],
+                        [
+
+                            '@type' => 'hydra:SupportedProperty',
+                            'property' => [
+                                '@id' => 'http://www.w3.org/ns/hydra/core#nextPage',
+                                '@type' => 'hydra:Link',
+                                'label' => 'next page',
+                                'domain' => 'hydra:PagedCollection',
+                                'range' => 'hydra:PagedCollection'
+                            ],
+                            'label' =>'next page',
+                            'hydra:title' => 'next page',
+                            'hydra:description' => 'The page following the current instance in an interlinked set of PagedCollections.',
+                            'required' => false,
+                            'readonly' => true,
+                            'writeonly' => false,
+                        ],
+                        [
+
+                            '@type' => 'hydra:SupportedProperty',
+                            'property' => [
+                                '@id' => 'http://www.w3.org/ns/hydra/core#previousPage',
+                                '@type' => 'hydra:Link',
+                                'label' => 'previous page',
+                                'domain' => 'hydra:PagedCollection',
+                                'range' => 'hydra:PagedCollection'
+                            ],
+                            'label' =>'previous page',
+                            'hydra:title' => 'previous page',
+                            'hydra:description' => 'The page preceding the current instance in an interlinked set of PagedCollections.',
+                            'required' => false,
+                            'readonly' => true,
+                            'writeonly' => false,
                         ]
                     ]
                 ]
