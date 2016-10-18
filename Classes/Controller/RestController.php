@@ -187,7 +187,7 @@ class RestController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
             $this->resourceRepository = $this->objectManager->get($resourceRepositoryClass);
         }
 
-        header('Link: <http://dev.kueppersbusch.de/api/vocab#>; rel="http://www.w3.org/ns/hydra/core#apiDocumentation"');
+        header('Link: <http://dev.kueppersbusch.de/api/vocab>; rel="http://www.w3.org/ns/hydra/core#apiDocumentation"');
 
     }
 
