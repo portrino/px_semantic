@@ -28,32 +28,18 @@ namespace Portrino\PxSemantic\Controller;
 use Portrino\PxSemantic\Domain\Repository\RestRepositoryInterface;
 use Portrino\PxSemantic\Entity\EntityInterface;
 use Portrino\PxSemantic\Hydra\Collection;
-use Portrino\PxSemantic\Mvc\View\JsonLdView;
-use Portrino\PxSemantic\SchemaOrg\Thing;
 use TYPO3\CMS\Core\Http\ServerRequestFactory;
-use TYPO3\CMS\Core\Utility\ArrayUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
-use TYPO3\CMS\Extbase\DomainObject\DomainObjectInterface;
 use TYPO3\CMS\Extbase\Mvc\View\JsonView;
 
 /**
- * Class RestController
+ * Class ApiController
  *
  * @package Portrino\PxSemantic\Controller
  */
-class RestController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
+class ApiController extends AbstractHydraController
 {
-
-    /**
-     * @var JsonView
-     */
-    protected $view;
-
-    /**
-     * @var string
-     */
-    protected $defaultViewObjectName = JsonLdView::class;
 
     /**
      * Name of the action method argument which acts as the resource for the
@@ -103,7 +89,6 @@ class RestController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
                     ],
                     'entity' => [],
                     'entryPoint' => [],
-                    'context' => []
                 ];
                 $view->setConfiguration($configuration);
             }
@@ -131,17 +116,8 @@ class RestController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
                     if ($this->request->hasArgument('endpoint') === false && $this->request->hasArgument('context') === false) {
                         $actionName = 'entryPoint';
                     } else {
-                        switch ($this->request->getArgument('endpoint')) {
-                            case 'vocab':
-                                $actionName = 'vocab';
-                                break;
-                            case 'entrypoint.jsonld':
-                                $actionName = 'entrypointContext';
-                                break;
-                            default:
-                                $actionName = ($this->request->hasArgument($this->resourceArgumentName)) ? 'show' : 'list';
-                                break;
-                        }
+                        $actionName = ($this->request->hasArgument($this->resourceArgumentName)) ? 'show' : 'list';
+                        break;
                     }
                     break;
             }
@@ -186,9 +162,6 @@ class RestController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
             /** @var \TYPO3\CMS\Extbase\Persistence\Repository $repository */
             $this->resourceRepository = $this->objectManager->get($resourceRepositoryClass);
         }
-
-        header('Link: <http://dev.kueppersbusch.de/api/vocab>; rel="http://www.w3.org/ns/hydra/core#apiDocumentation"');
-
     }
 
     /**
@@ -210,15 +183,15 @@ class RestController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     public function entryPointAction()
     {
         $entryPoint = [
-            '@context' => 'http://dev.kueppersbusch.de/api/structured-data-contexts/Entrypoint/',
-            '@id' => '/api/structured-data/', // @todo: generate api URL
+            '@context' => $this->hydraUtility->getIriForContext('Entrypoint'),
+            '@id' => $this->hydraUtility->getIriForEntrypoint(),
             '@type' => 'EntryPoint'
         ];
 
         $endpoints = $this->settings['rest']['endpoints'];
 
         foreach ($endpoints as $endpoint => $endpointConfiguration) {
-            $entryPoint[$endpoint] = 'http://dev.kueppersbusch.de/api/structured-data/' . $endpoint; // @todo: generate endpoint URL
+            $entryPoint[$endpoint] = $this->hydraUtility->getIriForEndpoint($endpoint);
         };
 
         $this->view->setVariablesToRender(['entryPoint']);
@@ -231,7 +204,7 @@ class RestController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     public function listAction($endpoint = '')
     {
         $offset = (GeneralUtility::_GET('offset') != null) ? (int)GeneralUtility::_GET('offset') : 0;
-        $limit = (GeneralUtility::_GET('limit') != null) ? (int)GeneralUtility::_GET('limit') : -1;
+        $limit = (GeneralUtility::_GET('limit') != null) ? (int)GeneralUtility::_GET('limit') : 10;
 
         if ($this->resourceRepository instanceof RestRepositoryInterface) {
             $domainObjects = $this->resourceRepository->findByOffsetAndLimit($offset, $limit)->toArray();
@@ -244,28 +217,9 @@ class RestController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         /** @var Collection $collection */
         $collection = $this->objectManager->get(Collection::class);
 
-        $indexUrl = $this->uriBuilder
-            ->reset()
-            ->setTargetPageUid($this->settings['rest']['pid'])
-            ->setTargetPageType($this->settings['rest']['typeNum'])
-            ->setUseCacheHash(false)
-            ->setArguments(
-                [
-                    'offset' => $offset,
-                    'limit' => $limit
-                ]
-            )
-            ->uriFor(
-                null,
-                [
-                    'endpoint' => $endpoint
-                ],
-                null,
-                null,
-                null
-            );
+        $iri = $this->hydraUtility->getIriForEndpoint($endpoint);
 
-        $collection->setId($indexUrl);
+        $collection->setId($iri);
 
         /** @var AbstractEntity $domainObject */
         foreach ($domainObjects as $domainObject) {
@@ -279,21 +233,7 @@ class RestController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
                 $processor->process($entity, $settings, $domainObject->getUid());
             }
 
-            $iri = $this->uriBuilder
-                ->reset()
-                ->setTargetPageUid($this->settings['rest']['pid'])
-                ->setTargetPageType($this->settings['rest']['typeNum'])
-                ->setUseCacheHash(false)
-                ->uriFor(
-                    null,
-                    [
-                        'endpoint' => $endpoint,
-                        'uid' => $domainObject->getUid()
-                    ],
-                    null,
-                    null,
-                    null
-                );
+            $iri = $this->hydraUtility->getIriForEndpointAndUid($endpoint, $domainObject->getUid());
 
             $entity->setId($iri);
 
@@ -329,21 +269,7 @@ class RestController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
                 $processor->process($entity, $settings, $domainObject->getUid());
             }
 
-            $iri = $this->uriBuilder
-                ->reset()
-                ->setTargetPageUid($this->settings['rest']['pid'])
-                ->setTargetPageType($this->settings['rest']['typeNum'])
-                ->setUseCacheHash(false)
-                ->uriFor(
-                    null,
-                    [
-                        'endpoint' => $endpoint,
-                        'uid' => $domainObject->getUid()
-                    ],
-                    null,
-                    null,
-                    null
-                );
+            $iri = $this->hydraUtility->getIriForEndpointAndUid($endpoint, $domainObject->getUid());
 
             $entity->setId($iri);
         }

@@ -14,16 +14,34 @@ $boot = function ($_EXTKEY) {
 
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
         'Portrino.' . $_EXTKEY,
-        'StructuredDataApi',
+        'HydraApi',
         [
-            'Rest' => 'index',
-            'Context' => 'index',
-            'Vocabulary' => 'index'
+            'Api' => 'index',
         ],
         // non-cacheable actions
         [
-            'Rest' => 'index',
+            'Api' => 'index',
         ]
+    );
+
+    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+        'Portrino.' . $_EXTKEY,
+        'HydraContext',
+        [
+            'Context' => 'index'
+        ],
+        // non-cacheable actions
+        []
+    );
+
+    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+        'Portrino.' . $_EXTKEY,
+        'HydraVocabulary',
+        [
+            'Vocabulary' => 'index'
+        ],
+        // non-cacheable actions
+        []
     );
 };
 

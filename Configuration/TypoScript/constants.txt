@@ -16,5 +16,14 @@ plugin.tx_pxsemantic {
             pid = 97848
             typeNum = 1475825939
         }
+        hydra {
+            pid = 97848
+            context {
+                typeNum = 1476721757
+            }
+            vocabulary {
+                typeNum = 1476770090
+            }
+        }
     }
 }

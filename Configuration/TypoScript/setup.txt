@@ -36,6 +36,15 @@ plugin.tx_pxsemantic {
                 }
             }
         }
+        hydra {
+            pid = {$plugin.tx_pxsemantic.settings.hydra.pid}
+            context {
+                typeNum = {$plugin.tx_pxsemantic.settings.hydra.context.typeNum}
+            }
+            vocabulary {
+                typeNum = {$plugin.tx_pxsemantic.settings.hydra.vocabulary.typeNum}
+            }
+        }
     }
 }
 
@@ -74,25 +83,21 @@ lib.structuredDataMarkup {
 }
 
 ###
-### API
+### HYDRA API
 ###
-structuredDataApi = PAGE
-structuredDataApi {
+hydraApi = PAGE
+hydraApi {
     typeNum = {$plugin.tx_pxsemantic.settings.rest.typeNum}
-    10 < lib.structuredDataMarkup
+    10 = USER
     10 {
-        pluginName = StructuredDataApi
+        userFunc = Portrino\PxSemantic\Core\Bootstrap->run
+        extensionName = PxSemantic
+        pluginName = HydraApi
         vendorName = Portrino
-        controller = Rest
-        switchableControllerActions {
-            Rest {
-                1 = index
-            }
-        }
-        settings {
-            # will be set via GET param
-            entity >
-        }
+        controller = Api
+        action = index
+        view =< plugin.tx_pxsemantic.view
+        persistence =< plugin.tx_pxsemantic.persistence
     }
 
     config {
@@ -107,25 +112,21 @@ structuredDataApi {
 
 
 ###
-### Context API
+### HYDRA Context API
 ###
-structuredDataContextApi = PAGE
-structuredDataContextApi {
-    typeNum = 1476721757
-    10 < lib.structuredDataMarkup
+hydraContextApi = PAGE
+hydraContextApi {
+    typeNum = {$plugin.tx_pxsemantic.settings.hydra.context.typeNum}
+    10 = USER
     10 {
-        pluginName = StructuredDataApi
+        userFunc = Portrino\PxSemantic\Core\Bootstrap->run
+        extensionName = PxSemantic
+        pluginName = HydraContext
         vendorName = Portrino
         controller = Context
-        switchableControllerActions {
-            Context {
-                1 = index
-            }
-        }
-        settings {
-            # will be set via GET param
-            entity >
-        }
+        action = index
+        view =< plugin.tx_pxsemantic.view
+        persistence =< plugin.tx_pxsemantic.persistence
     }
 
     config {
@@ -139,25 +140,21 @@ structuredDataContextApi {
 }
 
 ###
-### Vocabulary API
+### HYDRA Vocabulary API
 ###
-structuredDataVocabularyApi = PAGE
-structuredDataVocabularyApi {
-    typeNum = 1476770090
-    10 < lib.structuredDataMarkup
+hydraVocabularyApi = PAGE
+hydraVocabularyApi {
+    typeNum = {$plugin.tx_pxsemantic.settings.hydra.vocabulary.typeNum}
+    10 = USER
     10 {
-        pluginName = StructuredDataApi
+        userFunc = Portrino\PxSemantic\Core\Bootstrap->run
+        extensionName = PxSemantic
+        pluginName = HydraVocabulary
         vendorName = Portrino
         controller = Vocabulary
-        switchableControllerActions {
-            Vocabulary {
-                1 = index
-            }
-        }
-        settings {
-            # will be set via GET param
-            entity >
-        }
+        action = index
+        view =< plugin.tx_pxsemantic.view
+        persistence =< plugin.tx_pxsemantic.persistence
     }
 
     config {
