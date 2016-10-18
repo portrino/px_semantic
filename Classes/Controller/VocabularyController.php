@@ -106,6 +106,25 @@ class VocabularyController extends AbstractHydraController
             /** @var EntityInterface $entity */
             $entity = $this->objectManager->get($entityClassName);
 
+
+            $supportedProperties = [];
+
+            $propertyNames = $this->reflectionService->getClassPropertyNames($entityClassName);
+            foreach ($propertyNames as $propertyName) {
+
+                $tagValues = $this->reflectionService->getPropertyTagValues($entityClassName, $propertyName, 'var');
+                $reflection = new \ReflectionProperty($entityClassName, $propertyName);
+                $description = (isset($tagValues[0])) ? $tagValues[0] : '';
+                $supportedProperties[] = [
+                    'property' => $entity->getContext() . $propertyName,
+                    'hydra:title' => $propertyName,
+                    'hydra:description' => $description,
+                    'required' => false,
+                    'readonly' => true,
+                    'writeonly' => false,
+                ];
+            }
+
             $supportedClasses[] = [
                 '@id' => $entity->getContext() . $entity->getType(),
                 '@type' => 'hydra:Class',
@@ -123,16 +142,7 @@ class VocabularyController extends AbstractHydraController
                         'statusCodes' => [],
                     ]
                 ],
-                'supportedProperty' => [
-                    0 => [
-                        'property' => 'http://schema.org/name',
-                        'hydra:title' => 'name',
-                        'hydra:description' => 'The name of the entity',
-                        'required' => true,
-                        'readonly' => false,
-                        'writeonly' => false,
-                    ]
-                ]
+                'supportedProperty' => $supportedProperties
             ];
 
         };
