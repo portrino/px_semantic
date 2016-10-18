@@ -72,7 +72,7 @@ class VocabularyController extends AbstractHydraController
                     'label' => $endpoint,
                     'description' => 'The ' . $endpoint . ' collection',
                     'domain' => 'vocab:EntryPoint',
-                    'range' => 'vocab:Collection',
+                    'range' => 'vocab:PagedCollection',
                     'supportedOperation' => [
                         0 => [
                             '@id' => '_:' . $endpoint . '_collection_retrieve',
