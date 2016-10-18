@@ -115,7 +115,7 @@ class VocabularyController extends AbstractHydraController
                 $description = (isset($tagValues[0])) ? $tagValues[0] : '';
                 $supportedProperties[] = [
                     '@type' => 'hydra:SupportedProperty',
-                    'property' => [
+                    'hydra:property' => [
                         '@id' => $entity->getContext() . $reflectionProperty->getName(),
                         '@type' => 'rdf:Property',
                         'rdfs:label' => $reflectionProperty->getName(),
