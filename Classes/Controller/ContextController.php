@@ -127,7 +127,7 @@ class ContextController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
             $context = [
                 '@context' => [
                     'hydra' => 'http://www.w3.org/ns/hydra/core#',
-                    '@vocab' => 'http://dev.kueppersbusch.de/api/structured-data-vocabulary', // @todo: generate link to vocabularyController
+                    '@vocab' => 'http://dev.kueppersbusch.de/api/structured-data-vocabulary#', // @todo: generate link to vocabularyController
                     'EntryPoint' => 'vocab:EntryPoint',
                 ],
 
