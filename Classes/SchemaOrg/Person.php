@@ -39,207 +39,207 @@ class Person extends Thing
     /**
      * @var int
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string An additional name for a Person, can be used for a middle name
      */
-    private $additionalName;
+    protected $additionalName;
 
     /**
      * @var PostalAddress Physical address of the item
      */
-    private $address;
+    protected $address;
 
     /**
      * @var Organization An organization that this person is affiliated with. For example, a school/university, a club, or a team
      */
-    private $affiliation;
+    protected $affiliation;
 
     /**
      * @var Organization An organization that the person is an alumni of
      */
-    private $alumniOf;
+    protected $alumniOf;
 
     /**
      * @var string An award won by or for this item
      */
-    private $award;
+    protected $award;
 
     /**
      * @var \DateTime Date of birth
      */
-    private $birthDate;
+    protected $birthDate;
 
     /**
      * @var Organization The brand(s) associated with a product or service, or the brand(s) maintained by an organization or business person
      */
-    private $brand;
+    protected $brand;
 
     /**
      * @var Person A child of the person
      */
-    private $children;
+    protected $children;
 
     /**
      * @var Person A colleague of the person
      */
-    private $colleague;
+    protected $colleague;
 
     /**
      * @var ContactPoint A contact point for a person or organization
      */
-    private $contactPoint;
+    protected $contactPoint;
 
     /**
      * @var \DateTime Date of death
      */
-    private $deathDate;
+    protected $deathDate;
 
     /**
      * @var string The Dun & Bradstreet DUNS number for identifying an organization or business person
      */
-    private $duns;
+    protected $duns;
 
     /**
      * @var string Email address
      */
-    private $email;
+    protected $email;
 
     /**
      * @var string Family name. In the U.S., the last name of an Person. This can be used along with givenName instead of the name property
      */
-    private $familyName;
+    protected $familyName;
 
     /**
      * @var string The fax number
      */
-    private $faxNumber;
+    protected $faxNumber;
 
     /**
      * @var Person The most generic uni-directional social relation
      */
-    private $follows;
+    protected $follows;
 
     /**
      * @var string Gender of the person. While http://schema.org/Male and http://schema.org/Female may be used, text strings are also acceptable for people who do not identify as a binary gender
      */
-    private $gender;
+    protected $gender;
 
     /**
      * @var string Given name. In the U.S., the first name of a Person. This can be used along with familyName instead of the name property
      */
-    private $givenName;
+    protected $givenName;
 
     /**
      * @var string The [Global Location Number](http://www.gs1.org/gln) (GLN, sometimes also referred to as International Location Number or ILN) of the respective organization, person, or place. The GLN is a 13-digit number used to identify parties and physical locations
      */
-    private $globalLocationNumber;
+    protected $globalLocationNumber;
 
     /**
      * @var QuantitativeValue The height of the item
      */
-    private $height;
+    protected $height;
 
     /**
      * @var ContactPoint A contact location for a person's residence
      */
-    private $homeLocation;
+    protected $homeLocation;
 
     /**
      * @var string An honorific prefix preceding a Person's name such as Dr/Mrs/Mr
      */
-    private $honorificPrefix;
+    protected $honorificPrefix;
 
     /**
      * @var string An honorific suffix preceding a Person's name such as M.D. /PhD/MSCSW
      */
-    private $honorificSuffix;
+    protected $honorificSuffix;
 
     /**
      * @var string The International Standard of Industrial Classification of All Economic Activities (ISIC), Revision 4 code for a particular organization, business person, or place
      */
-    private $isicV4;
+    protected $isicV4;
 
     /**
      * @var string The job title of the person (for example, Financial Manager)
      */
-    private $jobTitle;
+    protected $jobTitle;
 
     /**
      * @var Person The most generic bi-directional social/work relation
      */
-    private $knows;
+    protected $knows;
 
     /**
      * @var Organization An Organization (or ProgramMembership) to which this Person or Organization belongs
      */
-    private $memberOf;
+    protected $memberOf;
 
     /**
      * @var string The North American Industry Classification System (NAICS) code for a particular organization or business person
      */
-    private $naics;
+    protected $naics;
 
     /**
      * @var Country Nationality of the person
      */
-    private $nationality;
+    protected $nationality;
 
     /**
      * @var Person A parent of this person
      */
-    private $parent;
+    protected $parent;
 
     /**
      * @var Person The most generic familial relation
      */
-    private $relatedTo;
+    protected $relatedTo;
 
     /**
      * @var Person A sibling of the person
      */
-    private $sibling;
+    protected $sibling;
 
     /**
      * @var Organization A person or organization that supports a thing through a pledge, promise, or financial contribution. e.g. a sponsor of a Medical Study or a corporate sponsor of an event
      */
-    private $sponsor;
+    protected $sponsor;
 
     /**
      * @var string The Tax / Fiscal ID of the organization or person, e.g. the TIN in the US or the CIF/NIF in Spain
      */
-    private $taxID;
+    protected $taxID;
 
     /**
      * @var string The telephone number
      */
-    private $telephone;
+    protected $telephone;
 
     /**
      * @var string The Value-added Tax ID of the organization or person
      */
-    private $vatID;
+    protected $vatID;
 
     /**
      * @var QuantitativeValue The weight of the product or person
      */
-    private $weight;
+    protected $weight;
 
     /**
      * @var ContactPoint A contact location for a person's place of work
      */
-    private $workLocation;
+    protected $workLocation;
 
     /**
      * @var Organization Organizations that the person works for
      */
-    private $worksFor;
+    protected $worksFor;
 
     /**
      * @var Place The place where the person was born
      */
-    private $birthPlace;
+    protected $birthPlace;
 
     /**
      * Sets id.

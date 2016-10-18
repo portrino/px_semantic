@@ -39,22 +39,22 @@ class Rating extends Intangible
     /**
      * @var float The highest value allowed in this rating system. If bestRating is omitted, 5 is assumed
      */
-    private $bestRating;
+    protected $bestRating;
 
     /**
      * @var float The rating for the content
      */
-    private $ratingValue;
+    protected $ratingValue;
 
     /**
      * @var float The lowest value allowed in this rating system. If worstRating is omitted, 1 is assumed
      */
-    private $worstRating;
+    protected $worstRating;
 
     /**
      * @var float
      */
-    private $ratingCount;
+    protected $ratingCount;
 
     /**
      * Sets bestRating.

@@ -39,7 +39,7 @@ class Review extends CreativeWork
     /**
      * @var int
      */
-    private $id;
+    protected $id;
 
     /**
      * Sets id.

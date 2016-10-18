@@ -39,7 +39,7 @@ class SearchResultsPage extends WebPage
     /**
      * @var int
      */
-    private $id;
+    protected $id;
 
     /**
      * Sets id.

@@ -39,7 +39,7 @@ class Integer extends Number
     /**
      * @var int
      */
-    private $id;
+    protected $id;
 
     /**
      * Sets id.

@@ -106,18 +106,23 @@ class VocabularyController extends AbstractHydraController
             /** @var EntityInterface $entity */
             $entity = $this->objectManager->get($entityClassName);
 
-
             $supportedProperties = [];
-
-            $propertyNames = $this->reflectionService->getClassPropertyNames($entityClassName);
-            foreach ($propertyNames as $propertyName) {
-
-                $tagValues = $this->reflectionService->getPropertyTagValues($entityClassName, $propertyName, 'var');
-                $reflection = new \ReflectionProperty($entityClassName, $propertyName);
+            $reflectionClass = new \ReflectionClass($entityClassName);
+            $properties = $reflectionClass->getProperties();
+            /** @var \ReflectionProperty $reflectionProperty */
+            foreach ($properties as $reflectionProperty) {
+                $tagValues = $this->reflectionService->getPropertyTagValues($reflectionProperty->getDeclaringClass()->getName(), $reflectionProperty->getName(), 'var');
                 $description = (isset($tagValues[0])) ? $tagValues[0] : '';
                 $supportedProperties[] = [
-                    'property' => $entity->getContext() . $propertyName,
-                    'hydra:title' => $propertyName,
+                    '@type' => 'hydra:SupportedProperty',
+                    'property' => [
+                        '@id' => $entity->getContext() . $reflectionProperty->getName(),
+                        '@type' => 'rdf:Property',
+                        'rdfs:label' => $reflectionProperty->getName(),
+                        'domain' => $entity->getContext() . $entity->getType(),
+                        'range' => 'xmls:string'
+                    ],
+                    'hydra:title' => $reflectionProperty->getName(),
                     'hydra:description' => $description,
                     'required' => false,
                     'readonly' => true,
@@ -223,9 +228,7 @@ class VocabularyController extends AbstractHydraController
                             'property' => 'http://www.w3.org/ns/hydra/core#member',
                             'hydra:title' => 'members',
                             'hydra:description' => 'The members of this collection.',
-                            'required' => null,
-                            'readonly' => true,
-                            'writeonly' => false,
+                            'readable' => true
                         ]
                     ]
                 ],

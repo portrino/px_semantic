@@ -39,7 +39,7 @@ class Action extends Thing
     /**
      * @var int
      */
-    private $id;
+    protected $id;
 
     /**
      * Sets id.

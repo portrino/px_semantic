@@ -39,32 +39,32 @@ class QuantitativeValue extends StructuredValue
     /**
      * @var int
      */
-    private $id;
+    protected $id;
 
     /**
      * @var float The upper value of some characteristic or property
      */
-    private $maxValue;
+    protected $maxValue;
 
     /**
      * @var float The lower value of some characteristic or property
      */
-    private $minValue;
+    protected $minValue;
 
     /**
      * @var string The unit of measurement given using the UN/CEFACT Common Code (3 characters) or a URL. Other codes than the UN/CEFACT Common Code may be used with a prefix followed by a colon
      */
-    private $unitCode;
+    protected $unitCode;
 
     /**
      * @var string The value of the quantitative value or property value node.\\n\\n\* For [[QuantitativeValue]] and [[MonetaryAmount]], the recommended type for values is 'Number'.\\n\* For [[PropertyValue]], it can be 'Text;', 'Number', 'Boolean', or 'StructuredValue'
      */
-    private $value;
+    protected $value;
 
     /**
      * @var string A string or text indicating the unit of measurement. Useful if you cannot provide a standard unit code for <unitCode>
      */
-    private $unitText;
+    protected $unitText;
 
     /**
      * Sets id.

@@ -39,37 +39,37 @@ class PostalAddress extends ContactPoint
     /**
      * @var int
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string The country. For example, USA. You can also provide the two-letter [ISO 3166-1 alpha-2 country code](http://en.wikipedia.org/wiki/ISO\_3166-1)
      */
-    private $addressCountry;
+    protected $addressCountry;
 
     /**
      * @var string The locality. For example, Mountain View
      */
-    private $addressLocality;
+    protected $addressLocality;
 
     /**
      * @var string The region. For example, CA
      */
-    private $addressRegion;
+    protected $addressRegion;
 
     /**
      * @var string The postal code. For example, 94043
      */
-    private $postalCode;
+    protected $postalCode;
 
     /**
      * @var string The post office box number for PO box addresses
      */
-    private $postOfficeBoxNumber;
+    protected $postOfficeBoxNumber;
 
     /**
      * @var string The street address. For example, 1600 Amphitheatre Pkwy
      */
-    private $streetAddress;
+    protected $streetAddress;
 
     /**
      * Sets id.

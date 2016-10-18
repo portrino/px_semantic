@@ -39,42 +39,42 @@ class Recipe extends CreativeWork
     /**
      * @var int
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string The total time it takes to prepare and cook the recipe, in [ISO 8601 duration format](http://en.wikipedia.org/wiki/ISO\_8601)
      */
-    private $totalTime;
+    protected $totalTime;
 
     /**
      * @var string The time it takes to actually cook the dish, in [ISO 8601 duration format](http://en.wikipedia.org/wiki/ISO\_8601)
      */
-    private $cookTime;
+    protected $cookTime;
 
     /**
      * @var NutritionInformation Nutrition information about the recipe
      */
-    private $nutrition;
+    protected $nutrition;
 
     /**
      * @var string The length of time it takes to prepare the recipe, in [ISO 8601 duration format](http://en.wikipedia.org/wiki/ISO\_8601)
      */
-    private $prepTime;
+    protected $prepTime;
 
     /**
      * @var string A single ingredient used in the recipe, e.g. sugar, flour or garlic
      */
-    private $recipeIngredient;
+    protected $recipeIngredient;
 
     /**
      * @var string A step or instruction involved in making the recipe
      */
-    private $recipeInstructions;
+    protected $recipeInstructions;
 
     /**
      * @var string The quantity produced by the recipe (for example, number of people served, number of servings, etc)
      */
-    private $recipeYield;
+    protected $recipeYield;
 
     /**
      * Sets id.

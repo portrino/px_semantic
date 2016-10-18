@@ -39,17 +39,17 @@ class TechArticle extends Article
     /**
      * @var int
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string Prerequisites needed to fulfill steps in article
      */
-    private $dependencies;
+    protected $dependencies;
 
     /**
      * @var string Proficiency needed for this content; expected values: 'Beginner', 'Expert'
      */
-    private $proficiencyLevel;
+    protected $proficiencyLevel;
 
     /**
      * Sets id.

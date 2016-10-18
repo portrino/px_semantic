@@ -39,7 +39,7 @@ class DateTime
     /**
      * @var int
      */
-    private $id;
+    protected $id;
 
     /**
      * Sets id.

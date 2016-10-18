@@ -39,17 +39,17 @@ class SportsTeam extends SportsOrganization
     /**
      * @var int
      */
-    private $id;
+    protected $id;
 
     /**
      * @var Person A person that acts in a coaching role for a sports team
      */
-    private $coach;
+    protected $coach;
 
     /**
      * @var Person A person that acts as performing member of a sports team; a player as opposed to a coach
      */
-    private $athlete;
+    protected $athlete;
 
     /**
      * Sets id.

@@ -39,22 +39,22 @@ class WebPage extends CreativeWork
     /**
      * @var string A set of links that can help a user understand and navigate a website hierarchy
      */
-    private $breadcrumb;
+    protected $breadcrumb;
 
     /**
      * @var \DateTime Date on which the content on this web page was last reviewed for accuracy and/or completeness
      */
-    private $lastReviewed;
+    protected $lastReviewed;
 
     /**
      * @var ImageObject Indicates the main image on the page
      */
-    private $primaryImageOfPage;
+    protected $primaryImageOfPage;
 
     /**
      * @var string A link related to this web page, for example to other related web pages
      */
-    private $relatedLink;
+    protected $relatedLink;
 
     /**
      * Sets breadcrumb.

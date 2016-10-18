@@ -39,7 +39,7 @@ class Energy extends Quantity
     /**
      * @var int
      */
-    private $id;
+    protected $id;
 
     /**
      * Sets id.

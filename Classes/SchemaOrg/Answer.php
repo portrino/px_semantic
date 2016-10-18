@@ -39,7 +39,7 @@ class Answer extends Comment
     /**
      * @var int
      */
-    private $id;
+    protected $id;
 
     /**
      * Sets id.

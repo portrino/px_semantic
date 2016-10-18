@@ -39,7 +39,7 @@ class ItemPage extends WebPage
     /**
      * @var int
      */
-    private $id;
+    protected $id;
 
     /**
      * Sets id.

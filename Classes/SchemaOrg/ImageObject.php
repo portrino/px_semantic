@@ -39,22 +39,22 @@ class ImageObject extends MediaObject
     /**
      * @var int
      */
-    private $id;
+    protected $id;
 
     /**
      * @var int The height of the item
      */
-    private $height;
+    protected $height;
 
     /**
      * @var string URL of the item
      */
-    private $url;
+    protected $url;
 
     /**
      * @var int The width of the item
      */
-    private $width;
+    protected $width;
 
     /**
      * Sets id.

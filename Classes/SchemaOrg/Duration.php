@@ -39,12 +39,12 @@ class Duration extends Quantity
     /**
      * @var int
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string The name of the item
      */
-    private $name;
+    protected $name;
 
     /**
      * Sets id.

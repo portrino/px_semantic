@@ -39,167 +39,167 @@ class Organization extends Thing
     /**
      * @var PostalAddress Physical address of the item
      */
-    private $address;
+    protected $address;
 
     /**
      * @var AggregateRating The overall rating, based on a collection of reviews or ratings, of the item
      */
-    private $aggregateRating;
+    protected $aggregateRating;
 
     /**
      * @var Person Alumni of an organization
      */
-    private $alumni;
+    protected $alumni;
 
     /**
      * @var string The geographic area where a service or offered item is provided
      */
-    private $areaServed;
+    protected $areaServed;
 
     /**
      * @var string An award won by or for this item
      */
-    private $award;
+    protected $award;
 
     /**
      * @var Organization The larger organization that this local business is a branch of, if any
      */
-    private $parentOrganization;
+    protected $parentOrganization;
 
     /**
      * @var Organization The brand(s) associated with a product or service, or the brand(s) maintained by an organization or business person
      */
-    private $brand;
+    protected $brand;
 
     /**
      * @var ContactPoint A contact point for a person or organization
      */
-    private $contactPoint;
+    protected $contactPoint;
 
     /**
      * @var ContactPoint A contact point for a person or organization
      */
-    private $contactPoints;
+    protected $contactPoints;
 
     /**
      * @var Organization A relationship between an organization and a department of that organization, also described as an organization (allowing different urls, logos, opening hours). For example: a store with a pharmacy, or a bakery with a cafe
      */
-    private $department;
+    protected $department;
 
     /**
      * @var string The Dun & Bradstreet DUNS number for identifying an organization or business person
      */
-    private $duns;
+    protected $duns;
 
     /**
      * @var string Email address
      */
-    private $email;
+    protected $email;
 
     /**
      * @var Person Someone working for this organization
      */
-    private $employee;
+    protected $employee;
 
     /**
      * @var string The fax number
      */
-    private $faxNumber;
+    protected $faxNumber;
 
     /**
      * @var Person A person who founded this organization
      */
-    private $founder;
+    protected $founder;
 
     /**
      * @var \DateTime The date that this organization was dissolved
      */
-    private $dissolutionDate;
+    protected $dissolutionDate;
 
     /**
      * @var \DateTime The date that this organization was founded
      */
-    private $foundingDate;
+    protected $foundingDate;
 
     /**
      * @var string The [Global Location Number](http://www.gs1.org/gln) (GLN, sometimes also referred to as International Location Number or ILN) of the respective organization, person, or place. The GLN is a 13-digit number used to identify parties and physical locations
      */
-    private $globalLocationNumber;
+    protected $globalLocationNumber;
 
     /**
      * @var Place Points-of-Sales operated by the organization or person
      */
-    private $hasPOS;
+    protected $hasPOS;
 
     /**
      * @var string The International Standard of Industrial Classification of All Economic Activities (ISIC), Revision 4 code for a particular organization, business person, or place
      */
-    private $isicV4;
+    protected $isicV4;
 
     /**
      * @var string The official name of the organization, e.g. the registered company name
      */
-    private $legalName;
+    protected $legalName;
 
     /**
      * @var Place The location of for example where the event is happening, an organization is located, or where an action takes place
      */
-    private $location;
+    protected $location;
 
     /**
      * @var ImageObject An associated logo
      */
-    private $logo;
+    protected $logo;
 
     /**
      * @var Organization A member of an Organization or a ProgramMembership. Organizations can be members of organizations; ProgramMembership is typically for individuals
      */
-    private $member;
+    protected $member;
 
     /**
      * @var Organization An Organization (or ProgramMembership) to which this Person or Organization belongs
      */
-    private $memberOf;
+    protected $memberOf;
 
     /**
      * @var string The North American Industry Classification System (NAICS) code for a particular organization or business person
      */
-    private $naics;
+    protected $naics;
 
     /**
      * @var QuantitativeValue The number of employees in an organization e.g. business
      */
-    private $numberOfEmployees;
+    protected $numberOfEmployees;
 
     /**
      * @var Review A review of the item
      */
-    private $review;
+    protected $review;
 
     /**
      * @var Organization A relationship between two organizations where the first includes the second, e.g., as a subsidiary. See also: the more specific 'department' property
      */
-    private $subOrganization;
+    protected $subOrganization;
 
     /**
      * @var string The Tax / Fiscal ID of the organization or person, e.g. the TIN in the US or the CIF/NIF in Spain
      */
-    private $taxID;
+    protected $taxID;
 
     /**
      * @var string The telephone number
      */
-    private $telephone;
+    protected $telephone;
 
     /**
      * @var string The Value-added Tax ID of the organization or person
      */
-    private $vatID;
+    protected $vatID;
 
     /**
      * @var Place The place where the Organization was founded
      */
-    private $foundingLocation;
+    protected $foundingLocation;
 
     /**
      * Sets address.

@@ -39,7 +39,7 @@ class Date
     /**
      * @var int
      */
-    private $id;
+    protected $id;
 
     /**
      * Sets id.

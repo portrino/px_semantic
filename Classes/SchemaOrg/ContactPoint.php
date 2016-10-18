@@ -39,32 +39,32 @@ class ContactPoint extends StructuredValue
     /**
      * @var string The geographic area where a service or offered item is provided
      */
-    private $areaServed;
+    protected $areaServed;
 
     /**
      * @var Language A language someone may use with the item. Please use one of the language codes from the [IETF BCP 47 standard](http://tools.ietf.org/html/bcp47). See also [[inLanguage]]
      */
-    private $availableLanguage;
+    protected $availableLanguage;
 
     /**
      * @var string A person or organization can have different contact points, for different purposes. For example, a sales contact point, a PR contact point and so on. This property is used to specify the kind of contact point
      */
-    private $contactType;
+    protected $contactType;
 
     /**
      * @var string Email address
      */
-    private $email;
+    protected $email;
 
     /**
      * @var string The fax number
      */
-    private $faxNumber;
+    protected $faxNumber;
 
     /**
      * @var string The telephone number
      */
-    private $telephone;
+    protected $telephone;
 
     /**
      * Sets areaServed.

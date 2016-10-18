@@ -39,32 +39,32 @@ class Question extends CreativeWork
     /**
      * @var int
      */
-    private $id;
+    protected $id;
 
     /**
      * @var int The number of upvotes this question, answer or comment has received from the community
      */
-    private $upvoteCount;
+    protected $upvoteCount;
 
     /**
      * @var int The number of downvotes this question, answer or comment has received from the community
      */
-    private $downvoteCount;
+    protected $downvoteCount;
 
     /**
      * @var int The number of answers this question has received
      */
-    private $answerCount;
+    protected $answerCount;
 
     /**
      * @var Answer The answer that has been accepted as best, typically on a Question/Answer site. Sites vary in their selection mechanisms, e.g. drawing on community opinion and/or the view of the Question author
      */
-    private $acceptedAnswer;
+    protected $acceptedAnswer;
 
     /**
      * @var Answer An answer (possibly one of several, possibly incorrect) to a Question, e.g. on a Question/Answer site
      */
-    private $suggestedAnswer;
+    protected $suggestedAnswer;
 
     /**
      * Sets id.

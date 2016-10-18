@@ -39,7 +39,7 @@ class Country extends AdministrativeArea
     /**
      * @var int
      */
-    private $id;
+    protected $id;
 
     /**
      * Sets id.

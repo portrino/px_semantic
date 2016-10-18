@@ -41,59 +41,59 @@ class Thing implements EntityInterface
 {
 
     /**
-     * @var int
+     * @var int The entity`s IRI
      */
-    private $id;
+    protected $id;
 
     /**
-     * @var string
+     * @var string http://schema.org/
      */
     protected $context = 'http://schema.org/';
 
     /**
      * @var string An additional type for the item, typically used for adding more specific types from external vocabularies in microdata syntax. This is a relationship between something and a class that the thing is in. In RDFa syntax, it is better to use the native RDFa syntax - the 'typeof' attribute - for multiple types. Schema.org tools may have only weaker understanding of extra types, in particular those defined externally
      */
-    private $additionalType;
+    protected $additionalType;
 
     /**
      * @var string An alias for the item
      */
-    private $alternateName;
+    protected $alternateName;
 
     /**
      * @var string A description of the item
      */
-    private $description;
+    protected $description;
 
     /**
      * @var ImageObject An image of the item. This can be a [[URL]] or a fully described [[ImageObject]]
      */
-    private $image;
+    protected $image;
 
     /**
      * @var string Indicates a page (or other CreativeWork) for which this thing is the main entity being described. See [background notes](/docs/datamodel.html#mainEntityBackground) for details
      */
-    private $mainEntityOfPage;
+    protected $mainEntityOfPage;
 
     /**
      * @var string The name of the item
      */
-    private $name;
+    protected $name;
 
     /**
      * @var string URL of a reference Web page that unambiguously indicates the item's identity. E.g. the URL of the item's Wikipedia page, Freebase page, or official website
      */
-    private $sameAs;
+    protected $sameAs;
 
     /**
      * @var string URL of the item
      */
-    private $url;
+    protected $url;
 
     /**
      * @var Action Indicates a potential Action, which describes an idealized action in which this thing would play an 'object' role
      */
-    private $potentialAction;
+    protected $potentialAction;
 
     /**
      * Sets id.

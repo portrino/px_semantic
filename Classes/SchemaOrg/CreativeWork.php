@@ -39,57 +39,57 @@ class CreativeWork extends Thing
     /**
      * @var Thing The subject matter of the content
      */
-    private $about;
+    protected $about;
 
     /**
      * @var AggregateRating The overall rating, based on a collection of reviews or ratings, of the item
      */
-    private $aggregateRating;
+    protected $aggregateRating;
 
     /**
      * @var Person The author of this content or rating. Please note that author is special in that HTML 5 provides a special mechanism for indicating authorship via the rel tag. That is equivalent to this and may be used interchangeably
      */
-    private $author;
+    protected $author;
 
     /**
      * @var Comment Comments, typically from users
      */
-    private $comment;
+    protected $comment;
 
     /**
      * @var \DateTime The date on which the CreativeWork was created or the item was added to a DataFeed
      */
-    private $dateCreated;
+    protected $dateCreated;
 
     /**
      * @var \DateTime The date on which the CreativeWork was most recently modified or when the item's entry was modified within a DataFeed
      */
-    private $dateModified;
+    protected $dateModified;
 
     /**
      * @var \DateTime Date of first broadcast/publication
      */
-    private $datePublished;
+    protected $datePublished;
 
     /**
      * @var string Headline of the article
      */
-    private $headline;
+    protected $headline;
 
     /**
      * @var Organization The publisher of the creative work
      */
-    private $publisher;
+    protected $publisher;
 
     /**
      * @var string The textual content of this CreativeWork
      */
-    private $text;
+    protected $text;
 
     /**
      * @var int The number of comments this CreativeWork (e.g. Article, Question or Answer) has received. This is most applicable to works published in Web sites with commenting system; additional comments may exist elsewhere
      */
-    private $commentCount;
+    protected $commentCount;
 
     /**
      * Sets about.

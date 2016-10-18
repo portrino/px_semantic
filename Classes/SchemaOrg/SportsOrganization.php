@@ -39,7 +39,7 @@ class SportsOrganization extends Organization
     /**
      * @var string A type of sport (e.g. Baseball)
      */
-    private $sport;
+    protected $sport;
 
     /**
      * Sets sport.

@@ -39,17 +39,17 @@ class Comment extends CreativeWork
     /**
      * @var int The number of upvotes this question, answer or comment has received from the community
      */
-    private $upvoteCount;
+    protected $upvoteCount;
 
     /**
      * @var int The number of downvotes this question, answer or comment has received from the community
      */
-    private $downvoteCount;
+    protected $downvoteCount;
 
     /**
      * @var Question The parent of a question, answer or item in general
      */
-    private $parentItem;
+    protected $parentItem;
 
     /**
      * Sets upvoteCount.

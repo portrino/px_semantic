@@ -39,7 +39,7 @@ class URL extends Text
     /**
      * @var int
      */
-    private $id;
+    protected $id;
 
     /**
      * Sets id.
