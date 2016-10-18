@@ -76,7 +76,7 @@ class ApiController extends AbstractHydraController
             if ($this->request->getControllerActionName() === 'list' || $this->request->getControllerActionName() === 'show') {
                 $configuration = [
                     'collection' => [
-                        '_only' => ['id', 'context', 'type', 'totalItems', 'member', 'firstPage', 'previousPage', 'nextPage', 'lastPage'],
+                        '_only' => ['id', 'context', 'type', 'totalItems', 'member', 'itemsPerPage', 'firstPage', 'previousPage', 'nextPage', 'lastPage'],
                         '_descend' => [
                             'member' => [
                                 '_descendAll' => [
@@ -218,6 +218,7 @@ class ApiController extends AbstractHydraController
         $pagedCollection = $this->objectManager->get(PagedCollection::class);
         $pagedCollection->setId($this->hydraUtility->getIriForEndpoint($endpoint));
 
+        $pagedCollection->setItemsPerPage($limit);
         $pagedCollection->setFirstPage($this->hydraUtility->getFirstPageIriForEndpoint($endpoint, $limit));
         $pagedCollection->setPreviousPage($this->hydraUtility->getPreviousPageIriForEndpoint($endpoint, $offset, $limit));
         $pagedCollection->setNextPage($this->hydraUtility->getNextPageIriForEndpoint($endpoint, $offset, $limit));
