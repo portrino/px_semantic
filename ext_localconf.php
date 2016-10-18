@@ -16,11 +16,15 @@ $boot = function ($_EXTKEY) {
         'Portrino.' . $_EXTKEY,
         'StructuredDataApi',
         [
-            'Rest' => 'index'
+            'Rest' => 'index',
+            'Context' => 'index',
+            'Vocabulary' => 'index'
         ],
         // non-cacheable actions
         [
-//            'Rest' => 'index'
+            'Rest' => 'index',
+            'Context' => 'index',
+            'Vocabulary' => 'index'
         ]
     );
 };

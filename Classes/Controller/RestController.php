@@ -31,6 +31,7 @@ use Portrino\PxSemantic\Hydra\Collection;
 use Portrino\PxSemantic\Mvc\View\JsonLdView;
 use Portrino\PxSemantic\SchemaOrg\Thing;
 use TYPO3\CMS\Core\Http\ServerRequestFactory;
+use TYPO3\CMS\Core\Utility\ArrayUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\DomainObject\DomainObjectInterface;
@@ -101,7 +102,8 @@ class RestController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
                         ]
                     ],
                     'entity' => [],
-                    'entryPoint' => []
+                    'entryPoint' => [],
+                    'context' => []
                 ];
                 $view->setConfiguration($configuration);
             }
@@ -126,10 +128,20 @@ class RestController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
                 case 'HEAD':
                 case 'GET':
 
-                    if ($this->request->hasArgument('endpoint') === false) {
+                    if ($this->request->hasArgument('endpoint') === false && $this->request->hasArgument('context') === false) {
                         $actionName = 'entryPoint';
                     } else {
-                        $actionName = ($this->request->hasArgument($this->resourceArgumentName)) ? 'show' : 'list';
+                        switch ($this->request->getArgument('endpoint')) {
+                            case 'vocab':
+                                $actionName = 'vocab';
+                                break;
+                            case 'entrypoint.jsonld':
+                                $actionName = 'entrypointContext';
+                                break;
+                            default:
+                                $actionName = ($this->request->hasArgument($this->resourceArgumentName)) ? 'show' : 'list';
+                                break;
+                        }
                     }
                     break;
             }
@@ -175,7 +187,7 @@ class RestController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
             $this->resourceRepository = $this->objectManager->get($resourceRepositoryClass);
         }
 
-        header('Link: <http://dev.kueppersbusch.de/api/structured-data/vocab>; rel="http://www.w3.org/ns/hydra/core#apiDocumentation"');
+        header('Link: <http://dev.kueppersbusch.de/api/structured-data-vocabulary>; rel="http://www.w3.org/ns/hydra/core#apiDocumentation"');
 
     }
 
@@ -192,25 +204,52 @@ class RestController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         }
     }
 
+    /**
+     *
+     */
     public function entryPointAction()
     {
-
         $entryPoint = [
             '@context' => [
-                '@vocab' => 'http://dev.kueppersbusch.de/api/structured-data/vocab#',
+                '@vocab' => 'http://dev.kueppersbusch.de/api/structured-data-contexts/Entrypoint/', // @todo: generate Entrypoint URL
                 'hydra' => 'http://www.w3.org/ns/hydra/core#',
+            ],
+            '@id' => '/api/structured-data/', // @todo: generate api URL
+            '@type' => 'EntryPoint'
+        ];
 
-                'recipe' => [
-                    '@id' => 'Entrypoint/recipe',
-                    '@type'=> '@id'
-                ]
+        $endpoints = $this->settings['rest']['endpoints'];
+
+        foreach ($endpoints as $endpoint => $endpointConfiguration) {
+            $entryPoint[$endpoint] = 'http://dev.kueppersbusch.de/api/structured-data/' . $endpoint; // @todo: generate endpoint URL
+        };
+
+        $this->view->setVariablesToRender(['entryPoint']);
+        $this->view->assign('entryPoint', $entryPoint);
+    }
+
+    /**
+     * @param string $context
+     */
+    public function contextAction($context = '')
+    {
+        $context = [
+            '@context' => [
+                '@vocab' => 'http://dev.kueppersbusch.de/api/structured-data/EntryPointContext',
+                'hydra' => 'http://www.w3.org/ns/hydra/core#',
             ],
             '@id' => '/api/structured-data/',
             '@type' => 'EntryPoint'
         ];
 
-        $this->view->setVariablesToRender(['entryPoint']);
-        $this->view->assign('entryPoint', $entryPoint);
+        $endpoints = $this->settings['rest']['endpoints'];
+
+        foreach ($endpoints as $endpoint => $endpointConfiguration) {
+            $entryPoint[$endpoint] = 'http://dev.kueppersbusch.de/api/structured-data/' . $endpoint;
+        };
+
+        $this->view->setVariablesToRender(['$context']);
+        $this->view->assign('context', $context);
     }
 
     /**

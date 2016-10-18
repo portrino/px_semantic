@@ -25,7 +25,7 @@ plugin.tx_pxsemantic {
             pid = {$plugin.tx_pxsemantic.settings.rest.pid}
             typeNum = {$plugin.tx_pxsemantic.settings.rest.typeNum}
             endpoints {
-                page {
+                pages {
                     entity = Portrino\PxSemantic\SchemaOrg\CreativeWork
                     resource = Portrino\PxSemantic\Domain\Model\Page
                     processors {
@@ -87,7 +87,71 @@ structuredDataApi {
         switchableControllerActions {
             Rest {
                 1 = index
-                2 = show
+            }
+        }
+        settings {
+            # will be set via GET param
+            entity >
+        }
+    }
+
+    config {
+        debug = 0
+        disableAllHeaderCode = 1
+        additionalHeaders = Content-type:application/ld+json
+        xhtml_cleaning = 0
+        admPanel = 0
+        no_cache = 1
+    }
+}
+
+
+###
+### Context API
+###
+structuredDataContextApi = PAGE
+structuredDataContextApi {
+    typeNum = 1476721757
+    10 < lib.structuredDataMarkup
+    10 {
+        pluginName = StructuredDataApi
+        vendorName = Portrino
+        controller = Context
+        switchableControllerActions {
+            Context {
+                1 = index
+            }
+        }
+        settings {
+            # will be set via GET param
+            entity >
+        }
+    }
+
+    config {
+        debug = 0
+        disableAllHeaderCode = 1
+        additionalHeaders = Content-type:application/ld+json
+        xhtml_cleaning = 0
+        admPanel = 0
+        no_cache = 1
+    }
+}
+
+###
+### Vocabulary API
+###
+structuredDataVocabularyApi = PAGE
+structuredDataVocabularyApi {
+    typeNum = 1476770090
+    10 < lib.structuredDataMarkup
+    10 {
+        pluginName = StructuredDataApi
+        vendorName = Portrino
+        controller = Vocabulary
+        switchableControllerActions {
+            Vocabulary {
+                1 = index
             }
         }
         settings {
