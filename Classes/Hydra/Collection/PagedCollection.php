@@ -1,7 +1,5 @@
 <?php
-namespace Portrino\PxSemantic\Hydra;
-
-use Portrino\PxSemantic\Entity\EntityInterface;
+namespace Portrino\PxSemantic\Hydra\Collection;
 
 /***************************************************************
  *  Copyright notice
@@ -27,113 +25,98 @@ use Portrino\PxSemantic\Entity\EntityInterface;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use Portrino\PxSemantic\Hydra\Collection;
+
 /**
- * Class Collection
+ * Class PagedCollection
  *
- * @package Portrino\PxSemantic\Hydra
+ * @package Portrino\PxSemantic\Hydra\Collection
  */
-class Collection implements EntityInterface
+class PagedCollection extends Collection
 {
 
     /**
      * @var string
      */
-    protected $context = 'http://www.w3.org/ns/hydra/context.jsonld';
+    protected $firstPage;
 
     /**
      * @var string
      */
-    protected $id;
+    protected $previousPage;
 
     /**
-     * @var int
+     * @var string
      */
-    protected $totalItems = 0;
+    protected $nextPage;
 
     /**
-     * @var array
+     * @var string
      */
-    protected $member = [];
+    protected $lastPage;
 
     /**
      * @return string
      */
-    public function getContext()
+    public function getFirstPage()
     {
-        return $this->context;
+        return $this->firstPage;
     }
 
     /**
-     * @param string $context
+     * @param string $firstPage
      */
-    public function setContext($context)
+    public function setFirstPage($firstPage)
     {
-        $this->context = $context;
-    }
-
-    /**
-     * @param string $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
+        $this->firstPage = $firstPage;
     }
 
     /**
      * @return string
      */
-    public function getId()
+    public function getNextPage()
     {
-        return $this->id;
+        return $this->nextPage;
+    }
+
+    /**
+     * @param string $nextPage
+     */
+    public function setNextPage($nextPage)
+    {
+        $this->nextPage = $nextPage;
     }
 
     /**
      * @return string
      */
-    public function getType()
+    public function getPreviousPage()
     {
-        $reflect = new \ReflectionClass($this);
-        return $reflect->getShortName();
+        return $this->previousPage;
     }
 
     /**
-     * @return int
+     * @param string $previousPage
      */
-    public function getTotalItems()
+    public function setPreviousPage($previousPage)
     {
-        return $this->totalItems;
+        $this->previousPage = $previousPage;
     }
 
     /**
-     * @param int $totalItems
+     * @return string
      */
-    public function setTotalItems($totalItems)
+    public function getLastPage()
     {
-        $this->totalItems = $totalItems;
+        return $this->lastPage;
     }
 
     /**
-     * @return array
+     * @param string $lastPage
      */
-    public function getMember()
+    public function setLastPage($lastPage)
     {
-        return $this->member;
-    }
-
-    /**
-     * @param array $member
-     */
-    public function setMember($member)
-    {
-        $this->member = $member;
-    }
-
-    /**
-     * @param $memberItem
-     */
-    public function addMember($memberItem)
-    {
-        $this->member[] = $memberItem;
+        $this->lastPage = $lastPage;
     }
 
 }

@@ -145,6 +145,150 @@ class HydraUtility implements \TYPO3\CMS\Core\SingletonInterface
         return $iri;
     }
 
+    /**
+     * @param string $endpoint
+     * @param int $limit
+     *
+     * @return string
+     */
+    public function getFirstPageIriForEndpoint($endpoint, $limit = 10) {
+
+        if ($limit === 10) {
+            $iri = $this->getIriForEndpoint($endpoint);
+        } else {
+            $iri = $this->uriBuilder
+                ->reset()
+                ->setTargetPageUid($this->settings['rest']['pid'])
+                ->setTargetPageType($this->settings['rest']['typeNum'])
+                ->setArguments(
+                    [
+                        'offset' => 0,
+                        'limit' => $limit
+                    ]
+                )
+                ->setUseCacheHash(false)
+                ->uriFor(
+                    'index',
+                    [
+                        'endpoint' => $endpoint
+                    ],
+                    'Api',
+                    'PxSemantic',
+                    'HydraApi'
+                );
+        }
+
+        return $iri;
+    }
+
+    /**
+     * @param string $endpoint
+     * @param int $currentOffset
+     * @param int $limit
+     *
+     * @return string
+     */
+    public function getPreviousPageIriForEndpoint($endpoint, $currentOffset = 0, $limit = 10) {
+
+        $offset = $currentOffset - $limit;
+
+        if ($offset <= 0) {
+            $offset = 0;
+        }
+
+        $iri = $this->uriBuilder
+            ->reset()
+            ->setTargetPageUid($this->settings['rest']['pid'])
+            ->setTargetPageType($this->settings['rest']['typeNum'])
+            ->setArguments(
+                [
+                    'offset' => $offset,
+                    'limit' => $limit
+                ]
+            )
+            ->setUseCacheHash(false)
+            ->uriFor(
+                'index',
+                [
+                    'endpoint' => $endpoint
+                ],
+                'Api',
+                'PxSemantic',
+                'HydraApi'
+            );
+
+        return $iri;
+    }
+
+    /**
+     * @param string $endpoint
+     * @param int $currentOffset
+     * @param int $limit
+     *
+     * @return string
+     */
+    public function getNextPageIriForEndpoint($endpoint, $currentOffset = 0, $limit = 10) {
+
+        $offset = $currentOffset + $limit;
+
+        $iri = $this->uriBuilder
+            ->reset()
+            ->setTargetPageUid($this->settings['rest']['pid'])
+            ->setTargetPageType($this->settings['rest']['typeNum'])
+            ->setArguments(
+                [
+                    'offset' => $offset,
+                    'limit' => $limit
+                ]
+            )
+            ->setUseCacheHash(false)
+            ->uriFor(
+                'index',
+                [
+                    'endpoint' => $endpoint
+                ],
+                'Api',
+                'PxSemantic',
+                'HydraApi'
+            );
+
+        return $iri;
+    }
+
+    /**
+     * @param string $endpoint
+     * @param int $total
+     * @param int $limit
+     *
+     * @return string
+     */
+    public function getLastPageIriForEndpoint($endpoint, $total, $limit = 10) {
+
+        $offset = $total - ($total % $limit);
+
+        $iri = $this->uriBuilder
+            ->reset()
+            ->setTargetPageUid($this->settings['rest']['pid'])
+            ->setTargetPageType($this->settings['rest']['typeNum'])
+            ->setArguments(
+                [
+                    'offset' => $offset,
+                    'limit' => $limit
+                ]
+            )
+            ->setUseCacheHash(false)
+            ->uriFor(
+                'index',
+                [
+                    'endpoint' => $endpoint
+                ],
+                'Api',
+                'PxSemantic',
+                'HydraApi'
+            );
+
+        return $iri;
+    }
 
     /**
      * @param string $endpoint

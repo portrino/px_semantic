@@ -39,19 +39,9 @@ interface EntityInterface
     public function getContext();
 
     /**
-     * @param string $context
-     */
-    public function setContext($context);
-
-    /**
      * @param string $id
      */
     public function setId($id);
-
-    /**
-     * @param string $type
-     */
-    public function setType($type);
 
     /**
      * @return string

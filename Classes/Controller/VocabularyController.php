@@ -69,7 +69,7 @@ class VocabularyController extends AbstractHydraController
                 'property' => [
                     '@id' => 'vocab:EntryPoint/' . $endpoint,
                     '@type' => 'hydra:Link',
-                    'label' => 'events',
+                    'label' => $endpoint,
                     'description' => 'The ' . $endpoint . ' collection',
                     'domain' => 'vocab:EntryPoint',
                     'range' => 'vocab:Collection',
@@ -78,10 +78,10 @@ class VocabularyController extends AbstractHydraController
                             '@id' => '_:' . $endpoint . '_collection_retrieve',
                             '@type' => 'hydra:Operation',
                             'method' => 'GET',
-                            'label' => 'Retrieves all entities of the entity',
-                            'description' => null,
+                            'hydra:title' => 'Retrieves the collection of ' . $endpoint,
+                            'label' => 'Retrieves the collection of ' . $endpoint,
                             'expects' => null,
-                            'returns' => 'vocab:Collection',
+                            'returns' => 'vocab:PagedCollection',
                             'statusCodes' => [],
                         ],
                     ],
@@ -245,23 +245,7 @@ class VocabularyController extends AbstractHydraController
                         ]
                     ],
                     'supportedProperty' => $entryPoints
-                ],
-                [
-                    '@id' => 'http://www.w3.org/ns/hydra/core#Collection',
-                    '@type' => 'hydra:Class',
-                    'label' => 'Collection',
-                    'hydra:title' => 'Collection',
-                    'hydra:description' => 'Collection of entities',
-                    'supportedOperation' => [],
-                    'supportedProperty' => [
-                        0 => [
-                            'property' => 'http://www.w3.org/ns/hydra/core#member',
-                            'hydra:title' => 'members',
-                            'hydra:description' => 'The members of this collection.',
-                            'readable' => true
-                        ]
-                    ]
-                ],
+                ]
             ],
         ];
 

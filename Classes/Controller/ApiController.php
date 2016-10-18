@@ -27,7 +27,7 @@ namespace Portrino\PxSemantic\Controller;
 
 use Portrino\PxSemantic\Domain\Repository\RestRepositoryInterface;
 use Portrino\PxSemantic\Entity\EntityInterface;
-use Portrino\PxSemantic\Hydra\Collection;
+use Portrino\PxSemantic\Hydra\Collection\PagedCollection;
 use TYPO3\CMS\Core\Http\ServerRequestFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
@@ -76,7 +76,7 @@ class ApiController extends AbstractHydraController
             if ($this->request->getControllerActionName() === 'list' || $this->request->getControllerActionName() === 'show') {
                 $configuration = [
                     'collection' => [
-                        '_only' => ['id', 'context', 'type', 'totalItems', 'member'],
+                        '_only' => ['id', 'context', 'type', 'totalItems', 'member', 'firstPage', 'previousPage', 'nextPage', 'lastPage'],
                         '_descend' => [
                             'member' => [
                                 '_descendAll' => [
@@ -214,12 +214,14 @@ class ApiController extends AbstractHydraController
 
         $totalItems = $this->resourceRepository->countAll();
 
-        /** @var Collection $collection */
-        $collection = $this->objectManager->get(Collection::class);
+        /** @var PagedCollection $pagedCollection */
+        $pagedCollection = $this->objectManager->get(PagedCollection::class);
+        $pagedCollection->setId($this->hydraUtility->getIriForEndpoint($endpoint));
 
-        $iri = $this->hydraUtility->getIriForEndpoint($endpoint);
-
-        $collection->setId($iri);
+        $pagedCollection->setFirstPage($this->hydraUtility->getFirstPageIriForEndpoint($endpoint, $limit));
+        $pagedCollection->setPreviousPage($this->hydraUtility->getPreviousPageIriForEndpoint($endpoint, $offset, $limit));
+        $pagedCollection->setNextPage($this->hydraUtility->getNextPageIriForEndpoint($endpoint, $offset, $limit));
+        $pagedCollection->setLastPage($this->hydraUtility->getLastPageIriForEndpoint($endpoint, $totalItems, $limit));
 
         /** @var AbstractEntity $domainObject */
         foreach ($domainObjects as $domainObject) {
@@ -233,17 +235,15 @@ class ApiController extends AbstractHydraController
                 $processor->process($entity, $settings, $domainObject->getUid());
             }
 
-            $iri = $this->hydraUtility->getIriForEndpointAndUid($endpoint, $domainObject->getUid());
+            $entity->setId($this->hydraUtility->getIriForEndpointAndUid($endpoint, $domainObject->getUid()));
 
-            $entity->setId($iri);
-
-            $collection->addMember($entity);
+            $pagedCollection->addMember($entity);
         }
 
-        $collection->setTotalItems($totalItems);
+        $pagedCollection->setTotalItems($totalItems);
 
         $this->view->setVariablesToRender(['collection']);
-        $this->view->assign('collection', $collection);
+        $this->view->assign('collection', $pagedCollection);
     }
 
     /**
