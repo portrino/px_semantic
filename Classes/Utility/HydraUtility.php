@@ -96,8 +96,7 @@ class HydraUtility implements \TYPO3\CMS\Core\SingletonInterface
                 'PxSemantic',
                 'HydraVocabulary'
             );
-
-        return $iri;
+        return rtrim($iri, '/') . '#';
     }
 
     /**

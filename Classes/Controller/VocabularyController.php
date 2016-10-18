@@ -122,6 +122,7 @@ class VocabularyController extends AbstractHydraController
                         'domain' => $entity->getContext() . $entity->getType(),
                         'range' => 'xmls:string'
                     ],
+                    'label' => $reflectionProperty->getName(),
                     'hydra:title' => $reflectionProperty->getName(),
                     'hydra:description' => $description,
                     'required' => false,
@@ -226,8 +227,9 @@ class VocabularyController extends AbstractHydraController
                 [
                     '@id' => 'http://www.w3.org/ns/hydra/core#Collection',
                     '@type' => 'hydra:Class',
+                    'label' => 'Collection',
                     'hydra:title' => 'Collection',
-                    'hydra:description' => null,
+                    'hydra:description' => 'Collection of entities',
                     'supportedOperation' => [],
                     'supportedProperty' => [
                         0 => [
