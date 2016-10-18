@@ -205,24 +205,25 @@ class ApiController extends AbstractHydraController
     {
         $offset = (GeneralUtility::_GET('offset') != null) ? (int)GeneralUtility::_GET('offset') : 0;
         $limit = (GeneralUtility::_GET('limit') != null) ? (int)GeneralUtility::_GET('limit') : 10;
+        $constraint = (GeneralUtility::_GET('constraint') != null) ? (string)GeneralUtility::_GET('constraint') : '';
 
         if ($this->resourceRepository instanceof RestRepositoryInterface) {
-            $domainObjects = $this->resourceRepository->findByOffsetAndLimit($offset, $limit)->toArray();
+            $domainObjects = $this->resourceRepository->findByOffsetAndLimitAndConstraint($offset, $limit, $constraint)->toArray();
+            $totalItems = $this->resourceRepository->countByConstraint($constraint);
         } else {
             $domainObjects = $this->resourceRepository->findAll();
+            $totalItems = $this->resourceRepository->countAll();
         }
-
-        $totalItems = $this->resourceRepository->countAll();
 
         /** @var PagedCollection $pagedCollection */
         $pagedCollection = $this->objectManager->get(PagedCollection::class);
         $pagedCollection->setId($this->hydraUtility->getIriForEndpoint($endpoint));
 
         $pagedCollection->setItemsPerPage($limit);
-        $pagedCollection->setFirstPage($this->hydraUtility->getFirstPageIriForEndpoint($endpoint, $limit));
-        $pagedCollection->setPreviousPage($this->hydraUtility->getPreviousPageIriForEndpoint($endpoint, $offset, $limit));
-        $pagedCollection->setNextPage($this->hydraUtility->getNextPageIriForEndpoint($endpoint, $offset, $limit));
-        $pagedCollection->setLastPage($this->hydraUtility->getLastPageIriForEndpoint($endpoint, $totalItems, $limit));
+        $pagedCollection->setFirstPage($this->hydraUtility->getFirstPageIriForEndpoint($endpoint, $limit, $constraint));
+        $pagedCollection->setPreviousPage($this->hydraUtility->getPreviousPageIriForEndpoint($endpoint, $offset, $limit, $constraint));
+        $pagedCollection->setNextPage($this->hydraUtility->getNextPageIriForEndpoint($endpoint, $offset, $limit, $constraint));
+        $pagedCollection->setLastPage($this->hydraUtility->getLastPageIriForEndpoint($endpoint, $totalItems, $limit, $constraint));
 
         /** @var AbstractEntity $domainObject */
         foreach ($domainObjects as $domainObject) {

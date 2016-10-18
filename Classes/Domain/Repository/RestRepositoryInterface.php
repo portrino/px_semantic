@@ -36,13 +36,24 @@ interface RestRepositoryInterface
 {
 
     /**
-     * Returns all objects of this repository limited by offset and limit constraint
+     * Returns all objects of this repository limited by offset and limit and constraint
      *
      * @param int $offset
      * @param int $limit
+     * @param string $constraint
      *
      * @return QueryResultInterface|array
      */
-    public function findByOffsetAndLimit($offset = 0, $limit = -1);
+    public function findByOffsetAndLimitAndConstraint($offset = 0, $limit = -1, $constraint = '');
+
+
+    /**
+     * Count by constraint
+     *
+     * @param string $constraint
+     *
+     * @return int
+     */
+    public function countByConstraint($constraint = '');
 
 }

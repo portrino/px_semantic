@@ -148,10 +148,11 @@ class HydraUtility implements \TYPO3\CMS\Core\SingletonInterface
     /**
      * @param string $endpoint
      * @param int $limit
+     * @param string $constraint
      *
      * @return string
      */
-    public function getFirstPageIriForEndpoint($endpoint, $limit = 10) {
+    public function getFirstPageIriForEndpoint($endpoint, $limit = 10, $constraint = '') {
 
         if ($limit === 10) {
             $iri = $this->getIriForEndpoint($endpoint);
@@ -163,7 +164,9 @@ class HydraUtility implements \TYPO3\CMS\Core\SingletonInterface
                 ->setArguments(
                     [
                         'offset' => 0,
-                        'limit' => $limit
+                        'limit' => $limit,
+                        'constraint' => $constraint
+
                     ]
                 )
                 ->setUseCacheHash(false)
@@ -185,10 +188,11 @@ class HydraUtility implements \TYPO3\CMS\Core\SingletonInterface
      * @param string $endpoint
      * @param int $currentOffset
      * @param int $limit
+     * @param string $constraint
      *
      * @return string
      */
-    public function getPreviousPageIriForEndpoint($endpoint, $currentOffset = 0, $limit = 10) {
+    public function getPreviousPageIriForEndpoint($endpoint, $currentOffset = 0, $limit = 10, $constraint = '') {
 
         $offset = $currentOffset - $limit;
 
@@ -203,7 +207,8 @@ class HydraUtility implements \TYPO3\CMS\Core\SingletonInterface
             ->setArguments(
                 [
                     'offset' => $offset,
-                    'limit' => $limit
+                    'limit' => $limit,
+                    'constraint' => $constraint
                 ]
             )
             ->setUseCacheHash(false)
@@ -224,10 +229,11 @@ class HydraUtility implements \TYPO3\CMS\Core\SingletonInterface
      * @param string $endpoint
      * @param int $currentOffset
      * @param int $limit
+     * @param string $constraint
      *
      * @return string
      */
-    public function getNextPageIriForEndpoint($endpoint, $currentOffset = 0, $limit = 10) {
+    public function getNextPageIriForEndpoint($endpoint, $currentOffset = 0, $limit = 10, $constraint = '') {
 
         $offset = $currentOffset + $limit;
 
@@ -238,7 +244,8 @@ class HydraUtility implements \TYPO3\CMS\Core\SingletonInterface
             ->setArguments(
                 [
                     'offset' => $offset,
-                    'limit' => $limit
+                    'limit' => $limit,
+                    'constraint' => $constraint
                 ]
             )
             ->setUseCacheHash(false)
@@ -259,10 +266,11 @@ class HydraUtility implements \TYPO3\CMS\Core\SingletonInterface
      * @param string $endpoint
      * @param int $total
      * @param int $limit
+     * @param string $constraint
      *
      * @return string
      */
-    public function getLastPageIriForEndpoint($endpoint, $total, $limit = 10) {
+    public function getLastPageIriForEndpoint($endpoint, $total, $limit = 10, $constraint = '') {
 
         $offset = $total - ($total % $limit);
 
@@ -273,7 +281,8 @@ class HydraUtility implements \TYPO3\CMS\Core\SingletonInterface
             ->setArguments(
                 [
                     'offset' => $offset,
-                    'limit' => $limit
+                    'limit' => $limit,
+                    'constraint' => $constraint
                 ]
             )
             ->setUseCacheHash(false)
