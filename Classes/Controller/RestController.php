@@ -210,10 +210,7 @@ class RestController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     public function entryPointAction()
     {
         $entryPoint = [
-            '@context' => [
-                '@vocab' => 'http://dev.kueppersbusch.de/api/structured-data-contexts/Entrypoint/', // @todo: generate Entrypoint URL
-                'hydra' => 'http://www.w3.org/ns/hydra/core#',
-            ],
+            '@context' => 'http://dev.kueppersbusch.de/api/structured-data-contexts/Entrypoint/',
             '@id' => '/api/structured-data/', // @todo: generate api URL
             '@type' => 'EntryPoint'
         ];
