@@ -179,6 +179,8 @@ class VocabularyController extends AbstractHydraController
                 'code' => 'hydra:statusCode',
                 'rdf' => 'http://www.w3.org/1999/02/22-rdf-syntax-ns#',
                 'rdfs' => 'http://www.w3.org/2000/01/rdf-schema#',
+                'xmls' => 'http://www.w3.org/2001/XMLSchema#',
+                'owl' => 'http://www.w3.org/2002/07/owl#',
                 'label' => 'rdfs:label',
                 'description' => 'rdfs:comment',
                 'domain' => [
@@ -192,6 +194,10 @@ class VocabularyController extends AbstractHydraController
                 'subClassOf' => [
                     '@id' => 'rdfs:subClassOf',
                     '@type' => '@id',
+                ],
+                'returns' => [
+                    '@id' => 'hydra:returns',
+                    '@type' => '@id'
                 ]
             ],
             '@id' => $this->hydraUtility->getVocabularyIri(),
