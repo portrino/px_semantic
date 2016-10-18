@@ -241,7 +241,9 @@ class VocabularyController extends AbstractHydraController
             ],
         ];
 
-        ArrayUtility::mergeRecursiveWithOverrule($vocabulary['supportedClass'], $supportedClasses);
+        foreach ($supportedClasses as $supportedClass) {
+            array_push($vocabulary['supportedClass'], $supportedClass);
+        }
 
         $this->view->setVariablesToRender(['vocabulary']);
         $this->view->assign('vocabulary', $vocabulary);
