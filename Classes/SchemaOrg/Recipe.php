@@ -67,7 +67,7 @@ class Recipe extends CreativeWork
     protected $recipeIngredient;
 
     /**
-     * @var string A step or instruction involved in making the recipe
+     * @var ItemList A step or instruction involved in making the recipe
      */
     protected $recipeInstructions;
 
@@ -223,7 +223,7 @@ class Recipe extends CreativeWork
     /**
      * Sets recipeInstructions.
      *
-     * @param string $recipeInstructions
+     * @param ItemList $recipeInstructions
      *
      * @return $this
      */
@@ -237,7 +237,7 @@ class Recipe extends CreativeWork
     /**
      * Gets recipeInstructions.
      *
-     * @return string
+     * @return ItemList
      */
     public function getRecipeInstructions()
     {
