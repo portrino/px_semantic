@@ -245,6 +245,34 @@ class VocabularyController extends AbstractHydraController
                         ]
                     ],
                     'supportedProperty' => $entryPoints
+                ],
+                [
+                    '@id' => 'http://www.w3.org/ns/hydra/core#PagedCollection',
+                    '@type' => 'hydra:Class',
+                    'label' => 'PagedCollection',
+                    'hydra:title' => 'PagedCollection',
+                    'hydra:description' => 'PagedCollection of entities',
+                    'supportedOperation' => [],
+                    'supportedProperty' => [
+                        0 => [
+                            'property' => 'http://www.w3.org/ns/hydra/core#member',
+                            'hydra:title' => 'members',
+                            'hydra:description' => 'The members of this collection.',
+                            'readable' => true
+                        ],
+                        1 => [
+                            'property' => 'http://www.w3.org/ns/hydra/core#totalItems',
+                            'hydra:title' => 'total items',
+                            'hydra:description' => 'The total number of items referenced by a collection or a set of interlinked PagedCollections.',
+                            'readable' => true
+                        ],
+                        2 => [
+                            'property' => 'http://www.w3.org/ns/hydra/core#firstPage',
+                            'hydra:title' => 'first page',
+                            'hydra:description' => 'The first page of an interlinked set of PagedCollections.',
+                            'readable' => true
+                        ]
+                    ]
                 ]
             ],
         ];
