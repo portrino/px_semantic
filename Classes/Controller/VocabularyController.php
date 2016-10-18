@@ -117,6 +117,7 @@ class VocabularyController extends AbstractHydraController
                 if (preg_match('/@var\s+([^\s]+)/', $reflectionProperty->getDocComment(), $matches)) {
                     list(, $type) = $matches;
 
+                    $description = trim(preg_replace('/' . preg_quote($type, '/') . '/', '', $description, 1));
                     $type = str_replace('\\', '', $type);
 
                     switch ($type) {

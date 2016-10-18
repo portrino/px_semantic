@@ -172,9 +172,4 @@ class HydraUtility implements \TYPO3\CMS\Core\SingletonInterface
 
         return $iri;
     }
-
-
-    public function getDataType() {
-
-    }
 }
