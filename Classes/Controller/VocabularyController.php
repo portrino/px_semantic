@@ -27,7 +27,6 @@ namespace Portrino\PxSemantic\Controller;
 
 use Portrino\PxSemantic\Entity\EntityInterface;
 use TYPO3\CMS\Core\Http\ServerRequestFactory;
-use TYPO3\CMS\Core\Utility\ArrayUtility;
 use TYPO3\CMS\Extbase\Mvc\View\JsonView;
 
 /**
@@ -111,16 +110,38 @@ class VocabularyController extends AbstractHydraController
             $properties = $reflectionClass->getProperties();
             /** @var \ReflectionProperty $reflectionProperty */
             foreach ($properties as $reflectionProperty) {
-                $tagValues = $this->reflectionService->getPropertyTagValues($reflectionProperty->getDeclaringClass()->getName(), $reflectionProperty->getName(), 'var');
+                $tagValues = $this->reflectionService->getPropertyTagValues($reflectionProperty->getDeclaringClass()->getName(),
+                    $reflectionProperty->getName(), 'var');
                 $description = (isset($tagValues[0])) ? $tagValues[0] : '';
+
+                if (preg_match('/@var\s+([^\s]+)/', $reflectionProperty->getDocComment(), $matches)) {
+                    list(, $type) = $matches;
+
+                    $type = str_replace('\\', '', $type);
+
+                    switch ($type) {
+                        case 'string':
+                            $propertyType = 'Text';
+                            break;
+                        case 'int':
+                            $propertyType = 'Number';
+                            break;
+                        case 'boolean':
+                            $propertyType = 'Boolean';
+                            break;
+                        default:
+                            $propertyType = $type;
+                    }
+                }
+
                 $supportedProperties[] = [
                     '@type' => 'hydra:SupportedProperty',
-                    'hydra:property' => [
+                    'property' => [
                         '@id' => $entity->getContext() . $reflectionProperty->getName(),
                         '@type' => 'rdf:Property',
-                        'rdfs:label' => $reflectionProperty->getName(),
+                        'label' => $reflectionProperty->getName(),
                         'domain' => $entity->getContext() . $entity->getType(),
-                        'range' => 'xmls:string'
+                        'range' => $entity->getContext() . $propertyType
                     ],
                     'label' => $reflectionProperty->getName(),
                     'hydra:title' => $reflectionProperty->getName(),
