@@ -157,18 +157,21 @@ class HydraUtility implements \TYPO3\CMS\Core\SingletonInterface
         if ($limit === 10) {
             $iri = $this->getIriForEndpoint($endpoint);
         } else {
+
+            $arguments = [
+                'offset' => 0,
+                'limit' => $limit,
+            ];
+
+            if ($constraint != '') {
+                $arguments['constraint'] = $constraint;
+            }
+
             $iri = $this->uriBuilder
                 ->reset()
                 ->setTargetPageUid($this->settings['rest']['pid'])
                 ->setTargetPageType($this->settings['rest']['typeNum'])
-                ->setArguments(
-                    [
-                        'offset' => 0,
-                        'limit' => $limit,
-                        'constraint' => $constraint
-
-                    ]
-                )
+                ->setArguments($arguments)
                 ->setUseCacheHash(false)
                 ->uriFor(
                     'index',
@@ -200,17 +203,20 @@ class HydraUtility implements \TYPO3\CMS\Core\SingletonInterface
             $offset = 0;
         }
 
+        $arguments = [
+            'offset' => 0,
+            'limit' => $limit,
+        ];
+
+        if ($constraint != '') {
+            $arguments['constraint'] = $constraint;
+        }
+
         $iri = $this->uriBuilder
             ->reset()
             ->setTargetPageUid($this->settings['rest']['pid'])
             ->setTargetPageType($this->settings['rest']['typeNum'])
-            ->setArguments(
-                [
-                    'offset' => $offset,
-                    'limit' => $limit,
-                    'constraint' => $constraint
-                ]
-            )
+            ->setArguments($arguments)
             ->setUseCacheHash(false)
             ->uriFor(
                 'index',
@@ -237,17 +243,20 @@ class HydraUtility implements \TYPO3\CMS\Core\SingletonInterface
 
         $offset = $currentOffset + $limit;
 
+        $arguments = [
+            'offset' => 0,
+            'limit' => $limit,
+        ];
+
+        if ($constraint != '') {
+            $arguments['constraint'] = $constraint;
+        }
+
         $iri = $this->uriBuilder
             ->reset()
             ->setTargetPageUid($this->settings['rest']['pid'])
             ->setTargetPageType($this->settings['rest']['typeNum'])
-            ->setArguments(
-                [
-                    'offset' => $offset,
-                    'limit' => $limit,
-                    'constraint' => $constraint
-                ]
-            )
+            ->setArguments($arguments)
             ->setUseCacheHash(false)
             ->uriFor(
                 'index',
@@ -274,17 +283,20 @@ class HydraUtility implements \TYPO3\CMS\Core\SingletonInterface
 
         $offset = $total - ($total % $limit);
 
+        $arguments = [
+            'offset' => 0,
+            'limit' => $limit,
+        ];
+
+        if ($constraint != '') {
+            $arguments['constraint'] = $constraint;
+        }
+
         $iri = $this->uriBuilder
             ->reset()
             ->setTargetPageUid($this->settings['rest']['pid'])
             ->setTargetPageType($this->settings['rest']['typeNum'])
-            ->setArguments(
-                [
-                    'offset' => $offset,
-                    'limit' => $limit,
-                    'constraint' => $constraint
-                ]
-            )
+            ->setArguments($arguments)
             ->setUseCacheHash(false)
             ->uriFor(
                 'index',
