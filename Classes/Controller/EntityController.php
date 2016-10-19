@@ -24,6 +24,7 @@ namespace Portrino\PxSemantic\Controller;
      *
      *  This copyright notice MUST APPEAR in all copies of the script!
      ***************************************************************/
+use Portrino\PxSemantic\Mvc\View\JsonLdView\JsonLdMarkupView;
 use TYPO3\CMS\Extbase\Mvc\View\JsonView;
 
 /**
@@ -33,6 +34,31 @@ use TYPO3\CMS\Extbase\Mvc\View\JsonView;
  */
 class EntityController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
+
+    /**
+     * @var JsonLdMarkupView
+     */
+    protected $view;
+
+    /**
+     * @var string
+     */
+    protected $defaultViewObjectName = JsonLdMarkupView::class;
+
+    /**
+     * @param \TYPO3\CMS\Extbase\Mvc\View\ViewInterface $view
+     */
+    protected function initializeView(\TYPO3\CMS\Extbase\Mvc\View\ViewInterface $view)
+    {
+        if ($view instanceof JsonView) {
+            $configuration = [
+                'entity' => []
+            ];
+            $view->setConfiguration($configuration);
+            $view->setVariablesToRender(['entity']);
+        }
+        parent::initializeView($view);
+    }
 
     /**
      * action render
@@ -53,6 +79,7 @@ class EntityController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
                 $settings = isset($processorConfiguration['settings']) ? $processorConfiguration['settings'] : [];
                 $processor->process($entity, $settings);
             }
+
             $this->view->assign('entity', $entity);
         }
 
