@@ -1,0 +1,3 @@
+# cat=basic/enable/010; type=boolean; label= Enable Caching for Hydra Rest API Requests
+enableHydraRestApiCaching = 1
+

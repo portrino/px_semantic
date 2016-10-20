@@ -56,27 +56,30 @@ class CachingAspect
      */
     public function getCacheEntryForActionMethodResponse($pObj, $actionMethodName, $preparedArguments)
     {
-        $action = str_replace('Action', '', $actionMethodName);
-        $controller = $this->objectManager->get($pObj);
-        if ($controller instanceof ApiController && ($action === 'list' || $action === 'show')) {
-            // we should not use this class anymore, because we just create it to check if RestController was used
-            unset($controller);
+        if (isset($_SERVER['HTTP_CACHE_CONTROL']) && $_SERVER['HTTP_CACHE_CONTROL'] != 'no-cache') {
+            $action = str_replace('Action', '', $actionMethodName);
+            $controller = $this->objectManager->get($pObj);
 
-            $requestUrl = GeneralUtility::getIndpEnv('TYPO3_REQUEST_URL');
-            $cacheIdentifier = sha1(GeneralUtility::getIndpEnv('TYPO3_REQUEST_URL'));
+            if ($controller instanceof ApiController && ($action === 'list' || $action === 'show')) {
+                // we should not use this class anymore, because we just create it to check if RestController was used
+                unset($controller);
 
-            if ($cacheIdentifier) {
-                /** @var FrontendInterface $cache */
-                $cache = GeneralUtility::makeInstance(CacheManager::class)->getCache('cache_pages');
+                $requestUrl = GeneralUtility::getIndpEnv('TYPO3_REQUEST_URL');
+                $cacheIdentifier = sha1(GeneralUtility::getIndpEnv('TYPO3_REQUEST_URL'));
 
-                $content = $cache->get($cacheIdentifier);
+                if ($cacheIdentifier) {
+                    /** @var FrontendInterface $cache */
+                    $cache = GeneralUtility::makeInstance(CacheManager::class)->getCache('cache_pages');
 
-                if ($content != false) {
-                    /** @var $response \TYPO3\CMS\Extbase\Mvc\ResponseInterface */
-                    $response = $this->objectManager->get(\TYPO3\CMS\Extbase\Mvc\Web\Response::class);
-                    $response->setContent($content);
-                    $response->send();
-                    exit;
+                    $content = $cache->get($cacheIdentifier);
+
+                    if ($content != false) {
+                        /** @var $response \TYPO3\CMS\Extbase\Mvc\ResponseInterface */
+                        $response = $this->objectManager->get(\TYPO3\CMS\Extbase\Mvc\Web\Response::class);
+                        $response->setContent($content);
+                        $response->send();
+                        exit;
+                    }
                 }
             }
         }

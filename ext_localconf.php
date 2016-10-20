@@ -6,6 +6,7 @@ $boot = function ($_EXTKEY) {
     /** @var \TYPO3\CMS\Extbase\SignalSlot\Dispatcher $signalSlotDispatcher */
     $signalSlotDispatcher = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\SignalSlot\Dispatcher::class);
 
+    $extConf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['px_semantic']);
 
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
         'Portrino.' . $_EXTKEY,
@@ -50,19 +51,22 @@ $boot = function ($_EXTKEY) {
     );
 
     if (TYPO3_MODE === 'FE') {
-        $signalSlotDispatcher->connect(
-            \TYPO3\CMS\Extbase\Mvc\Dispatcher::class,
-            'afterRequestDispatch',
-            \Portrino\PxSemantic\Aspect\CachingAspect::class,
-            'setCacheEntryForActionMethodResponse'
-        );
 
-        $signalSlotDispatcher->connect(
-            \TYPO3\CMS\Extbase\Mvc\Controller\ActionController::class,
-            'beforeCallActionMethod',
-            \Portrino\PxSemantic\Aspect\CachingAspect::class,
-            'getCacheEntryForActionMethodResponse'
-        );
+        if ((boolean)$extConf['enableHydraRestApiCaching'] === true) {
+            $signalSlotDispatcher->connect(
+                \TYPO3\CMS\Extbase\Mvc\Dispatcher::class,
+                'afterRequestDispatch',
+                \Portrino\PxSemantic\Aspect\CachingAspect::class,
+                'setCacheEntryForActionMethodResponse'
+            );
+
+            $signalSlotDispatcher->connect(
+                \TYPO3\CMS\Extbase\Mvc\Controller\ActionController::class,
+                'beforeCallActionMethod',
+                \Portrino\PxSemantic\Aspect\CachingAspect::class,
+                'getCacheEntryForActionMethodResponse'
+            );
+        }
     }
 };
 
