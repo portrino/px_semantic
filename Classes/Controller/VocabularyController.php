@@ -27,6 +27,7 @@ namespace Portrino\PxSemantic\Controller;
 
 use Portrino\PxSemantic\Entity\EntityInterface;
 use TYPO3\CMS\Core\Http\ServerRequestFactory;
+use TYPO3\CMS\Core\Utility\ArrayUtility;
 use TYPO3\CMS\Extbase\Mvc\View\JsonView;
 
 /**
@@ -36,6 +37,12 @@ use TYPO3\CMS\Extbase\Mvc\View\JsonView;
  */
 class VocabularyController extends AbstractHydraController
 {
+
+    /**
+     * @var \Portrino\PxSemantic\Reflection\EntityReflectionService
+     * @inject
+     */
+    protected $entityReflectionService;
 
     /**
      * @param \TYPO3\CMS\Extbase\Mvc\View\ViewInterface $view
@@ -92,7 +99,11 @@ class VocabularyController extends AbstractHydraController
                 'readonly' => true,
                 'writeonly' => false,
             ];
+        }
 
+        $entityClasses = [];
+
+        foreach ($endpoints as $endpoint => $endpointConfiguration) {
             /**
              * take the the className from className config of entity object, otherwise take the _typoScriptNodeValue for backwards compatibility
              */
@@ -101,6 +112,14 @@ class VocabularyController extends AbstractHydraController
                 throw new \TYPO3\CMS\Fluid\Exception('The entity class: "' . $entityClassName . '" does not exist.',
                     1475830556);
             }
+
+            $entityClasses[$entityClassName] = $entityClassName;
+            $propertyEntities = $this->entityReflectionService->getPropertyEntitiesRecursive($entityClassName,
+                $entityClasses);
+            ArrayUtility::mergeRecursiveWithOverrule($entityClasses, $propertyEntities);
+        }
+
+        foreach ($entityClasses as $entityClassName) {
 
             /** @var EntityInterface $entity */
             $entity = $this->objectManager->get($entityClassName);
@@ -172,8 +191,7 @@ class VocabularyController extends AbstractHydraController
                 ],
                 'supportedProperty' => $supportedProperties
             ];
-
-        };
+        }
 
         $vocabulary = [
             '@context' => [
@@ -263,7 +281,7 @@ class VocabularyController extends AbstractHydraController
                                 'domain' => 'hydra:PagedCollection',
                                 'range' => 'hydra:PagedCollection'
                             ],
-                            'label' =>'members',
+                            'label' => 'members',
                             'hydra:title' => 'members',
                             'hydra:description' => 'The members of this collection.',
                             'required' => false,
@@ -279,7 +297,7 @@ class VocabularyController extends AbstractHydraController
                                 'domain' => 'hydra:PagedCollection',
                                 'range' => 'xsd:integer'
                             ],
-                            'label' =>'total items',
+                            'label' => 'total items',
                             'hydra:title' => 'total items',
                             'hydra:description' => 'The total number of items referenced by a collection or a set of interlinked PagedCollections.',
                             'required' => false,
@@ -295,7 +313,7 @@ class VocabularyController extends AbstractHydraController
                                 'domain' => 'hydra:PagedCollection',
                                 'range' => 'xsd:integer'
                             ],
-                            'label' =>'items per page',
+                            'label' => 'items per page',
                             'hydra:title' => 'items per page',
                             'hydra:description' => 'The maximum number of items referenced by each single PagedCollection in a set of interlinked PagedCollections..',
                             'required' => false,
@@ -312,7 +330,7 @@ class VocabularyController extends AbstractHydraController
                                 'domain' => 'hydra:PagedCollection',
                                 'range' => 'hydra:PagedCollection'
                             ],
-                            'label' =>'first page',
+                            'label' => 'first page',
                             'hydra:title' => 'first page',
                             'hydra:description' => 'The first page of an interlinked set of PagedCollections.',
                             'required' => false,
@@ -328,7 +346,7 @@ class VocabularyController extends AbstractHydraController
                                 'domain' => 'hydra:PagedCollection',
                                 'range' => 'hydra:PagedCollection'
                             ],
-                            'label' =>'last page',
+                            'label' => 'last page',
                             'hydra:title' => 'last page',
                             'hydra:description' => 'The last page of an interlinked set of PagedCollections.',
                             'required' => false,
@@ -345,7 +363,7 @@ class VocabularyController extends AbstractHydraController
                                 'domain' => 'hydra:PagedCollection',
                                 'range' => 'hydra:PagedCollection'
                             ],
-                            'label' =>'next page',
+                            'label' => 'next page',
                             'hydra:title' => 'next page',
                             'hydra:description' => 'The page following the current instance in an interlinked set of PagedCollections.',
                             'required' => false,
@@ -362,7 +380,7 @@ class VocabularyController extends AbstractHydraController
                                 'domain' => 'hydra:PagedCollection',
                                 'range' => 'hydra:PagedCollection'
                             ],
-                            'label' =>'previous page',
+                            'label' => 'previous page',
                             'hydra:title' => 'previous page',
                             'hydra:description' => 'The page preceding the current instance in an interlinked set of PagedCollections.',
                             'required' => false,
