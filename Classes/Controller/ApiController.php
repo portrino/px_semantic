@@ -191,7 +191,7 @@ class ApiController extends AbstractHydraController
         $endpoints = $this->settings['rest']['endpoints'];
 
         foreach ($endpoints as $endpoint => $endpointConfiguration) {
-            $entryPoint[$endpoint] = $this->hydraIriBuilder->iriForEndpoint($endpoint);
+            $entryPoint[$endpoint] = $this->hydraIriBuilder->iriFor($endpoint);
         };
 
         $this->view->setVariablesToRender(['entryPoint']);
