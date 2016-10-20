@@ -177,7 +177,7 @@ class VocabularyController extends AbstractHydraController
 
         $vocabulary = [
             '@context' => [
-                'vocab' => $this->hydraUtility->getVocabularyIri(),
+                'vocab' => $this->hydraIriBuilder->iriForVocabulary(),
                 'hydra' => 'http://www.w3.org/ns/hydra/core#',
                 'ApiDocumentation' => 'hydra:ApiDocumentation',
                 'property' => [
@@ -223,7 +223,7 @@ class VocabularyController extends AbstractHydraController
                     '@type' => '@id'
                 ]
             ],
-            '@id' => $this->hydraUtility->getVocabularyIri(),
+            '@id' => $this->hydraIriBuilder->iriForVocabulary(),
             '@type' => 'ApiDocumentation',
             'supportedClass' => [
                 [

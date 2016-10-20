@@ -88,7 +88,7 @@ class ContextController extends AbstractHydraController
             $context = [
                 '@context' => [
                     'hydra' => 'http://www.w3.org/ns/hydra/core#',
-                    'vocab' => $this->hydraUtility->getVocabularyIri(),
+                    'vocab' => $this->hydraIriBuilder->iriForVocabulary(),
                     'EntryPoint' => 'vocab:EntryPoint',
                 ],
             ];

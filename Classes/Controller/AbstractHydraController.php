@@ -46,10 +46,10 @@ class AbstractHydraController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
     protected $defaultViewObjectName = JsonLdView::class;
 
     /**
-     * @var \Portrino\PxSemantic\Utility\HydraUtility
+     * @var \Portrino\PxSemantic\Mvc\Routing\HydraIriBuilder
      * @inject
      */
-    protected $hydraUtility = null;
+    protected $hydraIriBuilder;
 
     /**
      * @param \TYPO3\CMS\Extbase\Mvc\View\ViewInterface $view
@@ -59,7 +59,7 @@ class AbstractHydraController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
         parent::initializeView($view);
 
         $this->controllerContext->getResponse()->setHeader('Link',
-            '<' . $this->hydraUtility->getVocabularyIri() . '>; rel="http://www.w3.org/ns/hydra/core#apiDocumentation"');
+            '<' . $this->hydraIriBuilder->iriForVocabulary() . '>; rel="http://www.w3.org/ns/hydra/core#apiDocumentation"');
     }
 
 

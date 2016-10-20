@@ -183,15 +183,15 @@ class ApiController extends AbstractHydraController
     public function entryPointAction()
     {
         $entryPoint = [
-            '@context' => $this->hydraUtility->getIriForContext('Entrypoint'),
-            '@id' => $this->hydraUtility->getIriForEntrypoint(),
+            '@context' => $this->hydraIriBuilder->iriForContext('Entrypoint'),
+            '@id' => $this->hydraIriBuilder->iriForEntrypoint(),
             '@type' => 'EntryPoint'
         ];
 
         $endpoints = $this->settings['rest']['endpoints'];
 
         foreach ($endpoints as $endpoint => $endpointConfiguration) {
-            $entryPoint[$endpoint] = $this->hydraUtility->getIriForEndpoint($endpoint);
+            $entryPoint[$endpoint] = $this->hydraIriBuilder->iriForEndpoint($endpoint);
         };
 
         $this->view->setVariablesToRender(['entryPoint']);
@@ -217,13 +217,13 @@ class ApiController extends AbstractHydraController
 
         /** @var PagedCollection $pagedCollection */
         $pagedCollection = $this->objectManager->get(PagedCollection::class);
-        $pagedCollection->setId($this->hydraUtility->getIriForEndpoint($endpoint));
+        $pagedCollection->setId($this->hydraIriBuilder->iriFor($endpoint, $offset, $limit));
 
         $pagedCollection->setItemsPerPage($limit);
-        $pagedCollection->setFirstPage($this->hydraUtility->getFirstPageIriForEndpoint($endpoint, $limit, $constraint));
-        $pagedCollection->setPreviousPage($this->hydraUtility->getPreviousPageIriForEndpoint($endpoint, $offset, $limit, $constraint));
-        $pagedCollection->setNextPage($this->hydraUtility->getNextPageIriForEndpoint($endpoint, $offset, $limit, $constraint));
-        $pagedCollection->setLastPage($this->hydraUtility->getLastPageIriForEndpoint($endpoint, $totalItems, $limit, $constraint));
+        $pagedCollection->setFirstPage($this->hydraIriBuilder->iriForFirstPage($endpoint, $limit, $constraint));
+        $pagedCollection->setPreviousPage($this->hydraIriBuilder->iriForPreviousPage($endpoint, $offset, $limit, $constraint));
+        $pagedCollection->setNextPage($this->hydraIriBuilder->iriForNextPage($endpoint, $offset, $limit, $constraint));
+        $pagedCollection->setLastPage($this->hydraIriBuilder->iriForLastPage($endpoint, $totalItems, $limit, $constraint));
 
         /** @var AbstractEntity $domainObject */
         foreach ($domainObjects as $domainObject) {
@@ -237,7 +237,7 @@ class ApiController extends AbstractHydraController
                 $processor->process($entity, $settings, $domainObject->getUid());
             }
 
-            $entity->setId($this->hydraUtility->getIriForEndpointAndUid($endpoint, $domainObject->getUid()));
+            $entity->setId($this->hydraIriBuilder->iriForUid($endpoint, $domainObject->getUid()));
 
             $pagedCollection->addMember($entity);
         }
@@ -271,7 +271,7 @@ class ApiController extends AbstractHydraController
                 $processor->process($entity, $settings, $domainObject->getUid());
             }
 
-            $iri = $this->hydraUtility->getIriForEndpointAndUid($endpoint, $domainObject->getUid());
+            $iri = $this->hydraIriBuilder->iriForUid($endpoint, $domainObject->getUid());
 
             $entity->setId($iri);
         }

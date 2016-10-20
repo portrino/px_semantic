@@ -1,5 +1,5 @@
 <?php
-namespace Portrino\PxSemantic\Utility;
+namespace Portrino\PxSemantic\Mvc\Routing;
 
 /***************************************************************
  *  Copyright notice
@@ -24,11 +24,14 @@ namespace Portrino\PxSemantic\Utility;
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
+use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder;
 
 /**
- * Class HydraUtility
+ * Class HydraIriBuilder
+ *
+ * @package Portrino\PxSemantic\Mvc\Routing
  */
-class HydraUtility implements \TYPO3\CMS\Core\SingletonInterface
+class HydraIriBuilder extends UriBuilder
 {
 
     /**
@@ -44,12 +47,6 @@ class HydraUtility implements \TYPO3\CMS\Core\SingletonInterface
     protected $settings;
 
     /**
-     * @var \TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder
-     * @inject
-     */
-    protected $uriBuilder;
-
-    /**
      * @param \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $configurationManager
      * @return void
      */
@@ -61,9 +58,9 @@ class HydraUtility implements \TYPO3\CMS\Core\SingletonInterface
     /**
      * @return string
      */
-    public function getIriForEntrypoint() {
+    public function iriForEntrypoint() {
 
-        $iri = $this->uriBuilder
+        $iri = $this
             ->reset()
             ->setTargetPageUid($this->settings['rest']['pid'])
             ->setTargetPageType($this->settings['rest']['typeNum'])
@@ -82,9 +79,9 @@ class HydraUtility implements \TYPO3\CMS\Core\SingletonInterface
     /**
      * @return string
      */
-    public function getVocabularyIri() {
+    public function iriForVocabulary() {
 
-        $iri = $this->uriBuilder
+        $iri = $this
             ->reset()
             ->setTargetPageUid($this->settings['hydra']['pid'])
             ->setTargetPageType($this->settings['hydra']['vocabulary']['typeNum'])
@@ -102,9 +99,9 @@ class HydraUtility implements \TYPO3\CMS\Core\SingletonInterface
     /**
      * @return string
      */
-    public function getIriForContext($context) {
+    public function iriForContext($context) {
 
-        $iri = $this->uriBuilder
+        $iri = $this
             ->reset()
             ->setTargetPageUid($this->settings['hydra']['pid'])
             ->setTargetPageType($this->settings['hydra']['context']['typeNum'])
@@ -119,19 +116,25 @@ class HydraUtility implements \TYPO3\CMS\Core\SingletonInterface
                 'HydraContext'
             );
 
-        return $iri;
+        return preg_replace('/([^:])(\/{2,})/', '$1/', $iri);
     }
 
     /**
      * @return string
      */
-    public function getIriForEndpoint($endpoint) {
+    public function iriFor($endpoint, $offset = 0, $limit = 10) {
 
-        $iri = $this->uriBuilder
+        $arguments = [
+            'limit' => $limit,
+            'offset' => $offset
+        ];
+
+        $iri = $this
             ->reset()
             ->setTargetPageUid($this->settings['rest']['pid'])
             ->setTargetPageType($this->settings['rest']['typeNum'])
             ->setUseCacheHash(false)
+            ->setArguments($arguments)
             ->uriFor(
                 'index',
                 [
@@ -142,7 +145,7 @@ class HydraUtility implements \TYPO3\CMS\Core\SingletonInterface
                 'HydraApi'
             );
 
-        return $iri;
+        return preg_replace('/([^:])(\/{2,})/', '$1/', $iri);
     }
 
     /**
@@ -152,10 +155,10 @@ class HydraUtility implements \TYPO3\CMS\Core\SingletonInterface
      *
      * @return string
      */
-    public function getFirstPageIriForEndpoint($endpoint, $limit = 10, $constraint = '') {
+    public function iriForFirstPage($endpoint, $limit = 10, $constraint = '') {
 
         if ($limit === 10) {
-            $iri = $this->getIriForEndpoint($endpoint);
+            $iri = $this->iriFor($endpoint);
         } else {
 
             $arguments = [
@@ -167,7 +170,7 @@ class HydraUtility implements \TYPO3\CMS\Core\SingletonInterface
                 $arguments['constraint'] = $constraint;
             }
 
-            $iri = $this->uriBuilder
+            $iri = $this
                 ->reset()
                 ->setTargetPageUid($this->settings['rest']['pid'])
                 ->setTargetPageType($this->settings['rest']['typeNum'])
@@ -184,7 +187,7 @@ class HydraUtility implements \TYPO3\CMS\Core\SingletonInterface
                 );
         }
 
-        return $iri;
+        return preg_replace('/([^:])(\/{2,})/', '$1/', $iri);
     }
 
     /**
@@ -195,16 +198,12 @@ class HydraUtility implements \TYPO3\CMS\Core\SingletonInterface
      *
      * @return string
      */
-    public function getPreviousPageIriForEndpoint($endpoint, $currentOffset = 0, $limit = 10, $constraint = '') {
+    public function iriForPreviousPage($endpoint, $currentOffset = 0, $limit = 10, $constraint = '') {
 
-        $offset = $currentOffset - $limit;
-
-        if ($offset <= 0) {
-            $offset = 0;
-        }
+        $offset = ($currentOffset - $limit > 0) ? $currentOffset - $limit : 0;
 
         $arguments = [
-            'offset' => 0,
+            'offset' => $offset,
             'limit' => $limit,
         ];
 
@@ -212,7 +211,7 @@ class HydraUtility implements \TYPO3\CMS\Core\SingletonInterface
             $arguments['constraint'] = $constraint;
         }
 
-        $iri = $this->uriBuilder
+        $iri = $this
             ->reset()
             ->setTargetPageUid($this->settings['rest']['pid'])
             ->setTargetPageType($this->settings['rest']['typeNum'])
@@ -228,7 +227,7 @@ class HydraUtility implements \TYPO3\CMS\Core\SingletonInterface
                 'HydraApi'
             );
 
-        return $iri;
+        return preg_replace('/([^:])(\/{2,})/', '$1/', $iri);
     }
 
     /**
@@ -239,12 +238,10 @@ class HydraUtility implements \TYPO3\CMS\Core\SingletonInterface
      *
      * @return string
      */
-    public function getNextPageIriForEndpoint($endpoint, $currentOffset = 0, $limit = 10, $constraint = '') {
-
-        $offset = $currentOffset + $limit;
+    public function iriForNextPage($endpoint, $currentOffset = 0, $limit = 10, $constraint = '') {
 
         $arguments = [
-            'offset' => 0,
+            'offset' => $currentOffset + $limit,
             'limit' => $limit,
         ];
 
@@ -252,7 +249,7 @@ class HydraUtility implements \TYPO3\CMS\Core\SingletonInterface
             $arguments['constraint'] = $constraint;
         }
 
-        $iri = $this->uriBuilder
+        $iri = $this
             ->reset()
             ->setTargetPageUid($this->settings['rest']['pid'])
             ->setTargetPageType($this->settings['rest']['typeNum'])
@@ -268,7 +265,7 @@ class HydraUtility implements \TYPO3\CMS\Core\SingletonInterface
                 'HydraApi'
             );
 
-        return $iri;
+        return preg_replace('/([^:])(\/{2,})/', '$1/', $iri);
     }
 
     /**
@@ -279,12 +276,10 @@ class HydraUtility implements \TYPO3\CMS\Core\SingletonInterface
      *
      * @return string
      */
-    public function getLastPageIriForEndpoint($endpoint, $total, $limit = 10, $constraint = '') {
-
-        $offset = $total - ($total % $limit);
+    public function iriForLastPage($endpoint, $total, $limit = 10, $constraint = '') {
 
         $arguments = [
-            'offset' => 0,
+            'offset' => $total - ($total % $limit),
             'limit' => $limit,
         ];
 
@@ -292,7 +287,7 @@ class HydraUtility implements \TYPO3\CMS\Core\SingletonInterface
             $arguments['constraint'] = $constraint;
         }
 
-        $iri = $this->uriBuilder
+        $iri = $this
             ->reset()
             ->setTargetPageUid($this->settings['rest']['pid'])
             ->setTargetPageType($this->settings['rest']['typeNum'])
@@ -308,7 +303,7 @@ class HydraUtility implements \TYPO3\CMS\Core\SingletonInterface
                 'HydraApi'
             );
 
-        return $iri;
+        return preg_replace('/([^:])(\/{2,})/', '$1/', $iri);
     }
 
     /**
@@ -317,9 +312,9 @@ class HydraUtility implements \TYPO3\CMS\Core\SingletonInterface
      *
      * @return string
      */
-    public function getIriForEndpointAndUid($endpoint, $uid) {
+    public function iriForUid($endpoint, $uid) {
 
-        $iri = $this->uriBuilder
+        $iri = $this
             ->reset()
             ->setTargetPageUid($this->settings['rest']['pid'])
             ->setTargetPageType($this->settings['rest']['typeNum'])
@@ -335,6 +330,6 @@ class HydraUtility implements \TYPO3\CMS\Core\SingletonInterface
                 'HydraApi'
             );
 
-        return $iri;
+        return preg_replace('/([^:])(\/{2,})/', '$1/', $iri);
     }
 }
