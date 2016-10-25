@@ -158,3 +158,114 @@ This will result in the following JSON-LD Markup on your page
         {entity -> f:cObject(typoscriptObjectPath: 'lib.structuredDataMarkupExample')}
     </f:for>
 ```
+
+
+### Example 3 - Create LinkedData REST API
+
+Since version **2.0.0** it is possible to configure an LinkedData REST API which is based on Hydra Core Vocabulary (http://www.hydra-cg.com/spec/latest/core/)
+
+*TypoScript*:
+
+* create a page e.g. called "api (123)" within your page tree for better realurl configuration
+
+*constants.txt*
+<pre>
+<code class="typoscript">
+plugin.tx_pxsemantic {
+    settings {
+            rest {
+                pid = 123
+            }
+        }
+    }        
+}
+</code>
+</pre>
+
+* now configure for each endpoint of your rest api the resource to entity mapping like in the easy example below
+* as for strcutured data markup in exampe 1 and example 2 you could (re)use `processors` to transform your 
+  resource (aka domain model) into an http://schema.org/ entity
+
+*setup.txt*
+<pre>
+<code class="typoscript">
+plugin.tx_pxsemantic {
+    settings {
+            rest {
+                endpoints {
+                    pages {
+                        entity = Portrino\PxSemantic\SchemaOrg\CreativeWork
+                        resource = Portrino\PxSemantic\Domain\Model\Page
+                        processors {
+                            0 {
+                                className = Portrino\PxSemantic\Processor\PageProcessor
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }        
+}
+</code>
+</pre>
+
+
+* add this realurl configuration for nicer uris of your rest API
+
+*realurl_conf.php*
+<pre>
+<code class="php">
+...
+  
+  'fixedPostVars' => [
+        '_DEFAULT' => [],
+        'api' => [
+            [
+                'GETvar' => 'type',
+                'valueMap' => [
+                    'structured-data' => 1475825939,
+                    'structured-data-contexts' => 1476721757,
+                    'vocab' => 1476770090
+                ]
+            ],
+            [
+                'GETvar' => 'tx_pxsemantic_hydraapi[endpoint]',
+                'valueMap' => [
+                    'recipes' => 'recipes',
+                    'pages' => 'pages'
+                ],
+                'noMatch' => 'bypass'
+            ],
+            [
+                'GETvar' => 'tx_pxsemantic_hydracontext[context]',
+                'valueMap' => [
+                    'Entrypoint' => 'Entrypoint',
+                ],
+                'noMatch' => 'bypass'
+            ],
+            [
+                'cond'        => [
+                    'prevValueInList' => 'pages'
+                ],
+                'GETvar'      => 'tx_pxsemantic_hydraapi[uid]',
+                'lookUpTable' => [
+                    'table'       => 'pages',
+                    'id_field'    => 'uid',
+                    'alias_field' => 'uid'
+                ],
+                'optional'    => true
+            ]
+        ],
+        '123' => 'api'
+    ],
+    
+...
+</code>
+</pre>
+
+* now you can call your Linked Data REST API via: http://domain.tld/api/structured-data/pages/ which will be presented 
+  as PagedCollection (http://www.hydra-cg.com/spec/latest/core/#collections)
+  
+* add this url to hydra console (http://www.markus-lanthaler.com/hydra/console/) will give you a nice hydra documentation
+ 

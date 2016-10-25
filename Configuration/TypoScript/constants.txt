@@ -13,11 +13,11 @@ plugin.tx_pxsemantic {
     }
     settings {
         rest {
-            pid = 97848
+            pid =
             typeNum = 1475825939
         }
         hydra {
-            pid = 97848
+            pid =
             context {
                 typeNum = 1476721757
             }
