@@ -42,7 +42,7 @@ class NutritionInformation extends StructuredValue
     protected $id;
 
     /**
-     * @var Energy The number of calories
+     * @var string The number of calories
      */
     protected $calories;
 
@@ -52,7 +52,7 @@ class NutritionInformation extends StructuredValue
     protected $servingSize;
 
     /**
-     * @var Mass The number of grams of fat
+     * @var string The number of grams of fat
      */
     protected $fatContent;
 
@@ -83,11 +83,11 @@ class NutritionInformation extends StructuredValue
     /**
      * Sets calories.
      *
-     * @param Energy $calories
+     * @param string $calories
      *
      * @return $this
      */
-    public function setCalories(Energy $calories = null)
+    public function setCalories($calories = '')
     {
         $this->calories = $calories;
 
@@ -97,7 +97,7 @@ class NutritionInformation extends StructuredValue
     /**
      * Gets calories.
      *
-     * @return Energy
+     * @return string
      */
     public function getCalories()
     {
@@ -131,11 +131,11 @@ class NutritionInformation extends StructuredValue
     /**
      * Sets fatContent.
      *
-     * @param Mass $fatContent
+     * @param string $fatContent
      *
      * @return $this
      */
-    public function setFatContent(Mass $fatContent = null)
+    public function setFatContent($fatContent = '')
     {
         $this->fatContent = $fatContent;
 
@@ -145,7 +145,7 @@ class NutritionInformation extends StructuredValue
     /**
      * Gets fatContent.
      *
-     * @return Mass
+     * @return string
      */
     public function getFatContent()
     {
