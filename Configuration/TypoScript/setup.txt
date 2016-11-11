@@ -223,7 +223,7 @@ lib.structuredDataMarkupOrganizationExample {
                         }
                     }
                     # special datatype from px_semantic EXT to define arrays
-                    sameAs = PX_SEMANTIC_ARRAY
+                    sameAs = Portrino\PxSemantic\Converter\ArrayConverter
                     sameAs {
                         0 = http://www.facebook.com/foo
                         1 = http://www.youtube.com/user/bar
