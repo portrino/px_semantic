@@ -1,5 +1,11 @@
 # PxSemantic Change log
 
+2.1.0 - 2016-11-11
+------------------
+* [FEATURE] Add cache tagging feature for cached rest requests for better cache invalidation
+  * only works for resources which uses `pages` table as base
+  * cache invalidation for other record types is even more complicated (coming soon)
+
 2.0.0 - 2016-11-11
 ------------------
 * [FEATURE] Introduces HYDRA Web API Feature for Linked Data Web API´s with TYPO3

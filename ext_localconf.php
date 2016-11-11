@@ -53,17 +53,18 @@ $boot = function ($_EXTKEY) {
     if (TYPO3_MODE === 'FE') {
 
         if ((boolean)$extConf['enableHydraRestApiCaching'] === true) {
+
             $signalSlotDispatcher->connect(
                 \TYPO3\CMS\Extbase\Mvc\Dispatcher::class,
                 'afterRequestDispatch',
-                \Portrino\PxSemantic\Aspect\CachingAspect::class,
+                \Portrino\PxSemantic\Caching\Aspect\CachingAspect::class,
                 'setCacheEntryForActionMethodResponse'
             );
 
             $signalSlotDispatcher->connect(
                 \TYPO3\CMS\Extbase\Mvc\Controller\ActionController::class,
                 'beforeCallActionMethod',
-                \Portrino\PxSemantic\Aspect\CachingAspect::class,
+                \Portrino\PxSemantic\Caching\Aspect\CachingAspect::class,
                 'getCacheEntryForActionMethodResponse'
             );
         }

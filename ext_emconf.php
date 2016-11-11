@@ -10,7 +10,7 @@
  * "version" and "dependencies" must not be touched!
  ***************************************************************/
 
-$EM_CONF[$_EXTKEY] = array(
+$EM_CONF[$_EXTKEY] = [
     'title' => 'Portrino Semantic Web Library',
     'description' => 'Structured Data Rendering for TYPO3',
     'category' => 'fe',
@@ -20,14 +20,14 @@ $EM_CONF[$_EXTKEY] = array(
     'state' => 'beta',
     'uploadfolder' => '0',
     'clearCacheOnLoad' => 0,
-    'version' => '2.0.0',
-    'constraints' => array(
-        'depends' => array(
+    'version' => '2.1.0',
+    'constraints' => [
+        'depends' => [
             'typo3' => '6.2.0-7.99.99',
-        ),
-        'conflicts' => array(
-        ),
-        'suggests' => array(
-        ),
-    ),
-);
+        ],
+        'conflicts' => [
+        ],
+        'suggests' => [
+        ],
+    ],
+];

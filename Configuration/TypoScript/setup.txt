@@ -47,6 +47,13 @@ plugin.tx_pxsemantic {
         }
     }
 }
+[userFunc = \Portrino\PxSemantic\Utility\ExtensionFeatureUtility::isFeatureEnabled(HydraRestApiCaching)]
+    config.tx_extbase {
+        objects {
+            TYPO3\CMS\Extbase\Mvc\Web\Response.className = Portrino\PxSemantic\Caching\CacheableResponse
+        }
+    }
+[global]
 
 lib.structuredDataMarkup = USER
 lib.structuredDataMarkup {
