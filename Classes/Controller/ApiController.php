@@ -263,7 +263,6 @@ class ApiController extends AbstractHydraController
         if ($domainObject != null) {
             /** @var EntityInterface $entity */
             $entity = $this->objectManager->get($this->entityClassName);
-
             foreach ($this->settings['rest']['endpoints'][$endpoint]['processors'] as $processorConfiguration) {
                 /** @var \Portrino\PxSemantic\Processor\ProcessorInterface $processor */
                 $processor = $this->objectManager->get($processorConfiguration['className']);
@@ -272,7 +271,6 @@ class ApiController extends AbstractHydraController
             }
 
             $iri = $this->hydraIriBuilder->iriForUid($endpoint, $domainObject->getUid());
-
             $entity->setId($iri);
         }
 

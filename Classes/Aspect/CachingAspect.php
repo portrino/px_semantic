@@ -74,8 +74,9 @@ class CachingAspect
                     $content = $cache->get($cacheIdentifier);
 
                     if ($content != false) {
-                        /** @var $response \TYPO3\CMS\Extbase\Mvc\ResponseInterface */
+                        /** @var $response \TYPO3\CMS\Extbase\Mvc\Web\Response */
                         $response = $this->objectManager->get(\TYPO3\CMS\Extbase\Mvc\Web\Response::class);
+                        $response->setHeader('Content-Type', 'application/json');
                         $response->setContent($content);
                         $response->send();
                         exit;

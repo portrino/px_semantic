@@ -1,5 +1,12 @@
 # PxSemantic Change log
 
+2.0.0 - 2016-11-11
+------------------
+* [FEATURE] Introduces HYDRA Web API Feature for Linked Data Web API´s with TYPO3
+* [TASK] Removes dependency for EXT:vhs, instead we render jsonld output via `JsonView` class of extbase 
+  core
+* [TASK] adds some more properties to [schema.org](http://schema.org/) entities
+  
 1.5.0 - 2016-10-06
 ------------------
 * [TASK] generates new SchemaOrg Entities
