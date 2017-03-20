@@ -4,7 +4,7 @@ namespace Portrino\PxSemantic\Controller;
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2016 Andre Wuttig <wuttig@portrino.de>, portrino GmbH
+ *  (c) 2017 Andre Wuttig <wuttig@portrino.de>, portrino GmbH
  *
  *  All rights reserved
  *
@@ -25,6 +25,7 @@ namespace Portrino\PxSemantic\Controller;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 use Portrino\PxSemantic\Mvc\View\JsonLdView;
+use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
 
 /**
@@ -32,7 +33,7 @@ use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
  *
  * @package Portrino\PxSemantic\Controller
  */
-class AbstractHydraController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
+class AbstractHydraController extends ActionController
 {
 
     /**

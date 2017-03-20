@@ -4,7 +4,7 @@ namespace Portrino\PxSemantic\Controller;
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2016 Andre Wuttig <wuttig@portrino.de>, portrino GmbH
+ *  (c) 2017 Andre Wuttig <wuttig@portrino.de>, portrino GmbH
  *
  *  All rights reserved
  *
@@ -25,9 +25,8 @@ namespace Portrino\PxSemantic\Controller;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
-use Portrino\PxSemantic\Mvc\View\JsonLdView;
-use TYPO3\CMS\Core\Http\ServerRequestFactory;
 use TYPO3\CMS\Extbase\Mvc\View\JsonView;
+use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
 
 /**
  * Class ContextController
@@ -38,9 +37,9 @@ class ContextController extends AbstractHydraController
 {
 
     /**
-     * @param \TYPO3\CMS\Extbase\Mvc\View\ViewInterface $view
+     * @param ViewInterface $view
      */
-    protected function initializeView(\TYPO3\CMS\Extbase\Mvc\View\ViewInterface $view)
+    protected function initializeView(ViewInterface $view)
     {
         if ($view instanceof JsonView) {
 

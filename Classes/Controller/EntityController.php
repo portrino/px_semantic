@@ -4,7 +4,7 @@ namespace Portrino\PxSemantic\Controller;
     /***************************************************************
      *  Copyright notice
      *
-     *  (c) 2016 Andre Wuttig <wuttig@portrino.de>, portrino GmbH
+     *  (c) 2017 Andre Wuttig <wuttig@portrino.de>, portrino GmbH
      *
      *  All rights reserved
      *
@@ -24,15 +24,19 @@ namespace Portrino\PxSemantic\Controller;
      *
      *  This copyright notice MUST APPEAR in all copies of the script!
      ***************************************************************/
+use Portrino\PxSemantic\Entity\EntityInterface;
 use Portrino\PxSemantic\Mvc\View\JsonLdView\JsonLdMarkupView;
+use Portrino\PxSemantic\Processor\ProcessorInterface;
+use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Mvc\View\JsonView;
+use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
 
 /**
  * Class EntityController
  *
  * @package Portrino\PxSemantic\Controller
  */
-class EntityController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
+class EntityController extends ActionController
 {
 
     /**
@@ -46,9 +50,9 @@ class EntityController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     protected $defaultViewObjectName = JsonLdMarkupView::class;
 
     /**
-     * @param \TYPO3\CMS\Extbase\Mvc\View\ViewInterface $view
+     * @param ViewInterface $view
      */
-    protected function initializeView(\TYPO3\CMS\Extbase\Mvc\View\ViewInterface $view)
+    protected function initializeView(ViewInterface $view)
     {
         if ($view instanceof JsonView) {
             $configuration = [
@@ -71,11 +75,13 @@ class EntityController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         $entityClassName = (isset($this->settings['entity']['className'])) ? $this->settings['entity']['className'] : $this->settings['entity']['_typoScriptNodeValue'];
 
         if ($entityClassName != null) {
-            /** @var \TYPO3\CMS\Extbase\DomainObject\AbstractEntity $entity */
+            /** @var EntityInterface $entity */
             $entity = $this->objectManager->get($entityClassName);
             foreach ($this->settings['processors'] as $key => $processorConfiguration) {
-                /** @var \Portrino\PxSemantic\Processor\ProcessorInterface $processor */
+
+                /** @var ProcessorInterface $processor */
                 $processor = $this->objectManager->get($processorConfiguration['className']);
+
                 $settings = isset($processorConfiguration['settings']) ? $processorConfiguration['settings'] : [];
                 $processor->process($entity, $settings);
             }

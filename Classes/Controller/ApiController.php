@@ -4,7 +4,7 @@ namespace Portrino\PxSemantic\Controller;
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2016 Andre Wuttig <wuttig@portrino.de>, portrino GmbH
+ *  (c) 2017 Andre Wuttig <wuttig@portrino.de>, portrino GmbH
  *
  *  All rights reserved
  *
@@ -25,14 +25,15 @@ namespace Portrino\PxSemantic\Controller;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use Portrino\PxSemantic\Caching\CacheableResponse;
 use Portrino\PxSemantic\Domain\Repository\RestRepositoryInterface;
 use Portrino\PxSemantic\Entity\EntityInterface;
 use Portrino\PxSemantic\Hydra\Collection\PagedCollection;
-use TYPO3\CMS\Core\Http\ServerRequestFactory;
 use TYPO3\CMS\Core\Utility\ClassNamingUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Mvc\View\JsonView;
+use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
 
 /**
  * Class ApiController
@@ -73,9 +74,9 @@ class ApiController extends AbstractHydraController
     protected $response;
 
     /**
-     * @param \TYPO3\CMS\Extbase\Mvc\View\ViewInterface $view
+     * @param ViewInterface $view
      */
-    protected function initializeView(\TYPO3\CMS\Extbase\Mvc\View\ViewInterface $view)
+    protected function initializeView(ViewInterface $view)
     {
         if ($view instanceof JsonView) {
 
@@ -179,6 +180,7 @@ class ApiController extends AbstractHydraController
             }
 
             $resourceRepositoryClass = ClassNamingUtility::translateModelNameToRepositoryName($this->resourceType);
+
             if (class_exists($resourceRepositoryClass) === false) {
                 throw new \Exception('The repository: "' . $resourceRepositoryClass . '" for resource of type: "' . $this->resourceType . '" does not exist.',
                     1475830556);
@@ -272,7 +274,9 @@ class ApiController extends AbstractHydraController
 
         $pagedCollection->setTotalItems($totalItems);
 
-        $this->response->setResource($domainObjects);
+        if ($this->response instanceof CacheableResponse) {
+            $this->response->setResource($domainObjects);
+        }
 
         $this->view->setVariablesToRender(['collection']);
         $this->view->assign('collection', $pagedCollection);
@@ -303,7 +307,9 @@ class ApiController extends AbstractHydraController
             $iri = $this->hydraIriBuilder->iriForUid($endpoint, $domainObject->getUid());
             $entity->setId($iri);
 
-            $this->response->setResource($domainObject);
+            if ($this->response instanceof CacheableResponse) {
+                $this->response->setResource($domainObjects);
+            }
         }
 
         $this->view->setVariablesToRender(['entity']);

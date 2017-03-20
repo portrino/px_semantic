@@ -4,7 +4,7 @@ namespace Portrino\PxSemantic\Caching\CacheTag;
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2016 Andre Wuttig <wuttig@portrino.de>, portrino GmbH
+ *  (c) 2017 Andre Wuttig <wuttig@portrino.de>, portrino GmbH
  *
  *  All rights reserved
  *
@@ -68,10 +68,14 @@ class CacheTagServiceFactory implements SingletonInterface
 
     /**
      * @param string $tableName
+     * @return CacheTagServiceInterface|null
      */
     protected function getCacheTagServiceByTableName($tableName = '') {
+        $cacheTagService = null;
+
         switch ($tableName) {
             case 'pages':
+                /** @var CacheTagServiceInterface $cacheTagService */
                 $cacheTagService = $this->objectManager->get(PagesCacheTagService::class);
                 break;
             case 'tt_content':
@@ -102,8 +106,8 @@ class CacheTagServiceFactory implements SingletonInterface
 
     /**
      * @param string $modelName
-     *
-     * @return null|\Portrino\PxSemantic\Caching\CacheTag\CacheTagServiceInterface
+     * @return null|CacheTagServiceInterface
+     * @throws \Exception
      */
     protected function getCacheTagServiceByModelName($modelName)
     {

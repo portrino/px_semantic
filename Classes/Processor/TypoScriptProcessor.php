@@ -4,7 +4,7 @@ namespace Portrino\PxSemantic\Processor;
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2016 Andre Wuttig <wuttig@portrino.de>, portrino GmbH
+ *  (c) 2017 Andre Wuttig <wuttig@portrino.de>, portrino GmbH
  *
  *  All rights reserved
  *
@@ -26,14 +26,14 @@ namespace Portrino\PxSemantic\Processor;
  ***************************************************************/
 
 use Portrino\PxSemantic\Converter\TypoScriptTypeConverterInterface;
-use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
+use Portrino\PxSemantic\SchemaOrg\Thing;
 
 /**
  * Class TypoScriptProcessor
  *
  * @package Portrino\PxSemantic\Processor
  */
-class TypoScriptProcessor implements \Portrino\PxSemantic\Processor\ProcessorInterface
+class TypoScriptProcessor implements ProcessorInterface
 {
 
     /**
@@ -125,5 +125,6 @@ class TypoScriptProcessor implements \Portrino\PxSemantic\Processor\ProcessorInt
                 }
             }
         }
+
     }
 }

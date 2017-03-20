@@ -4,7 +4,7 @@ namespace Portrino\PxSemantic\Processor;
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2016 Andre Wuttig <wuttig@portrino.de>, portrino GmbH
+ *  (c) 2017 Andre Wuttig <wuttig@portrino.de>, portrino GmbH
  *
  *  All rights reserved
  *
@@ -24,13 +24,14 @@ namespace Portrino\PxSemantic\Processor;
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 
 /**
  * Class AbstractProcessor
  *
  * @package Portrino\PxSemantic\Processor
  */
-abstract class AbstractProcessor implements \Portrino\PxSemantic\Processor\ProcessorInterface
+abstract class AbstractProcessor implements ProcessorInterface
 {
 
     /**
@@ -57,7 +58,7 @@ abstract class AbstractProcessor implements \Portrino\PxSemantic\Processor\Proce
     protected $imageService;
 
     /**
-     * @var \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface
+     * @var \TYPO3\CMS\Extbase\Configuration\ConfigurationManager
      * @inject
      */
     protected $configurationManager;
@@ -70,7 +71,7 @@ abstract class AbstractProcessor implements \Portrino\PxSemantic\Processor\Proce
     protected $configuration;
 
     /**
-     * @var int|NULL
+     * @var int|null
      */
     protected $resourceId = null;
 
@@ -83,10 +84,11 @@ abstract class AbstractProcessor implements \Portrino\PxSemantic\Processor\Proce
     public function initializeObject()
     {
         $this->typoScriptFrontendController = $GLOBALS['TSFE'];
+
         /**
          * get the resourceId from configuration of PxSemantic settings
          */
-        $this->configuration = $this->configurationManager->getConfiguration(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS);
+        $this->configuration = $this->configurationManager->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS);
         $this->resourceId = (isset($this->configuration['resource']['id']) && (int)$this->configuration['resource']['id'] > 0) ? (int)$this->configuration['resource']['id'] : null;
     }
 

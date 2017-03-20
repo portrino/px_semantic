@@ -3,7 +3,7 @@
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2016 Andre Wuttig <wuttig@portrino.de>, portrino GmbH
+ *  (c) 2017 Andre Wuttig <wuttig@portrino.de>, portrino GmbH
  *
  *  All rights reserved
  *
@@ -392,9 +392,13 @@ class Person extends Thing
      *
      * @return $this
      */
-    public function setBirthDate(\DateTime $birthDate = null)
+    public function setBirthDate($birthDate = null)
     {
-        $this->birthDate = $birthDate;
+        if ($birthDate instanceof \DateTime) {
+            $this->birthDate = $birthDate;
+        } else {
+            $this->birthDate = new \DateTime($birthDate);
+        }
 
         return $this;
     }
@@ -512,9 +516,14 @@ class Person extends Thing
      *
      * @return $this
      */
-    public function setDeathDate(\DateTime $deathDate = null)
+    public function setDeathDate($deathDate = null)
     {
-        $this->deathDate = $deathDate;
+        if ($deathDate instanceof \DateTime) {
+            $this->deathDate = $deathDate;
+        } else {
+            $this->birthDate = new \DateTime($deathDate);
+        }
+
 
         return $this;
     }

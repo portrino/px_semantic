@@ -5,7 +5,7 @@ namespace Portrino\PxSemantic\Domain\Repository;
  *
  *  Copyright notice
  *
- *  (c) 2014 André Wuttig <wuttig@portrino.de>, portrino GmbH
+ *  (c) 2017 André Wuttig <wuttig@portrino.de>, portrino GmbH
  *
  *  All rights reserved
  *
@@ -25,21 +25,23 @@ namespace Portrino\PxSemantic\Domain\Repository;
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
+use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
+use TYPO3\CMS\Extbase\Persistence\Repository;
 
 /**
  * Class PageRepository
  *
  * @package Portrino\PxSemantic\Domain\Repository
  */
-class PageRepository extends \TYPO3\CMS\Extbase\Persistence\Repository implements RestRepositoryInterface
+class PageRepository extends Repository implements RestRepositoryInterface
 {
 
     /**
      * @var array $defaultOrderings
      */
     protected $defaultOrderings = [
-        'sorting' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING
+        'sorting' => QueryInterface::ORDER_ASCENDING
     ];
 
     /**
@@ -76,7 +78,7 @@ class PageRepository extends \TYPO3\CMS\Extbase\Persistence\Repository implement
     public function countByConstraint($constraint = '')
     {
         // we call countAll here, because we have no specific contraints
-        parent::countAll();
+        return parent::countAll();
     }
 
 

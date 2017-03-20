@@ -1,4 +1,4 @@
-# px_semantic 2.1.0 (beta)
+# px_semantic 2.2.0 (beta)
 Structured Data Markup Rendering for TYPO3 with JSON-LD
 
 **PxSemantic** provides an extrem dynamic and highly customizable solution to embed structured data on your website 
@@ -268,4 +268,8 @@ plugin.tx_pxsemantic {
   as PagedCollection (http://www.hydra-cg.com/spec/latest/core/#collections)
   
 * add this url to hydra console (http://www.markus-lanthaler.com/hydra/console/) will give you a nice hydra documentation
+
+# More Examples
+
+* Could be found under: https://github.com/portrino/px-semantic-demo
  

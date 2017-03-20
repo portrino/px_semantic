@@ -4,7 +4,7 @@ namespace Portrino\PxSemantic\Converter;
     /***************************************************************
      *  Copyright notice
      *
-     *  (c) 2016 Andre Wuttig <wuttig@portrino.de>, portrino GmbH
+     *  (c) 2017 Andre Wuttig <wuttig@portrino.de>, portrino GmbH
      *
      *  All rights reserved
      *
@@ -24,6 +24,8 @@ namespace Portrino\PxSemantic\Converter;
      *
      *  This copyright notice MUST APPEAR in all copies of the script!
      ***************************************************************/
+use TYPO3\CMS\Extbase\Property\Exception\TypeConverterException;
+use TYPO3\CMS\Extbase\Validation\Error;
 
 /**
  * Class DateTimeConverter
@@ -44,14 +46,15 @@ class DateTimeConverter implements TypoScriptTypeConverterInterface
     /**
      * @param string $source
      *
-     * @return \DateTime|null|\TYPO3\CMS\Extbase\Validation\Error
-     * @throws \TYPO3\CMS\Extbase\Property\Exception\TypeConverterException
+     * @return \DateTime|null|Error
+     * @throws TypeConverterException
      */
     public function convert($source)
     {
 
         $dateFormat = self::DEFAULT_DATE_FORMAT;
 
+        $dateAsString = '';
         if (isset($source['value'])) {
             $dateAsString = $source['value'];
         }
@@ -70,7 +73,7 @@ class DateTimeConverter implements TypoScriptTypeConverterInterface
             try {
                 $timezone = new \DateTimeZone($source['timezone']);
             } catch (\Exception $e) {
-                throw new \TYPO3\CMS\Extbase\Property\Exception\TypeConverterException('The specified timezone "' . $source['timezone'] . '" is invalid.',
+                throw new TypeConverterException('The specified timezone "' . $source['timezone'] . '" is invalid.',
                     1308240974);
             }
             $date = \DateTime::createFromFormat($dateFormat, $dateAsString, $timezone);
@@ -78,7 +81,7 @@ class DateTimeConverter implements TypoScriptTypeConverterInterface
             $date = \DateTime::createFromFormat($dateFormat, $dateAsString);
         }
         if ($date === false) {
-            return new \TYPO3\CMS\Extbase\Validation\Error('The date "%s" was not recognized (for format "%s").',
+            return new Error('The date "%s" was not recognized (for format "%s").',
                 1307719788, [$dateAsString, $dateFormat]);
         }
         if (is_array($source)) {

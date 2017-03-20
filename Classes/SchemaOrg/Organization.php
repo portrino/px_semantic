@@ -3,7 +3,7 @@
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2016 Andre Wuttig <wuttig@portrino.de>, portrino GmbH
+ *  (c) 2017 Andre Wuttig <wuttig@portrino.de>, portrino GmbH
  *
  *  All rights reserved
  *
@@ -568,9 +568,13 @@ class Organization extends Thing
      *
      * @return $this
      */
-    public function setDissolutionDate(\DateTime $dissolutionDate = null)
+    public function setDissolutionDate($dissolutionDate = null)
     {
-        $this->dissolutionDate = $dissolutionDate;
+        if ($dissolutionDate instanceof \DateTime) {
+            $this->dissolutionDate = $dissolutionDate;
+        } else {
+            $this->dissolutionDate = new \DateTime($dissolutionDate);
+        }
 
         return $this;
     }
@@ -592,9 +596,13 @@ class Organization extends Thing
      *
      * @return $this
      */
-    public function setFoundingDate(\DateTime $foundingDate = null)
+    public function setFoundingDate($foundingDate = null)
     {
-        $this->foundingDate = $foundingDate;
+        if ($foundingDate instanceof \DateTime) {
+            $this->foundingDate = $foundingDate;
+        } else {
+            $this->foundingDate = new \DateTime($foundingDate);
+        }
 
         return $this;
     }

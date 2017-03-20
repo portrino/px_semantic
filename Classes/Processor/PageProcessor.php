@@ -4,7 +4,7 @@ namespace Portrino\PxSemantic\Processor;
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2016 Andre Wuttig <wuttig@portrino.de>, portrino GmbH
+ *  (c) 2017 Andre Wuttig <wuttig@portrino.de>, portrino GmbH
  *
  *  All rights reserved
  *
@@ -25,15 +25,18 @@ namespace Portrino\PxSemantic\Processor;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use Portrino\PxSemantic\SchemaOrg\CreativeWork;
+use Portrino\PxSemantic\SchemaOrg\ImageObject;
+use Portrino\PxSemantic\SchemaOrg\Person;
 use Portrino\PxSemantic\SchemaOrg\Thing;
-use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
+use TYPO3\CMS\Core\Resource\AbstractFile;
 
 /**
  * Class PageProcessor
  *
  * @package Portrino\PxSemantic\Processor
  */
-class PageProcessor extends \Portrino\PxSemantic\Processor\AbstractProcessor
+class PageProcessor extends AbstractProcessor
 {
 
     /**
@@ -81,7 +84,7 @@ class PageProcessor extends \Portrino\PxSemantic\Processor\AbstractProcessor
             }
         }
 
-        if ($page && $entity instanceof \Portrino\PxSemantic\SchemaOrg\CreativeWork) {
+        if ($page && $entity instanceof CreativeWork) {
             $url = $this->uriBuilder->setTargetPageUid($page->getUid())->build();
 
             $entity->setId($url);
@@ -119,22 +122,19 @@ class PageProcessor extends \Portrino\PxSemantic\Processor\AbstractProcessor
                 /**
                  * set the author to the author of the page if it is set
                  *
-                 * @var \Portrino\PxSemantic\SchemaOrg\Person $author
+                 * @var Person $author
                  */
-                $author = $this->objectManager->get(\Portrino\PxSemantic\SchemaOrg\Person::class);
+                $author = $this->objectManager->get(Person::class);
                 $author->setName($page->getAuthor());
                 $entity->setAuthor($author);
             }
-
-
-
 
             // set the image to the first image into resources/media list of the page
             $media = $page->getMedia();
             if ($media != null && $media->count() > 0) {
                 /** @var \TYPO3\CMS\Extbase\Domain\Model\FileReference $image */
                 $image = $media->toArray()[0];
-                if ($image->getOriginalResource()->getType() === \TYPO3\CMS\Core\Resource\AbstractFile::FILETYPE_IMAGE) {
+                if ($image->getOriginalResource()->getType() === AbstractFile::FILETYPE_IMAGE) {
                     $image = $this->imageService->getImage('', $image, true);
 
                     $width = $settings['media']['width'] ? (int)$settings['media']['width'] : 696;
@@ -148,8 +148,8 @@ class PageProcessor extends \Portrino\PxSemantic\Processor\AbstractProcessor
                     $processedImage = $this->imageService->applyProcessingInstructions($image, $processingInstructions);
 
                     if ($processedImage) {
-                        /** @var \Portrino\PxSemantic\SchemaOrg\ImageObject $imageObject */
-                        $imageObject = $this->objectManager->get(\Portrino\PxSemantic\SchemaOrg\ImageObject::class);
+                        /** @var ImageObject $imageObject */
+                        $imageObject = $this->objectManager->get(ImageObject::class);
 
                         $imageObject->setWidth((int)$processedImage->getProperty('width'));
                         $imageObject->setHeight((int)$processedImage->getProperty('height'));

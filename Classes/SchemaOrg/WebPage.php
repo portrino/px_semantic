@@ -3,7 +3,7 @@
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2016 Andre Wuttig <wuttig@portrino.de>, portrino GmbH
+ *  (c) 2017 Andre Wuttig <wuttig@portrino.de>, portrino GmbH
  *
  *  All rights reserved
  *
@@ -87,9 +87,13 @@ class WebPage extends CreativeWork
      *
      * @return $this
      */
-    public function setLastReviewed(\DateTime $lastReviewed = null)
+    public function setLastReviewed($lastReviewed = null)
     {
-        $this->lastReviewed = $lastReviewed;
+        if ($lastReviewed instanceof \DateTime) {
+            $this->lastReviewed = $lastReviewed;
+        } else {
+            $this->lastReviewed = new \DateTime($lastReviewed);
+        }
 
         return $this;
     }

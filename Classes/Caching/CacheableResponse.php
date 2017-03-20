@@ -4,7 +4,7 @@ namespace Portrino\PxSemantic\Caching;
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2016 Andre Wuttig <wuttig@portrino.de>, portrino GmbH
+ *  (c) 2017 Andre Wuttig <wuttig@portrino.de>, portrino GmbH
  *
  *  All rights reserved
  *
@@ -25,8 +25,8 @@ namespace Portrino\PxSemantic\Caching;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+use TYPO3\CMS\Extbase\Mvc\Web\Response;
 use TYPO3\CMS\Extbase\Utility\ArrayUtility;
 
 /**
@@ -34,7 +34,7 @@ use TYPO3\CMS\Extbase\Utility\ArrayUtility;
  *
  * @package Portrino\PxSemantic\Caching
  */
-class CacheableResponse extends \TYPO3\CMS\Extbase\Mvc\Web\Response
+class CacheableResponse extends Response
 {
 
     /**

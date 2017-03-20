@@ -4,7 +4,7 @@ namespace Portrino\PxSemantic\Converter;
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2016 Andre Wuttig <wuttig@portrino.de>, portrino GmbH
+ *  (c) 2017 Andre Wuttig <wuttig@portrino.de>, portrino GmbH
  *
  *  All rights reserved
  *
@@ -42,8 +42,8 @@ class TypoScriptTypeConverterFactory implements SingletonInterface
 
     /**
      * @param string $className
-     *
      * @return TypoScriptTypeConverterInterface|NULL
+     * @throws \Exception
      */
     public function get($className = '')
     {
@@ -57,10 +57,10 @@ class TypoScriptTypeConverterFactory implements SingletonInterface
             if (!class_exists($className)) {
                 switch ($className) {
                     case 'PX_SEMANTIC_ARRAY':
-                        $className = \Portrino\PxSemantic\Converter\ArrayConverter::class;
+                        $className = ArrayConverter::class;
                         break;
                     case 'PX_DATE':
-                        $className = \Portrino\PxSemantic\Converter\DateTimeConverter::class;
+                        $className = DateTimeConverter::class;
                         break;
                     default:
                         $className = null;

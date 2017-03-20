@@ -29,7 +29,7 @@
         "issues": "https://github.com/portrino/px_semantic/issues",
         "source": "https://github.com/portrino/px_semantic"
     },
-    "version": "2.1.0",
+    "version": "2.2.0",
     "autoload": {
         "psr-4": {
             "Portrino\\PxSemantic\\": "Classes"

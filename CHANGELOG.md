@@ -1,5 +1,10 @@
 # PxSemantic Change log
 
+2.2.0 - 2017-03-20
+------------------
+* [BUGFIX] Fix bug which occurs when caching was disabled for HYDRA REST requests 
+* [TASK] PSR-2 compatibility
+
 2.1.0 - 2016-11-11
 ------------------
 * [FEATURE] Add cache tagging feature for cached rest requests for better cache invalidation

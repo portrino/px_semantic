@@ -24,6 +24,7 @@ namespace Portrino\PxSemantic\Domain\Model;
      *
      *  This copyright notice MUST APPEAR in all copies of the script!
      ***************************************************************/
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 /**
@@ -31,7 +32,7 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
  *
  * @package Portrino\PxSemantic\Domain\Model
  */
-class Page extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+class Page extends AbstractEntity
 {
 
     /**
@@ -441,11 +442,13 @@ class Page extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function getParent()
     {
-        return $this->pageRepository->findByUid($this->getPid());
+        /** @var Page|null $parent */
+        $parent = $this->pageRepository->findByUid($this->getPid());
+        return $parent;
     }
 
     /**
-     * @return NULL|\TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Portrino\PxSemantic\Domain\Model\Page>
+     * @return mixed
      */
     public function getChildPages()
     {
@@ -477,7 +480,6 @@ class Page extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         $result = null;
         $siblings = $this->pageRepository->findByPid($this->getPid());
-        $previousIsResult = false;
         $prevSibling = null;
         foreach ($siblings as $sibling) {
             if ($sibling === $this) {

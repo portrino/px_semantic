@@ -4,7 +4,7 @@ namespace Portrino\PxSemantic\Mvc\View;
     /***************************************************************
      *  Copyright notice
      *
-     *  (c) 2016 Andre Wuttig <wuttig@portrino.de>, portrino GmbH
+     *  (c) 2017 Andre Wuttig <wuttig@portrino.de>, portrino GmbH
      *
      *  All rights reserved
      *
@@ -24,14 +24,17 @@ namespace Portrino\PxSemantic\Mvc\View;
      *
      *  This copyright notice MUST APPEAR in all copies of the script!
      ***************************************************************/
+use TYPO3\CMS\Extbase\Mvc\View\JsonView;
+use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
 
 /**
  * Class JsonLdView
  *
  * @package Portrino\PxSemantic\Mvc\View
  */
-class JsonLdView extends \TYPO3\CMS\Extbase\Mvc\View\JsonView
+class JsonLdView extends JsonView
 {
+    /** @noinspection PhpMissingParentCallCommonInspection */
 
     /**
      * Transforms the value view variable to a serializable
@@ -46,7 +49,7 @@ class JsonLdView extends \TYPO3\CMS\Extbase\Mvc\View\JsonView
         $this->controllerContext->getResponse()->setHeader('Content-Type', 'application/ld+json');
         $propertiesToRender = $this->renderArray();
         return json_encode($propertiesToRender, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
-    }
+    }/** @noinspection PhpMissingParentCallCommonInspection */
 
     /**
      * Traverses the given object structure in order to transform it into an
@@ -62,9 +65,9 @@ class JsonLdView extends \TYPO3\CMS\Extbase\Mvc\View\JsonView
         if ($object instanceof \DateTime) {
             return $object->format(\DateTime::ISO8601);
         } else {
-            $propertyNames = \TYPO3\CMS\Extbase\Reflection\ObjectAccess::getGettablePropertyNames($object);
+            $propertyNames = ObjectAccess::getGettablePropertyNames($object);
 
-            $propertiesToRender = array();
+            $propertiesToRender = [];
             foreach ($propertyNames as $propertyName) {
 
                 if (isset($configuration['_only']) && is_array($configuration['_only']) && !in_array($propertyName, $configuration['_only'])) {
@@ -74,7 +77,7 @@ class JsonLdView extends \TYPO3\CMS\Extbase\Mvc\View\JsonView
                     continue;
                 }
 
-                $propertyValue = \TYPO3\CMS\Extbase\Reflection\ObjectAccess::getProperty($object, $propertyName);
+                $propertyValue = ObjectAccess::getProperty($object, $propertyName);
 
                 if ($propertyValue != null) {
                     if (!is_array($propertyValue) && !is_object($propertyValue)) {

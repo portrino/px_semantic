@@ -3,7 +3,7 @@
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2016 Andre Wuttig <wuttig@portrino.de>, portrino GmbH
+ *  (c) 2017 Andre Wuttig <wuttig@portrino.de>, portrino GmbH
  *
  *  All rights reserved
  *
@@ -255,9 +255,13 @@ class Event extends Thing
      *
      * @return $this
      */
-    public function setDoorTime(\DateTime $doorTime = null)
+    public function setDoorTime($doorTime = null)
     {
-        $this->doorTime = $doorTime;
+        if ($doorTime instanceof \DateTime) {
+            $this->doorTime = $doorTime;
+        } else {
+            $this->doorTime = new \DateTime($doorTime);
+        }
 
         return $this;
     }
@@ -303,9 +307,13 @@ class Event extends Thing
      *
      * @return $this
      */
-    public function setEndDate(\DateTime $endDate = null)
+    public function setEndDate($endDate = null)
     {
-        $this->endDate = $endDate;
+        if ($endDate instanceof \DateTime) {
+            $this->endDate = $endDate;
+        } else {
+            $this->endDate = new \DateTime($endDate);
+        }
 
         return $this;
     }
@@ -423,9 +431,13 @@ class Event extends Thing
      *
      * @return $this
      */
-    public function setPreviousStartDate(\DateTime $previousStartDate = null)
+    public function setPreviousStartDate($previousStartDate = null)
     {
-        $this->previousStartDate = $previousStartDate;
+        if ($previousStartDate instanceof \DateTime) {
+            $this->previousStartDate = $previousStartDate;
+        } else {
+            $this->previousStartDate = new \DateTime($previousStartDate);
+        }
 
         return $this;
     }

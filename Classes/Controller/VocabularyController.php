@@ -4,7 +4,7 @@ namespace Portrino\PxSemantic\Controller;
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2016 Andre Wuttig <wuttig@portrino.de>, portrino GmbH
+ *  (c) 2017 Andre Wuttig <wuttig@portrino.de>, portrino GmbH
  *
  *  All rights reserved
  *
@@ -26,9 +26,10 @@ namespace Portrino\PxSemantic\Controller;
  ***************************************************************/
 
 use Portrino\PxSemantic\Entity\EntityInterface;
-use TYPO3\CMS\Core\Http\ServerRequestFactory;
 use TYPO3\CMS\Core\Utility\ArrayUtility;
 use TYPO3\CMS\Extbase\Mvc\View\JsonView;
+use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
+use TYPO3\CMS\Fluid\Exception;
 
 /**
  * Class VocabularyController
@@ -45,9 +46,9 @@ class VocabularyController extends AbstractHydraController
     protected $entityReflectionService;
 
     /**
-     * @param \TYPO3\CMS\Extbase\Mvc\View\ViewInterface $view
+     * @param ViewInterface $view
      */
-    protected function initializeView(\TYPO3\CMS\Extbase\Mvc\View\ViewInterface $view)
+    protected function initializeView(ViewInterface $view)
     {
         if ($view instanceof JsonView) {
 
@@ -63,11 +64,10 @@ class VocabularyController extends AbstractHydraController
     }
 
     /**
-     * @throws \TYPO3\CMS\Fluid\Exception
+     * @throws Exception
      */
     public function indexAction()
     {
-
         $endpoints = $this->settings['rest']['endpoints'];
 
         foreach ($endpoints as $endpoint => $endpointConfiguration) {
@@ -109,7 +109,7 @@ class VocabularyController extends AbstractHydraController
              */
             $entityClassName = isset($endpointConfiguration['entity']) ? $endpointConfiguration['entity'] : null;
             if (!class_exists($entityClassName)) {
-                throw new \TYPO3\CMS\Fluid\Exception('The entity class: "' . $entityClassName . '" does not exist.',
+                throw new Exception('The entity class: "' . $entityClassName . '" does not exist.',
                     1475830556);
             }
 
@@ -235,10 +235,6 @@ class VocabularyController extends AbstractHydraController
                 'subClassOf' => [
                     '@id' => 'rdfs:subClassOf',
                     '@type' => '@id',
-                ],
-                'returns' => [
-                    '@id' => 'hydra:returns',
-                    '@type' => '@id'
                 ]
             ],
             '@id' => $this->hydraIriBuilder->iriForVocabulary(),

@@ -4,7 +4,7 @@ namespace Portrino\PxSemantic\Aspect;
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2016 Andre Wuttig <wuttig@portrino.de>, portrino GmbH
+ *  (c) 2017 Andre Wuttig <wuttig@portrino.de>, portrino GmbH
  *
  *  All rights reserved
  *
@@ -24,10 +24,6 @@ namespace Portrino\PxSemantic\Aspect;
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
-use Portrino\CableDatabase\Rest\Caching\CacheableDomainObjectInterface;
-use Portrino\CableDatabase\Rest\Caching\CacheableResponse;
-use Portrino\CableDatabase\Rest\Caching\CacheTagServiceFactory;
-use Portrino\CableDatabase\Rest\Controller\RestController;
 use Portrino\PxSemantic\Controller\ApiController;
 use TYPO3\CMS\Core\Cache\CacheManager;
 use TYPO3\CMS\Core\Cache\Frontend\FrontendInterface;
@@ -64,7 +60,6 @@ class CachingAspect
                 // we should not use this class anymore, because we just create it to check if RestController was used
                 unset($controller);
 
-                $requestUrl = GeneralUtility::getIndpEnv('TYPO3_REQUEST_URL');
                 $cacheIdentifier = sha1(GeneralUtility::getIndpEnv('TYPO3_REQUEST_URL'));
 
                 if ($cacheIdentifier) {
@@ -74,8 +69,8 @@ class CachingAspect
                     $content = $cache->get($cacheIdentifier);
 
                     if ($content != false) {
-                        /** @var $response \TYPO3\CMS\Extbase\Mvc\Web\Response */
-                        $response = $this->objectManager->get(\TYPO3\CMS\Extbase\Mvc\Web\Response::class);
+                        /** @var $response Response */
+                        $response = $this->objectManager->get(Response::class);
                         $response->setHeader('Content-Type', 'application/json');
                         $response->setContent($content);
                         $response->send();

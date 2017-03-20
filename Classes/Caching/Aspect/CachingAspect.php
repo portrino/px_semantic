@@ -4,7 +4,7 @@ namespace Portrino\PxSemantic\Caching\Aspect;
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2016 Andre Wuttig <wuttig@portrino.de>, portrino GmbH
+ *  (c) 2017 Andre Wuttig <wuttig@portrino.de>, portrino GmbH
  *
  *  All rights reserved
  *
@@ -86,7 +86,6 @@ class CachingAspect
                 // we should not use this class anymore, because we just create it to check if RestController was used
                 unset($controller);
 
-                $requestUrl = GeneralUtility::getIndpEnv('TYPO3_REQUEST_URL');
                 $cacheIdentifier = sha1(GeneralUtility::getIndpEnv('TYPO3_REQUEST_URL'));
 
                 if ($cacheIdentifier) {
@@ -109,8 +108,9 @@ class CachingAspect
     }
 
     /**
-     * @param \TYPO3\CMS\Extbase\Mvc\Request $request
-     * @param \TYPO3\CMS\Extbase\Mvc\Response $response
+     * @param Request $request
+     * @param Response $response
+     * @throws \Exception
      */
     public function setCacheEntryForActionMethodResponse(Request $request, Response $response)
     {
@@ -120,8 +120,6 @@ class CachingAspect
         if ($controller instanceof ApiController && ($action === 'list' || $action === 'show') && $response instanceof CacheableResponse) {
             // we should not use this class anymore, because we just create it to check if RestController was used
             unset($controller);
-
-            $uid = $request->hasArgument('uid') ? $request->getArgument('uid') : null;
 
             $endpoint = $request->hasArgument('endpoint') ? $request->getArgument('endpoint') : null;
             if ($endpoint === null) {

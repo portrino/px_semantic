@@ -3,7 +3,7 @@
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2016 Andre Wuttig <wuttig@portrino.de>, portrino GmbH
+ *  (c) 2017 Andre Wuttig <wuttig@portrino.de>, portrino GmbH
  *
  *  All rights reserved
  *
@@ -194,9 +194,13 @@ class CreativeWork extends Thing
      *
      * @return $this
      */
-    public function setDateCreated(\DateTime $dateCreated = null)
+    public function setDateCreated($dateCreated = null)
     {
-        $this->dateCreated = $dateCreated;
+        if ($dateCreated instanceof \DateTime) {
+            $this->dateCreated = $dateCreated;
+        } else {
+            $this->dateCreated = new \DateTime($dateCreated);
+        }
 
         return $this;
     }
@@ -218,9 +222,13 @@ class CreativeWork extends Thing
      *
      * @return $this
      */
-    public function setDateModified(\DateTime $dateModified = null)
+    public function setDateModified($dateModified = null)
     {
-        $this->dateModified = $dateModified;
+        if ($dateModified instanceof \DateTime) {
+            $this->dateModified = $dateModified;
+        } else {
+            $this->dateModified = new \DateTime($dateModified);
+        }
 
         return $this;
     }
@@ -242,9 +250,13 @@ class CreativeWork extends Thing
      *
      * @return $this
      */
-    public function setDatePublished(\DateTime $datePublished = null)
+    public function setDatePublished($datePublished = null)
     {
-        $this->datePublished = $datePublished;
+        if ($datePublished instanceof \DateTime) {
+            $this->datePublished = $datePublished;
+        } else {
+            $this->datePublished = new \DateTime($datePublished);
+        }
 
         return $this;
     }
