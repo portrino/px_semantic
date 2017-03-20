@@ -4,6 +4,7 @@
 ------------------
 * [BUGFIX] Fix bug which occurs when caching was disabled for HYDRA REST requests 
 * [TASK] PSR-2 compatibility
+* [TASK] Add NewsArticle entity --> [schema.org/NewsArticle](http://schema.org/NewsArticle)
 
 2.1.0 - 2016-11-11
 ------------------
