@@ -77,11 +77,7 @@ class PageProcessor extends AbstractProcessor
         if ($resourceId != null) {
             $page = $this->pageRepository->findByUid((int)$resourceId);
         } else {
-            if ($this->resourceId != null) {
-                $page = $this->pageRepository->findByUid((int)$this->resourceId);
-            } else {
-                $page = $this->currentPage;
-            }
+            $page = $this->currentPage;
         }
 
         if ($page && $entity instanceof CreativeWork) {
