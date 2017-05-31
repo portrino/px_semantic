@@ -35,171 +35,170 @@ namespace Portrino\PxSemantic\SchemaOrg;
  */
 class Organization extends Thing
 {
-
     /**
      * @var PostalAddress Physical address of the item
      */
-    protected $address;
+    private $address;
 
     /**
      * @var AggregateRating The overall rating, based on a collection of reviews or ratings, of the item
      */
-    protected $aggregateRating;
+    private $aggregateRating;
 
     /**
      * @var Person Alumni of an organization
      */
-    protected $alumni;
+    private $alumni;
 
     /**
      * @var string The geographic area where a service or offered item is provided
      */
-    protected $areaServed;
+    private $areaServed;
 
     /**
      * @var string An award won by or for this item
      */
-    protected $award;
-
-    /**
-     * @var Organization The larger organization that this local business is a branch of, if any
-     */
-    protected $parentOrganization;
+    private $award;
 
     /**
      * @var Organization The brand(s) associated with a product or service, or the brand(s) maintained by an organization or business person
      */
-    protected $brand;
+    private $brand;
 
     /**
      * @var ContactPoint A contact point for a person or organization
      */
-    protected $contactPoint;
+    private $contactPoint;
 
     /**
      * @var ContactPoint A contact point for a person or organization
      */
-    protected $contactPoints;
+    private $contactPoints;
 
     /**
      * @var Organization A relationship between an organization and a department of that organization, also described as an organization (allowing different urls, logos, opening hours). For example: a store with a pharmacy, or a bakery with a cafe
      */
-    protected $department;
-
-    /**
-     * @var string The Dun & Bradstreet DUNS number for identifying an organization or business person
-     */
-    protected $duns;
-
-    /**
-     * @var string Email address
-     */
-    protected $email;
-
-    /**
-     * @var Person Someone working for this organization
-     */
-    protected $employee;
-
-    /**
-     * @var string The fax number
-     */
-    protected $faxNumber;
-
-    /**
-     * @var Person A person who founded this organization
-     */
-    protected $founder;
+    private $department;
 
     /**
      * @var \DateTime The date that this organization was dissolved
      */
-    protected $dissolutionDate;
+    private $dissolutionDate;
+
+    /**
+     * @var string The Dun & Bradstreet DUNS number for identifying an organization or business person
+     */
+    private $duns;
+
+    /**
+     * @var string Email address
+     */
+    private $email;
+
+    /**
+     * @var Person Someone working for this organization
+     */
+    private $employee;
+
+    /**
+     * @var string The fax number
+     */
+    private $faxNumber;
+
+    /**
+     * @var Person A person who founded this organization
+     */
+    private $founder;
 
     /**
      * @var \DateTime The date that this organization was founded
      */
-    protected $foundingDate;
-
-    /**
-     * @var string The [Global Location Number](http://www.gs1.org/gln) (GLN, sometimes also referred to as International Location Number or ILN) of the respective organization, person, or place. The GLN is a 13-digit number used to identify parties and physical locations
-     */
-    protected $globalLocationNumber;
-
-    /**
-     * @var Place Points-of-Sales operated by the organization or person
-     */
-    protected $hasPOS;
-
-    /**
-     * @var string The International Standard of Industrial Classification of All Economic Activities (ISIC), Revision 4 code for a particular organization, business person, or place
-     */
-    protected $isicV4;
-
-    /**
-     * @var string The official name of the organization, e.g. the registered company name
-     */
-    protected $legalName;
-
-    /**
-     * @var Place The location of for example where the event is happening, an organization is located, or where an action takes place
-     */
-    protected $location;
-
-    /**
-     * @var ImageObject An associated logo
-     */
-    protected $logo;
-
-    /**
-     * @var Organization A member of an Organization or a ProgramMembership. Organizations can be members of organizations; ProgramMembership is typically for individuals
-     */
-    protected $member;
-
-    /**
-     * @var Organization An Organization (or ProgramMembership) to which this Person or Organization belongs
-     */
-    protected $memberOf;
-
-    /**
-     * @var string The North American Industry Classification System (NAICS) code for a particular organization or business person
-     */
-    protected $naics;
-
-    /**
-     * @var QuantitativeValue The number of employees in an organization e.g. business
-     */
-    protected $numberOfEmployees;
-
-    /**
-     * @var Review A review of the item
-     */
-    protected $review;
-
-    /**
-     * @var Organization A relationship between two organizations where the first includes the second, e.g., as a subsidiary. See also: the more specific 'department' property
-     */
-    protected $subOrganization;
-
-    /**
-     * @var string The Tax / Fiscal ID of the organization or person, e.g. the TIN in the US or the CIF/NIF in Spain
-     */
-    protected $taxID;
-
-    /**
-     * @var string The telephone number
-     */
-    protected $telephone;
-
-    /**
-     * @var string The Value-added Tax ID of the organization or person
-     */
-    protected $vatID;
+    private $foundingDate;
 
     /**
      * @var Place The place where the Organization was founded
      */
-    protected $foundingLocation;
+    private $foundingLocation;
+
+    /**
+     * @var string The \[Global Location Number\](http://www.gs1.org/gln) (GLN, sometimes also referred to as International Location Number or ILN) of the respective organization, person, or place. The GLN is a 13-digit number used to identify parties and physical locations
+     */
+    private $globalLocationNumber;
+
+    /**
+     * @var Place Points-of-Sales operated by the organization or person
+     */
+    private $hasPOS;
+
+    /**
+     * @var string The International Standard of Industrial Classification of All Economic Activities (ISIC), Revision 4 code for a particular organization, business person, or place
+     */
+    private $isicV4;
+
+    /**
+     * @var string The official name of the organization, e.g. the registered company name
+     */
+    private $legalName;
+
+    /**
+     * @var Place The location of for example where the event is happening, an organization is located, or where an action takes place
+     */
+    private $location;
+
+    /**
+     * @var ImageObject An associated logo
+     */
+    private $logo;
+
+    /**
+     * @var Organization A member of an Organization or a ProgramMembership. Organizations can be members of organizations; ProgramMembership is typically for individuals
+     */
+    private $member;
+
+    /**
+     * @var Organization An Organization (or ProgramMembership) to which this Person or Organization belongs
+     */
+    private $memberOf;
+
+    /**
+     * @var string The North American Industry Classification System (NAICS) code for a particular organization or business person
+     */
+    private $naics;
+
+    /**
+     * @var QuantitativeValue The number of employees in an organization e.g. business
+     */
+    private $numberOfEmployees;
+
+    /**
+     * @var Organization The larger organization that this organization is a \[\[subOrganization\]\] of, if any
+     */
+    private $parentOrganization;
+
+    /**
+     * @var Review A review of the item
+     */
+    private $review;
+
+    /**
+     * @var Organization A relationship between two organizations where the first includes the second, e.g., as a subsidiary. See also: the more specific 'department' property
+     */
+    private $subOrganization;
+
+    /**
+     * @var string The Tax / Fiscal ID of the organization or person, e.g. the TIN in the US or the CIF/NIF in Spain
+     */
+    private $taxID;
+
+    /**
+     * @var string The telephone number
+     */
+    private $telephone;
+
+    /**
+     * @var string The Value-added Tax ID of the organization or person
+     */
+    private $vatID;
 
     /**
      * Sets address.
@@ -322,30 +321,6 @@ class Organization extends Thing
     }
 
     /**
-     * Sets parentOrganization.
-     *
-     * @param Organization $parentOrganization
-     *
-     * @return $this
-     */
-    public function setParentOrganization(Organization $parentOrganization = null)
-    {
-        $this->parentOrganization = $parentOrganization;
-
-        return $this;
-    }
-
-    /**
-     * Gets parentOrganization.
-     *
-     * @return Organization
-     */
-    public function getParentOrganization()
-    {
-        return $this->parentOrganization;
-    }
-
-    /**
      * Sets brand.
      *
      * @param Organization $brand
@@ -439,6 +414,30 @@ class Organization extends Thing
     public function getDepartment()
     {
         return $this->department;
+    }
+
+    /**
+     * Sets dissolutionDate.
+     *
+     * @param \DateTime $dissolutionDate
+     *
+     * @return $this
+     */
+    public function setDissolutionDate(\DateTime $dissolutionDate = null)
+    {
+        $this->dissolutionDate = $dissolutionDate;
+
+        return $this;
+    }
+
+    /**
+     * Gets dissolutionDate.
+     *
+     * @return \DateTime
+     */
+    public function getDissolutionDate()
+    {
+        return $this->dissolutionDate;
     }
 
     /**
@@ -562,47 +561,15 @@ class Organization extends Thing
     }
 
     /**
-     * Sets dissolutionDate.
-     *
-     * @param \DateTime $dissolutionDate
-     *
-     * @return $this
-     */
-    public function setDissolutionDate($dissolutionDate = null)
-    {
-        if ($dissolutionDate instanceof \DateTime) {
-            $this->dissolutionDate = $dissolutionDate;
-        } else {
-            $this->dissolutionDate = new \DateTime($dissolutionDate);
-        }
-
-        return $this;
-    }
-
-    /**
-     * Gets dissolutionDate.
-     *
-     * @return \DateTime
-     */
-    public function getDissolutionDate()
-    {
-        return $this->dissolutionDate;
-    }
-
-    /**
      * Sets foundingDate.
      *
      * @param \DateTime $foundingDate
      *
      * @return $this
      */
-    public function setFoundingDate($foundingDate = null)
+    public function setFoundingDate(\DateTime $foundingDate = null)
     {
-        if ($foundingDate instanceof \DateTime) {
-            $this->foundingDate = $foundingDate;
-        } else {
-            $this->foundingDate = new \DateTime($foundingDate);
-        }
+        $this->foundingDate = $foundingDate;
 
         return $this;
     }
@@ -615,6 +582,30 @@ class Organization extends Thing
     public function getFoundingDate()
     {
         return $this->foundingDate;
+    }
+
+    /**
+     * Sets foundingLocation.
+     *
+     * @param Place $foundingLocation
+     *
+     * @return $this
+     */
+    public function setFoundingLocation(Place $foundingLocation = null)
+    {
+        $this->foundingLocation = $foundingLocation;
+
+        return $this;
+    }
+
+    /**
+     * Gets foundingLocation.
+     *
+     * @return Place
+     */
+    public function getFoundingLocation()
+    {
+        return $this->foundingLocation;
     }
 
     /**
@@ -858,6 +849,30 @@ class Organization extends Thing
     }
 
     /**
+     * Sets parentOrganization.
+     *
+     * @param Organization $parentOrganization
+     *
+     * @return $this
+     */
+    public function setParentOrganization(Organization $parentOrganization = null)
+    {
+        $this->parentOrganization = $parentOrganization;
+
+        return $this;
+    }
+
+    /**
+     * Gets parentOrganization.
+     *
+     * @return Organization
+     */
+    public function getParentOrganization()
+    {
+        return $this->parentOrganization;
+    }
+
+    /**
      * Sets review.
      *
      * @param Review $review
@@ -975,29 +990,5 @@ class Organization extends Thing
     public function getVatID()
     {
         return $this->vatID;
-    }
-
-    /**
-     * Sets foundingLocation.
-     *
-     * @param Place $foundingLocation
-     *
-     * @return $this
-     */
-    public function setFoundingLocation(Place $foundingLocation = null)
-    {
-        $this->foundingLocation = $foundingLocation;
-
-        return $this;
-    }
-
-    /**
-     * Gets foundingLocation.
-     *
-     * @return Place
-     */
-    public function getFoundingLocation()
-    {
-        return $this->foundingLocation;
     }
 }

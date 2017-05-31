@@ -35,11 +35,10 @@ namespace Portrino\PxSemantic\SchemaOrg;
  */
 class SportsOrganization extends Organization
 {
-
     /**
      * @var string A type of sport (e.g. Baseball)
      */
-    protected $sport;
+    private $sport;
 
     /**
      * Sets sport.

@@ -27,7 +27,7 @@
 namespace Portrino\PxSemantic\SchemaOrg;
 
 /**
- * A comment on an item - for example, a comment on a blog post. The comment's content is expressed via the [[text]] property, and its topic via [[about]], properties shared with all CreativeWorks.
+ * A comment on an item - for example, a comment on a blog post. The comment's content is expressed via the \[\[text\]\] property, and its topic via \[\[about\]\], properties shared with all CreativeWorks.
  *
  * @see http://schema.org/Comment Documentation on Schema.org
  *
@@ -35,45 +35,20 @@ namespace Portrino\PxSemantic\SchemaOrg;
  */
 class Comment extends CreativeWork
 {
-
-    /**
-     * @var int The number of upvotes this question, answer or comment has received from the community
-     */
-    protected $upvoteCount;
-
     /**
      * @var int The number of downvotes this question, answer or comment has received from the community
      */
-    protected $downvoteCount;
+    private $downvoteCount;
 
     /**
      * @var Question The parent of a question, answer or item in general
      */
-    protected $parentItem;
+    private $parentItem;
 
     /**
-     * Sets upvoteCount.
-     *
-     * @param int $upvoteCount
-     *
-     * @return $this
+     * @var int The number of upvotes this question, answer or comment has received from the community
      */
-    public function setUpvoteCount($upvoteCount)
-    {
-        $this->upvoteCount = $upvoteCount;
-
-        return $this;
-    }
-
-    /**
-     * Gets upvoteCount.
-     *
-     * @return int
-     */
-    public function getUpvoteCount()
-    {
-        return $this->upvoteCount;
-    }
+    private $upvoteCount;
 
     /**
      * Sets downvoteCount.
@@ -121,5 +96,29 @@ class Comment extends CreativeWork
     public function getParentItem()
     {
         return $this->parentItem;
+    }
+
+    /**
+     * Sets upvoteCount.
+     *
+     * @param int $upvoteCount
+     *
+     * @return $this
+     */
+    public function setUpvoteCount($upvoteCount)
+    {
+        $this->upvoteCount = $upvoteCount;
+
+        return $this;
+    }
+
+    /**
+     * Gets upvoteCount.
+     *
+     * @return int
+     */
+    public function getUpvoteCount()
+    {
+        return $this->upvoteCount;
     }
 }

@@ -27,7 +27,7 @@
 namespace Portrino\PxSemantic\SchemaOrg;
 
 /**
- * An article, such as a news article or piece of investigative report. Newspapers and magazines have articles of many different types and this is intended to cover them all.\\n\\nSee also [blog post](http://blog.schema.org/2014/09/schemaorg-support-for-bibliographic\_2.html).
+ * An article, such as a news article or piece of investigative report. Newspapers and magazines have articles of many different types and this is intended to cover them all.\\n\\nSee also \[blog post\](http://blog.schema.org/2014/09/schemaorg-support-for-bibliographic\_2.html).
  *
  * @see http://schema.org/Article Documentation on Schema.org
  *
@@ -35,36 +35,35 @@ namespace Portrino\PxSemantic\SchemaOrg;
  */
 class Article extends CreativeWork
 {
-
     /**
      * @var string The actual body of the article
      */
-    protected $articleBody;
+    private $articleBody;
 
     /**
      * @var string Articles may belong to one or more 'sections' in a magazine or newspaper, such as Sports, Lifestyle, etc
      */
-    protected $articleSection;
-
-    /**
-     * @var int The number of words in the text of the Article
-     */
-    protected $wordCount;
+    private $articleSection;
 
     /**
      * @var string The page on which the work ends; for example "138" or "xvi"
      */
-    protected $pageEnd;
+    private $pageEnd;
 
     /**
      * @var string The page on which the work starts; for example "135" or "xiii"
      */
-    protected $pageStart;
+    private $pageStart;
 
     /**
      * @var string Any description of pages that is not separated into pageStart and pageEnd; for example, "1-6, 9, 55" or "10-12, 46-49"
      */
-    protected $pagination;
+    private $pagination;
+
+    /**
+     * @var int The number of words in the text of the Article
+     */
+    private $wordCount;
 
     /**
      * Sets articleBody.
@@ -112,30 +111,6 @@ class Article extends CreativeWork
     public function getArticleSection()
     {
         return $this->articleSection;
-    }
-
-    /**
-     * Sets wordCount.
-     *
-     * @param int $wordCount
-     *
-     * @return $this
-     */
-    public function setWordCount($wordCount)
-    {
-        $this->wordCount = $wordCount;
-
-        return $this;
-    }
-
-    /**
-     * Gets wordCount.
-     *
-     * @return int
-     */
-    public function getWordCount()
-    {
-        return $this->wordCount;
     }
 
     /**
@@ -208,5 +183,29 @@ class Article extends CreativeWork
     public function getPagination()
     {
         return $this->pagination;
+    }
+
+    /**
+     * Sets wordCount.
+     *
+     * @param int $wordCount
+     *
+     * @return $this
+     */
+    public function setWordCount($wordCount)
+    {
+        $this->wordCount = $wordCount;
+
+        return $this;
+    }
+
+    /**
+     * Gets wordCount.
+     *
+     * @return int
+     */
+    public function getWordCount()
+    {
+        return $this->wordCount;
     }
 }

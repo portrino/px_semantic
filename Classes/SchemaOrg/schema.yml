@@ -24,18 +24,29 @@ header: |
    ***************************************************************/
 namespaces:
   entity: Portrino\PxSemantic\SchemaOrg
-
+  enum: Portrino\PxSemantic\SchemaOrg\Enum
 annotationGenerators:
   - ApiPlatform\SchemaGenerator\AnnotationGenerator\PhpDocAnnotationGenerator
 author: "Andre Wuttig<wuttig@portrino.de>"
 debug: true
 types:
   Action:
+    properties:
+      actionStatus: ~
+      target: ~
+  ActionStatusType:
   AdministrativeArea:
   AggregateRating:
     properties:
       ratingCount: ~
+  Airline:
+    properties:
+      iataCode: ~
   Answer:
+    properties:
+        downvoteCount: ~
+        parentItem: ~
+        upvoteCount: ~
   Article:
     properties:
       articleBody: ~
@@ -45,6 +56,8 @@ types:
       pagination: ~
       wordCount: ~
   CollectionPage:
+    properties:
+      lastReviewed: ~
   Comment:
     properties:
       downvoteCount: ~
@@ -58,6 +71,9 @@ types:
       email: ~
       faxNumber: ~
       telephone: ~
+  Corporation:
+    properties:
+      tickerSymbol: ~
   Country:
   CreativeWork:
     properties:
@@ -75,9 +91,31 @@ types:
   Date:
   DateTime:
   Duration:
-      properties:
-        name: ~
+    properties:
+      name: ~
+  EducationalOrganization:
+    properties:
+      alumni: ~
   Energy:
+  EngineSpecification:
+    properties:
+      fuelType: ~
+  EntryPoint:
+    properties:
+      contentType: ~
+  Event:
+    properties:
+      about: ~
+      actor: ~
+      aggregateRating: ~
+      attendee: ~
+      startDate: ~
+      endDate: ~
+      composer: ~
+      director: ~
+      contributor: ~
+  GeoCoordinates:
+  GeoShape:
   ImageObject:
     properties:
       url: ~
@@ -89,15 +127,38 @@ types:
     properties:
       itemListElement: { range: "Text" }
   ItemPage:
+    properties:
+      lastReviewed: ~
   Language:
+  LocalBusiness:
+    properties:
+      currenciesAccepted: ~
+      openingHours: ~
+  LocationFeatureSpecification:
   Mass:
   MediaObject:
+    properties:
+      height: { range: "Integer" }
+      width: { range: "Integer" }
+      duration: ~
   Number:
   NutritionInformation:
     properties:
       servingSize: ~
       calories: ~
       fatContent: ~
+  Offer:
+    properties:
+      eligibleDuration: ~
+      eligibleQuantity: ~
+      priceCurrency: ~
+      price: { range: "Text" }
+  OpeningHoursSpecification:
+    properties:
+      closes: ~
+      opens: ~
+      validFrom: ~
+      validThrough: ~
   Organization:
     properties:
       address: { range: "PostalAddress" }
@@ -155,7 +216,7 @@ types:
       gender: ~
       givenName: ~
       globalLocationNumber: ~
-      height: { range: "QuantitativeValue" }
+      height: { range: "Integer" }
       homeLocation: { range: "ContactPoint" }
       honorificPrefix: ~
       honorificSuffix: ~
@@ -172,7 +233,7 @@ types:
       taxID: ~
       telephone: ~
       vatID: ~
-      weight: ~
+      weight: { range: "Integer" }
       workLocation: { range: "ContactPoint" }
       worksFor: ~
   Place:
@@ -189,8 +250,40 @@ types:
       postOfficeBoxNumber: ~
       postalCode: ~
       streetAddress: ~
+  Product:
+    properties:
+      additionalProperty: ~
+      aggregateRating: ~
+      brand: ~
+      category: ~
+      color: ~
+      depth: ~
+      height: { range: "Integer" }
+      logo: ~
+      manufacturer: ~
+      material: ~
+      model: ~
+      mpn: ~
+      productID: ~
+      productionDate: ~
+      purchaseDate: ~
+      releaseDate: ~
+      weight: { range: "Integer" }
+      width: { range: "Integer" }
+      offers: ~
+  PropertyValue:
   QAPage:
+    properties:
+      lastReviewed: ~
   Quantity:
+  QualitativeValue:
+    properties:
+      equal: ~
+      greater: ~
+      greaterOrEqual: ~
+      lesser: ~
+      lesserOrEqual: ~
+      nonEqual: ~
   QuantitativeValue:
     properties:
       maxValue: ~
@@ -221,7 +314,16 @@ types:
       recipeIngredient: { range: "Text" }
       recipeInstructions: { range: "Text" }
   Review:
+    properties:
+      itemReviewed: ~
+      reviewBody: ~
+      reviewRating: ~
+  School:
+    properties:
+      address: ~
   SearchResultsPage:
+    properties:
+      lastReviewed: ~
   SportsOrganization:
     properties:
       sport: { range: "Text" }
@@ -229,6 +331,9 @@ types:
     properties:
         athlete: ~
         coach: ~
+  SteeringPositionValue:
+    properties:
+      additionalProperty: ~
   StructuredValue:
   TechArticle:
     properties:
@@ -248,6 +353,32 @@ types:
       sameAs: ~
       url: ~
   URL:
+  Vehicle:
+    properties:
+      cargoVolume: ~
+      dateVehicleFirstRegistered: ~
+      driveWheelConfiguration: {range: "Text" }
+      fuelConsumption: ~
+      fuelEfficiency: ~
+      fuelType: ~
+      knownVehicleDamages: ~
+      numberOfAirbags: ~
+      numberOfAxles: ~
+      numberOfDoors: ~
+      numberOfForwardGears: ~
+      numberOfPreviousOwners: ~
+      productionDate: ~
+      purchaseDate: ~
+      steeringPosition: ~
+      vehicleConfiguration: ~
+      vehicleEngine: ~
+      vehicleIdentificationNumber: ~
+      vehicleInteriorColor: ~
+      vehicleInteriorType: ~
+      vehicleModelDate: ~
+      vehicleSeatingCapacity: ~
+      vehicleSpecialUsage: ~
+      vehicleTransmission: ~
   WebPage:
     properties:
       breadcrumb: { range: "Text" }
@@ -255,3 +386,5 @@ types:
       primaryImageOfPage: ~
       relatedLink: ~
   WebSite:
+    properties:
+      about: ~

@@ -35,26 +35,25 @@ namespace Portrino\PxSemantic\SchemaOrg;
  */
 class Rating extends Intangible
 {
-
     /**
      * @var float The highest value allowed in this rating system. If bestRating is omitted, 5 is assumed
      */
-    protected $bestRating;
-
-    /**
-     * @var float The rating for the content
-     */
-    protected $ratingValue;
-
-    /**
-     * @var float The lowest value allowed in this rating system. If worstRating is omitted, 1 is assumed
-     */
-    protected $worstRating;
+    private $bestRating;
 
     /**
      * @var float
      */
-    protected $ratingCount;
+    private $ratingCount;
+
+    /**
+     * @var float The rating for the content
+     */
+    private $ratingValue;
+
+    /**
+     * @var float The lowest value allowed in this rating system. If worstRating is omitted, 1 is assumed
+     */
+    private $worstRating;
 
     /**
      * Sets bestRating.
@@ -78,6 +77,30 @@ class Rating extends Intangible
     public function getBestRating()
     {
         return $this->bestRating;
+    }
+
+    /**
+     * Sets ratingCount.
+     *
+     * @param float $ratingCount
+     *
+     * @return $this
+     */
+    public function setRatingCount($ratingCount)
+    {
+        $this->ratingCount = $ratingCount;
+
+        return $this;
+    }
+
+    /**
+     * Gets ratingCount.
+     *
+     * @return float
+     */
+    public function getRatingCount()
+    {
+        return $this->ratingCount;
     }
 
     /**
@@ -126,29 +149,5 @@ class Rating extends Intangible
     public function getWorstRating()
     {
         return $this->worstRating;
-    }
-
-    /**
-     * Sets ratingCount.
-     *
-     * @param float $ratingCount
-     *
-     * @return $this
-     */
-    public function setRatingCount($ratingCount)
-    {
-        $this->ratingCount = $ratingCount;
-
-        return $this;
-    }
-
-    /**
-     * Gets ratingCount.
-     *
-     * @return float
-     */
-    public function getRatingCount()
-    {
-        return $this->ratingCount;
     }
 }

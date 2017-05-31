@@ -35,5 +35,90 @@ namespace Portrino\PxSemantic\SchemaOrg;
  */
 class MediaObject extends CreativeWork
 {
+    /**
+     * @var int The height of the item
+     */
+    private $height;
 
+    /**
+     * @var int The width of the item
+     */
+    private $width;
+
+    /**
+     * @var Duration The duration of the item (movie, audio recording, event, etc.) in \[ISO 8601 date format\](http://en.wikipedia.org/wiki/ISO\_8601)
+     */
+    private $duration;
+
+    /**
+     * Sets height.
+     *
+     * @param int $height
+     *
+     * @return $this
+     */
+    public function setHeight($height)
+    {
+        $this->height = $height;
+
+        return $this;
+    }
+
+    /**
+     * Gets height.
+     *
+     * @return int
+     */
+    public function getHeight()
+    {
+        return $this->height;
+    }
+
+    /**
+     * Sets width.
+     *
+     * @param int $width
+     *
+     * @return $this
+     */
+    public function setWidth($width)
+    {
+        $this->width = $width;
+
+        return $this;
+    }
+
+    /**
+     * Gets width.
+     *
+     * @return int
+     */
+    public function getWidth()
+    {
+        return $this->width;
+    }
+
+    /**
+     * Sets duration.
+     *
+     * @param Duration $duration
+     *
+     * @return $this
+     */
+    public function setDuration(Duration $duration = null)
+    {
+        $this->duration = $duration;
+
+        return $this;
+    }
+
+    /**
+     * Gets duration.
+     *
+     * @return Duration
+     */
+    public function getDuration()
+    {
+        return $this->duration;
+    }
 }

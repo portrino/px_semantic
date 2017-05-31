@@ -35,26 +35,25 @@ namespace Portrino\PxSemantic\SchemaOrg;
  */
 class WebPage extends CreativeWork
 {
-
     /**
      * @var string A set of links that can help a user understand and navigate a website hierarchy
      */
-    protected $breadcrumb;
+    private $breadcrumb;
 
     /**
      * @var \DateTime Date on which the content on this web page was last reviewed for accuracy and/or completeness
      */
-    protected $lastReviewed;
+    private $lastReviewed;
 
     /**
      * @var ImageObject Indicates the main image on the page
      */
-    protected $primaryImageOfPage;
+    private $primaryImageOfPage;
 
     /**
      * @var string A link related to this web page, for example to other related web pages
      */
-    protected $relatedLink;
+    private $relatedLink;
 
     /**
      * Sets breadcrumb.
@@ -87,13 +86,9 @@ class WebPage extends CreativeWork
      *
      * @return $this
      */
-    public function setLastReviewed($lastReviewed = null)
+    public function setLastReviewed(\DateTime $lastReviewed = null)
     {
-        if ($lastReviewed instanceof \DateTime) {
-            $this->lastReviewed = $lastReviewed;
-        } else {
-            $this->lastReviewed = new \DateTime($lastReviewed);
-        }
+        $this->lastReviewed = $lastReviewed;
 
         return $this;
     }

@@ -35,5 +35,4 @@ namespace Portrino\PxSemantic\SchemaOrg;
  */
 class Number
 {
-
 }

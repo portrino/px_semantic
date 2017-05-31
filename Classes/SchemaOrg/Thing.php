@@ -27,8 +27,6 @@
 namespace Portrino\PxSemantic\SchemaOrg;
 
 use Portrino\PxSemantic\Entity\EntityInterface;
-use TYPO3\CMS\Extbase\DomainObject\AbstractDomainObject;
-use TYPO3\CMS\Extbase\DomainObject\DomainObjectInterface;
 
 /**
  * The most generic type of item.
@@ -43,7 +41,7 @@ class Thing implements EntityInterface
     /**
      * @var int The entity`s IRI
      */
-    protected $id;
+    private $id;
 
     /**
      * @var string http://schema.org/
@@ -53,47 +51,47 @@ class Thing implements EntityInterface
     /**
      * @var string An additional type for the item, typically used for adding more specific types from external vocabularies in microdata syntax. This is a relationship between something and a class that the thing is in. In RDFa syntax, it is better to use the native RDFa syntax - the 'typeof' attribute - for multiple types. Schema.org tools may have only weaker understanding of extra types, in particular those defined externally
      */
-    protected $additionalType;
+    private $additionalType;
 
     /**
      * @var string An alias for the item
      */
-    protected $alternateName;
+    private $alternateName;
 
     /**
      * @var string A description of the item
      */
-    protected $description;
+    private $description;
 
     /**
-     * @var ImageObject An image of the item. This can be a [[URL]] or a fully described [[ImageObject]]
+     * @var ImageObject An image of the item. This can be a \[\[URL\]\] or a fully described \[\[ImageObject\]\]
      */
-    protected $image;
+    private $image;
 
     /**
-     * @var string Indicates a page (or other CreativeWork) for which this thing is the main entity being described. See [background notes](/docs/datamodel.html#mainEntityBackground) for details
+     * @var string Indicates a page (or other CreativeWork) for which this thing is the main entity being described. See \[background notes\](/docs/datamodel.html#mainEntityBackground) for details
      */
-    protected $mainEntityOfPage;
+    private $mainEntityOfPage;
 
     /**
      * @var string The name of the item
      */
-    protected $name;
-
-    /**
-     * @var string URL of a reference Web page that unambiguously indicates the item's identity. E.g. the URL of the item's Wikipedia page, Freebase page, or official website
-     */
-    protected $sameAs;
-
-    /**
-     * @var string URL of the item
-     */
-    protected $url;
+    private $name;
 
     /**
      * @var Action Indicates a potential Action, which describes an idealized action in which this thing would play an 'object' role
      */
-    protected $potentialAction;
+    private $potentialAction;
+
+    /**
+     * @var string URL of a reference Web page that unambiguously indicates the item's identity. E.g. the URL of the item's Wikipedia page, Wikidata entry, or official website
+     */
+    private $sameAs;
+
+    /**
+     * @var string URL of the item
+     */
+    private $url;
 
     /**
      * Sets id.
@@ -151,7 +149,6 @@ class Thing implements EntityInterface
     {
         $this->type = $type;
     }
-
 
     /**
      * Sets additionalType.
@@ -298,6 +295,30 @@ class Thing implements EntityInterface
     }
 
     /**
+     * Sets potentialAction.
+     *
+     * @param Action $potentialAction
+     *
+     * @return $this
+     */
+    public function setPotentialAction(Action $potentialAction = null)
+    {
+        $this->potentialAction = $potentialAction;
+
+        return $this;
+    }
+
+    /**
+     * Gets potentialAction.
+     *
+     * @return Action
+     */
+    public function getPotentialAction()
+    {
+        return $this->potentialAction;
+    }
+
+    /**
      * Sets sameAs.
      *
      * @param string $sameAs
@@ -344,29 +365,4 @@ class Thing implements EntityInterface
     {
         return $this->url;
     }
-
-    /**
-     * Sets potentialAction.
-     *
-     * @param Action $potentialAction
-     *
-     * @return $this
-     */
-    public function setPotentialAction(Action $potentialAction = null)
-    {
-        $this->potentialAction = $potentialAction;
-
-        return $this;
-    }
-
-    /**
-     * Gets potentialAction.
-     *
-     * @return Action
-     */
-    public function getPotentialAction()
-    {
-        return $this->potentialAction;
-    }
-
 }

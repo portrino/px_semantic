@@ -1,4 +1,5 @@
 <?php
+
 namespace Portrino\PxSemantic\Processor;
 
 /***************************************************************
@@ -89,7 +90,21 @@ abstract class AbstractProcessor implements ProcessorInterface
          * get the resourceId from configuration of PxSemantic settings
          */
         $this->configuration = $this->configurationManager->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS);
-        $this->resourceId = (isset($this->configuration['resource']['id']) && (int)$this->configuration['resource']['id'] > 0) ? (int)$this->configuration['resource']['id'] : null;
+
+        if (isset($this->configuration['resource']['id'])) {
+            if (is_array($this->configuration['resource']['id']) &&
+                array_key_exists('_typoScriptNodeValue', $this->configuration['resource']['id'])
+            ) {
+                $this->resourceId = $this->typoScriptFrontendController
+                    ->cObj
+                    ->cObjGetSingle(
+                        $this->configuration['resource']['id']['_typoScriptNodeValue'],
+                        $this->configuration['resource']['id']
+                    );
+            } else {
+                $this->resourceId = (int)$this->configuration['resource']['id'];
+            }
+        }
     }
 
 }

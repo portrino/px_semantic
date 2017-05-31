@@ -35,5 +35,61 @@ namespace Portrino\PxSemantic\SchemaOrg;
  */
 class Intangible extends Thing
 {
+    /**
+     * @var string A sub property of description. A short description of the item used to disambiguate from other, similar items. Information from other properties (in particular, name) may be necessary for the description to be useful for disambiguation
+     */
+    private $disambiguatingDescription;
 
+    /**
+     * @var string The identifier property represents any kind of identifier for any kind of \[\[Thing\]\], such as ISBNs, GTIN codes, UUIDs etc. Schema.org provides dedicated properties for representing many of these, either as textual strings or as URL (URI) links. See \[background notes\](/docs/datamodel.html#identifierBg) for more details
+     */
+    private $identifier;
+
+    /**
+     * Sets disambiguatingDescription.
+     *
+     * @param string $disambiguatingDescription
+     *
+     * @return $this
+     */
+    public function setDisambiguatingDescription($disambiguatingDescription)
+    {
+        $this->disambiguatingDescription = $disambiguatingDescription;
+
+        return $this;
+    }
+
+    /**
+     * Gets disambiguatingDescription.
+     *
+     * @return string
+     */
+    public function getDisambiguatingDescription()
+    {
+        return $this->disambiguatingDescription;
+    }
+
+    /**
+     * Sets identifier.
+     *
+     * @param string $identifier
+     *
+     * @return $this
+     */
+    public function setIdentifier($identifier)
+    {
+        $this->identifier = $identifier;
+
+        return $this;
+    }
+
+    /**
+     * Gets identifier.
+     *
+     * @return string
+     */
+    public function getIdentifier()
+    {
+        return $this->identifier;
+    }
 }

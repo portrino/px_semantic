@@ -1,5 +1,10 @@
 # PxSemantic Change log
 
+2.3.0 - 2017-05-31
+------------------
+* [TASK] Adds many new entities from schema.org via api-platform schema-generator
+* [BUGFIX] Fix bug where resource id was not retrieved correctly via TS
+
 2.2.0 - 2017-03-20
 ------------------
 * [BUGFIX] Fix bug which occurs when caching was disabled for HYDRA REST requests 

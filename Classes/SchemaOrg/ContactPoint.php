@@ -35,36 +35,35 @@ namespace Portrino\PxSemantic\SchemaOrg;
  */
 class ContactPoint extends StructuredValue
 {
-
     /**
      * @var string The geographic area where a service or offered item is provided
      */
-    protected $areaServed;
+    private $areaServed;
 
     /**
-     * @var Language A language someone may use with the item. Please use one of the language codes from the [IETF BCP 47 standard](http://tools.ietf.org/html/bcp47). See also [[inLanguage]]
+     * @var Language A language someone may use with the item. Please use one of the language codes from the \[IETF BCP 47 standard\](http://tools.ietf.org/html/bcp47). See also \[\[inLanguage\]\]
      */
-    protected $availableLanguage;
+    private $availableLanguage;
 
     /**
      * @var string A person or organization can have different contact points, for different purposes. For example, a sales contact point, a PR contact point and so on. This property is used to specify the kind of contact point
      */
-    protected $contactType;
+    private $contactType;
 
     /**
      * @var string Email address
      */
-    protected $email;
+    private $email;
 
     /**
      * @var string The fax number
      */
-    protected $faxNumber;
+    private $faxNumber;
 
     /**
      * @var string The telephone number
      */
-    protected $telephone;
+    private $telephone;
 
     /**
      * Sets areaServed.

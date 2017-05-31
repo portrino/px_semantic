@@ -35,61 +35,60 @@ namespace Portrino\PxSemantic\SchemaOrg;
  */
 class CreativeWork extends Thing
 {
-
     /**
      * @var Thing The subject matter of the content
      */
-    protected $about;
-
-    /**
-     * @var AggregateRating The overall rating, based on a collection of reviews or ratings, of the item
-     */
-    protected $aggregateRating;
+    private $about;
 
     /**
      * @var Person The author of this content or rating. Please note that author is special in that HTML 5 provides a special mechanism for indicating authorship via the rel tag. That is equivalent to this and may be used interchangeably
      */
-    protected $author;
+    private $author;
+
+    /**
+     * @var AggregateRating The overall rating, based on a collection of reviews or ratings, of the item
+     */
+    private $aggregateRating;
 
     /**
      * @var Comment Comments, typically from users
      */
-    protected $comment;
-
-    /**
-     * @var \DateTime The date on which the CreativeWork was created or the item was added to a DataFeed
-     */
-    protected $dateCreated;
-
-    /**
-     * @var \DateTime The date on which the CreativeWork was most recently modified or when the item's entry was modified within a DataFeed
-     */
-    protected $dateModified;
-
-    /**
-     * @var \DateTime Date of first broadcast/publication
-     */
-    protected $datePublished;
-
-    /**
-     * @var string Headline of the article
-     */
-    protected $headline;
-
-    /**
-     * @var Organization The publisher of the creative work
-     */
-    protected $publisher;
-
-    /**
-     * @var string The textual content of this CreativeWork
-     */
-    protected $text;
+    private $comment;
 
     /**
      * @var int The number of comments this CreativeWork (e.g. Article, Question or Answer) has received. This is most applicable to works published in Web sites with commenting system; additional comments may exist elsewhere
      */
-    protected $commentCount;
+    private $commentCount;
+
+    /**
+     * @var \DateTime The date on which the CreativeWork was created or the item was added to a DataFeed
+     */
+    private $dateCreated;
+
+    /**
+     * @var \DateTime Date of first broadcast/publication
+     */
+    private $datePublished;
+
+    /**
+     * @var \DateTime The date on which the CreativeWork was most recently modified or when the item's entry was modified within a DataFeed
+     */
+    private $dateModified;
+
+    /**
+     * @var string Headline of the article
+     */
+    private $headline;
+
+    /**
+     * @var Organization The publisher of the creative work
+     */
+    private $publisher;
+
+    /**
+     * @var string The textual content of this CreativeWork
+     */
+    private $text;
 
     /**
      * Sets about.
@@ -113,30 +112,6 @@ class CreativeWork extends Thing
     public function getAbout()
     {
         return $this->about;
-    }
-
-    /**
-     * Sets aggregateRating.
-     *
-     * @param AggregateRating $aggregateRating
-     *
-     * @return $this
-     */
-    public function setAggregateRating(AggregateRating $aggregateRating = null)
-    {
-        $this->aggregateRating = $aggregateRating;
-
-        return $this;
-    }
-
-    /**
-     * Gets aggregateRating.
-     *
-     * @return AggregateRating
-     */
-    public function getAggregateRating()
-    {
-        return $this->aggregateRating;
     }
 
     /**
@@ -164,6 +139,30 @@ class CreativeWork extends Thing
     }
 
     /**
+     * Sets aggregateRating.
+     *
+     * @param AggregateRating $aggregateRating
+     *
+     * @return $this
+     */
+    public function setAggregateRating(AggregateRating $aggregateRating = null)
+    {
+        $this->aggregateRating = $aggregateRating;
+
+        return $this;
+    }
+
+    /**
+     * Gets aggregateRating.
+     *
+     * @return AggregateRating
+     */
+    public function getAggregateRating()
+    {
+        return $this->aggregateRating;
+    }
+
+    /**
      * Sets comment.
      *
      * @param Comment $comment
@@ -188,19 +187,39 @@ class CreativeWork extends Thing
     }
 
     /**
+     * Sets commentCount.
+     *
+     * @param int $commentCount
+     *
+     * @return $this
+     */
+    public function setCommentCount($commentCount)
+    {
+        $this->commentCount = $commentCount;
+
+        return $this;
+    }
+
+    /**
+     * Gets commentCount.
+     *
+     * @return int
+     */
+    public function getCommentCount()
+    {
+        return $this->commentCount;
+    }
+
+    /**
      * Sets dateCreated.
      *
      * @param \DateTime $dateCreated
      *
      * @return $this
      */
-    public function setDateCreated($dateCreated = null)
+    public function setDateCreated(\DateTime $dateCreated = null)
     {
-        if ($dateCreated instanceof \DateTime) {
-            $this->dateCreated = $dateCreated;
-        } else {
-            $this->dateCreated = new \DateTime($dateCreated);
-        }
+        $this->dateCreated = $dateCreated;
 
         return $this;
     }
@@ -216,47 +235,15 @@ class CreativeWork extends Thing
     }
 
     /**
-     * Sets dateModified.
-     *
-     * @param \DateTime $dateModified
-     *
-     * @return $this
-     */
-    public function setDateModified($dateModified = null)
-    {
-        if ($dateModified instanceof \DateTime) {
-            $this->dateModified = $dateModified;
-        } else {
-            $this->dateModified = new \DateTime($dateModified);
-        }
-
-        return $this;
-    }
-
-    /**
-     * Gets dateModified.
-     *
-     * @return \DateTime
-     */
-    public function getDateModified()
-    {
-        return $this->dateModified;
-    }
-
-    /**
      * Sets datePublished.
      *
      * @param \DateTime $datePublished
      *
      * @return $this
      */
-    public function setDatePublished($datePublished = null)
+    public function setDatePublished(\DateTime $datePublished = null)
     {
-        if ($datePublished instanceof \DateTime) {
-            $this->datePublished = $datePublished;
-        } else {
-            $this->datePublished = new \DateTime($datePublished);
-        }
+        $this->datePublished = $datePublished;
 
         return $this;
     }
@@ -269,6 +256,30 @@ class CreativeWork extends Thing
     public function getDatePublished()
     {
         return $this->datePublished;
+    }
+
+    /**
+     * Sets dateModified.
+     *
+     * @param \DateTime $dateModified
+     *
+     * @return $this
+     */
+    public function setDateModified(\DateTime $dateModified = null)
+    {
+        $this->dateModified = $dateModified;
+
+        return $this;
+    }
+
+    /**
+     * Gets dateModified.
+     *
+     * @return \DateTime
+     */
+    public function getDateModified()
+    {
+        return $this->dateModified;
     }
 
     /**
@@ -341,29 +352,5 @@ class CreativeWork extends Thing
     public function getText()
     {
         return $this->text;
-    }
-
-    /**
-     * Sets commentCount.
-     *
-     * @param int $commentCount
-     *
-     * @return $this
-     */
-    public function setCommentCount($commentCount)
-    {
-        $this->commentCount = $commentCount;
-
-        return $this;
-    }
-
-    /**
-     * Gets commentCount.
-     *
-     * @return int
-     */
-    public function getCommentCount()
-    {
-        return $this->commentCount;
     }
 }

@@ -35,50 +35,25 @@ namespace Portrino\PxSemantic\SchemaOrg;
  */
 class Place extends Thing
 {
+    /**
+     * @var AggregateRating The overall rating, based on a collection of reviews or ratings, of the item
+     */
+    private $aggregateRating;
 
     /**
      * @var PostalAddress Physical address of the item
      */
-    protected $address;
-
-    /**
-     * @var AggregateRating The overall rating, based on a collection of reviews or ratings, of the item
-     */
-    protected $aggregateRating;
+    private $address;
 
     /**
      * @var string A short textual code (also called "store code") that uniquely identifies a place of business. The code is typically assigned by the parentOrganization and used in structured URLs.\\n\\nFor example, in the URL http://www.starbucks.co.uk/store-locator/etc/detail/3047 the code "3047" is a branchCode for a particular branch
      */
-    protected $branchCode;
+    private $branchCode;
 
     /**
-     * @var string The [Global Location Number](http://www.gs1.org/gln) (GLN, sometimes also referred to as International Location Number or ILN) of the respective organization, person, or place. The GLN is a 13-digit number used to identify parties and physical locations
+     * @var string The \[Global Location Number\](http://www.gs1.org/gln) (GLN, sometimes also referred to as International Location Number or ILN) of the respective organization, person, or place. The GLN is a 13-digit number used to identify parties and physical locations
      */
-    protected $globalLocationNumber;
-
-    /**
-     * Sets address.
-     *
-     * @param PostalAddress $address
-     *
-     * @return $this
-     */
-    public function setAddress(PostalAddress $address = null)
-    {
-        $this->address = $address;
-
-        return $this;
-    }
-
-    /**
-     * Gets address.
-     *
-     * @return PostalAddress
-     */
-    public function getAddress()
-    {
-        return $this->address;
-    }
+    private $globalLocationNumber;
 
     /**
      * Sets aggregateRating.
@@ -102,6 +77,30 @@ class Place extends Thing
     public function getAggregateRating()
     {
         return $this->aggregateRating;
+    }
+
+    /**
+     * Sets address.
+     *
+     * @param PostalAddress $address
+     *
+     * @return $this
+     */
+    public function setAddress(PostalAddress $address = null)
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    /**
+     * Gets address.
+     *
+     * @return PostalAddress
+     */
+    public function getAddress()
+    {
+        return $this->address;
     }
 
     /**
