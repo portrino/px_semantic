@@ -149,7 +149,7 @@ class PageProcessor extends AbstractProcessor
 
                         $imageObject->setWidth((int)$processedImage->getProperty('width'));
                         $imageObject->setHeight((int)$processedImage->getProperty('height'));
-                        $imageObject->setUrl($this->imageService->getImageUri($processedImage));
+                        $imageObject->setUrl($this->imageService->getImageUri($processedImage, true));
 
                         $entity->setImage($imageObject);
                     }
