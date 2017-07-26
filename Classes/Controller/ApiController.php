@@ -290,7 +290,6 @@ class ApiController extends AbstractHydraController
      */
     public function showAction($endpoint = '', $uid = 0)
     {
-
         /** @var AbstractEntity|null $domainObject */
         $domainObject = $this->resourceRepository->findByUid($uid);
 
@@ -308,12 +307,11 @@ class ApiController extends AbstractHydraController
             $entity->setId($iri);
 
             if ($this->response instanceof CacheableResponse) {
-                $this->response->setResource($domainObjects);
+                $this->response->setResource($domainObject);
             }
         }
 
         $this->view->setVariablesToRender(['entity']);
         $this->view->assign('entity', $entity);
     }
-
 }
