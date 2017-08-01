@@ -151,11 +151,11 @@ class HydraIriBuilder extends UriBuilder
     /**
      * @param string $endpoint
      * @param int $limit
-     * @param string $constraint
+     * @param array $constraints
      *
      * @return string
      */
-    public function iriForFirstPage($endpoint, $limit = 10, $constraint = '') {
+    public function iriForFirstPage($endpoint, $limit = 10, $constraints = []) {
 
         if ($limit === 10) {
             $iri = $this->iriFor($endpoint);
@@ -166,8 +166,8 @@ class HydraIriBuilder extends UriBuilder
                 'limit' => $limit,
             ];
 
-            if ($constraint != '') {
-                $arguments['constraint'] = $constraint;
+            if (is_array($constraints) && !empty($constraints)) {
+                $arguments['constraints'] = $constraints;
             }
 
             $iri = $this
@@ -194,11 +194,11 @@ class HydraIriBuilder extends UriBuilder
      * @param string $endpoint
      * @param int $currentOffset
      * @param int $limit
-     * @param string $constraint
+     * @param array $constraints
      *
      * @return string
      */
-    public function iriForPreviousPage($endpoint, $currentOffset = 0, $limit = 10, $constraint = '') {
+    public function iriForPreviousPage($endpoint, $currentOffset = 0, $limit = 10, $constraints = []) {
 
         $offset = ($currentOffset - $limit > 0) ? $currentOffset - $limit : 0;
 
@@ -207,8 +207,8 @@ class HydraIriBuilder extends UriBuilder
             'limit' => $limit,
         ];
 
-        if ($constraint != '') {
-            $arguments['constraint'] = $constraint;
+        if (is_array($constraints) && !empty($constraints)) {
+            $arguments['constraints'] = $constraints;
         }
 
         $iri = $this
@@ -234,19 +234,19 @@ class HydraIriBuilder extends UriBuilder
      * @param string $endpoint
      * @param int $currentOffset
      * @param int $limit
-     * @param string $constraint
+     * @param array $constraints
      *
      * @return string
      */
-    public function iriForNextPage($endpoint, $currentOffset = 0, $limit = 10, $constraint = '') {
+    public function iriForNextPage($endpoint, $currentOffset = 0, $limit = 10, $constraints = []) {
 
         $arguments = [
             'offset' => $currentOffset + $limit,
             'limit' => $limit,
         ];
 
-        if ($constraint != '') {
-            $arguments['constraint'] = $constraint;
+        if (is_array($constraints) && !empty($constraints)) {
+            $arguments['constraints'] = $constraints;
         }
 
         $iri = $this
@@ -272,19 +272,19 @@ class HydraIriBuilder extends UriBuilder
      * @param string $endpoint
      * @param int $total
      * @param int $limit
-     * @param string $constraint
+     * @param array $constraints
      *
      * @return string
      */
-    public function iriForLastPage($endpoint, $total, $limit = 10, $constraint = '') {
+    public function iriForLastPage($endpoint, $total, $limit = 10, $constraints = []) {
 
         $arguments = [
             'offset' => $total - ($total % $limit),
             'limit' => $limit,
         ];
 
-        if ($constraint != '') {
-            $arguments['constraint'] = $constraint;
+        if (is_array($constraints) && !empty($constraints)) {
+            $arguments['constraints'] = $constraints;
         }
 
         $iri = $this
