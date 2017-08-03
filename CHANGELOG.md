@@ -1,5 +1,10 @@
 # PxSemantic Change log
 
+2.3.1 - 2017-08-03
+------------------
+* [TASK] Changes dep versions in `ext_emconf.php` and `composer.json` for TYPO3 8 Compatibility
+* [BUGFIX] Changes the properties "weight" and "height" to type QuantitativeValue for schema.org compliance
+
 2.3.0 - 2017-05-31
 ------------------
 * [TASK] Adds many new entities from schema.org via api-platform schema-generator

@@ -33,7 +33,7 @@ namespace Portrino\PxSemantic\SchemaOrg;
  *
  * @author Andre Wuttig<wuttig@portrino.de>
  */
-class Product extends Thing
+abstract class Product extends Thing
 {
     /**
      * @var PropertyValue A property-value pair representing an additional characteristics of the entitity, e.g. a product feature or another characteristic for which there is no matching property in schema.org.\\n\\nNote: Publishers should be aware that applications designed to use specific schema.org properties (e.g. http://schema.org/width, http://schema.org/color, http://schema.org/gtin13, ...) will typically expect such data to be provided using those properties, rather than using the generic property/value mechanism
@@ -66,7 +66,7 @@ class Product extends Thing
     private $depth;
 
     /**
-     * @var int The height of the item
+     * @var QuantitativeValue The height of the item
      */
     private $height;
 
@@ -116,12 +116,12 @@ class Product extends Thing
     private $releaseDate;
 
     /**
-     * @var int The weight of the product or person
+     * @var QuantitativeValue The weight of the product or person
      */
     private $weight;
 
     /**
-     * @var int The width of the item
+     * @var QuantitativeValue The width of the item
      */
     private $width;
 
@@ -277,11 +277,11 @@ class Product extends Thing
     /**
      * Sets height.
      *
-     * @param int $height
+     * @param QuantitativeValue $height
      *
      * @return $this
      */
-    public function setHeight($height)
+    public function setHeight(QuantitativeValue $height = null)
     {
         $this->height = $height;
 
@@ -291,7 +291,7 @@ class Product extends Thing
     /**
      * Gets height.
      *
-     * @return int
+     * @return QuantitativeValue
      */
     public function getHeight()
     {
@@ -517,11 +517,11 @@ class Product extends Thing
     /**
      * Sets weight.
      *
-     * @param int $weight
+     * @param QuantitativeValue $weight
      *
      * @return $this
      */
-    public function setWeight($weight)
+    public function setWeight(QuantitativeValue $weight = null)
     {
         $this->weight = $weight;
 
@@ -531,7 +531,7 @@ class Product extends Thing
     /**
      * Gets weight.
      *
-     * @return int
+     * @return QuantitativeValue
      */
     public function getWeight()
     {
@@ -541,11 +541,11 @@ class Product extends Thing
     /**
      * Sets width.
      *
-     * @param int $width
+     * @param QuantitativeValue $width
      *
      * @return $this
      */
-    public function setWidth($width)
+    public function setWidth(QuantitativeValue $width = null)
     {
         $this->width = $width;
 
@@ -555,7 +555,7 @@ class Product extends Thing
     /**
      * Gets width.
      *
-     * @return int
+     * @return QuantitativeValue
      */
     public function getWidth()
     {

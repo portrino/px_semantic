@@ -216,7 +216,7 @@ types:
       gender: ~
       givenName: ~
       globalLocationNumber: ~
-      height: { range: "Integer" }
+      height: ~
       homeLocation: { range: "ContactPoint" }
       honorificPrefix: ~
       honorificSuffix: ~
@@ -233,7 +233,7 @@ types:
       taxID: ~
       telephone: ~
       vatID: ~
-      weight: { range: "Integer" }
+      weight: ~
       workLocation: { range: "ContactPoint" }
       worksFor: ~
   Place:
@@ -258,7 +258,7 @@ types:
       category: ~
       color: ~
       depth: ~
-      height: { range: "Integer" }
+      height: ~
       logo: ~
       manufacturer: ~
       material: ~
@@ -268,8 +268,8 @@ types:
       productionDate: ~
       purchaseDate: ~
       releaseDate: ~
-      weight: { range: "Integer" }
-      width: { range: "Integer" }
+      weight: ~
+      width: { range: "QuantitativeValue" }
       offers: ~
   PropertyValue:
   QAPage:

@@ -141,7 +141,7 @@ class Person extends Thing
     private $globalLocationNumber;
 
     /**
-     * @var int The height of the item
+     * @var QuantitativeValue The height of the item
      */
     private $height;
 
@@ -226,7 +226,7 @@ class Person extends Thing
     private $vatID;
 
     /**
-     * @var int The weight of the product or person
+     * @var QuantitativeValue The weight of the product or person
      */
     private $weight;
 
@@ -747,11 +747,11 @@ class Person extends Thing
     /**
      * Sets height.
      *
-     * @param int $height
+     * @param QuantitativeValue $height
      *
      * @return $this
      */
-    public function setHeight($height)
+    public function setHeight(QuantitativeValue $height = null)
     {
         $this->height = $height;
 
@@ -761,7 +761,7 @@ class Person extends Thing
     /**
      * Gets height.
      *
-     * @return int
+     * @return QuantitativeValue
      */
     public function getHeight()
     {
@@ -1155,11 +1155,11 @@ class Person extends Thing
     /**
      * Sets weight.
      *
-     * @param int $weight
+     * @param QuantitativeValue $weight
      *
      * @return $this
      */
-    public function setWeight($weight)
+    public function setWeight(QuantitativeValue $weight = null)
     {
         $this->weight = $weight;
 
@@ -1169,7 +1169,7 @@ class Person extends Thing
     /**
      * Gets weight.
      *
-     * @return int
+     * @return QuantitativeValue
      */
     public function getWeight()
     {
