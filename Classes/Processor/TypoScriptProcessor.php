@@ -87,10 +87,12 @@ class TypoScriptProcessor implements ProcessorInterface
      */
     public function process(&$entity, $settings = [], $resourceId = null)
     {
-
         $typoScriptArray = $this->typoScriptService->convertPlainArrayToTypoScriptArray($settings);
 
         foreach ($settings as $propertyName => $propertyValue) {
+            $getterMethodName = 'get' . ucfirst($propertyName);
+            $setterMethodName = 'set' . ucfirst($propertyName);
+
             // if it is a content object
             if (is_array($propertyValue) && array_key_exists('_typoScriptNodeValue', $propertyValue)) {
                 if (isset($typoScriptArray[$propertyName]) && isset($typoScriptArray[$propertyName . '.'])) {
@@ -99,32 +101,34 @@ class TypoScriptProcessor implements ProcessorInterface
                     if ($converter != null) {
                         $value = $converter->convert($typoScriptArray[$propertyName . '.']);
                     } else {
-                        $value = $this->typoScriptFrontendController->cObj->cObjGetSingle($typoScriptArray[$propertyName],
-                            $typoScriptArray[$propertyName . '.']);
+                        $value = $this->typoScriptFrontendController->cObj->cObjGetSingle(
+                            $typoScriptArray[$propertyName],
+                            $typoScriptArray[$propertyName . '.']
+                        );
                     }
 
-                    call_user_func_array([$entity, 'set' . $propertyName], [$value]);
+                    call_user_func_array([$entity, $setterMethodName], [$value]);
                 }
                 // if it is a property which is an entity (called subEntity)
             } else {
                 if (is_array($propertyValue) && !array_key_exists('_typoScriptNodeValue', $propertyValue)) {
-
-                    $methodParameters = $this->reflectionService->getMethodParameters(get_class($entity),
-                        'set' . $propertyName);
+                    $methodParameters = $this->reflectionService->getMethodParameters(
+                        get_class($entity),
+                        'set' . $propertyName
+                    );
                     if (isset($methodParameters[$propertyName])) {
                         $type = $methodParameters[$propertyName]['class'];
 
-                        $subEntity = call_user_func([$entity, 'get' . ucfirst($propertyName)]);
+                        $subEntity = call_user_func([$entity, $getterMethodName]);
                         $subEntity = $subEntity ? $subEntity : $this->objectManager->get($type);
 
                         $this->process($subEntity, $propertyValue);
-                        call_user_func_array([$entity, 'set' . $propertyName], [$subEntity]);
+                        call_user_func_array([$entity, $setterMethodName], [$subEntity]);
                     }
                 } else {
-                    call_user_func_array([$entity, 'set' . $propertyName], [$propertyValue]);
+                    call_user_func_array([$entity, $setterMethodName], [$propertyValue]);
                 }
             }
         }
-
     }
 }

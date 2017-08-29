@@ -1,4 +1,14 @@
-# PxSemantic Change log
+# PxSemantic Changelog
+
+2.4.0 - 2017-08-01
+------------------
+* [FEATURE] Switch string $contraint to array $constraints in ApiController->listAction() to allow multiple constraints
+* [BUGFIX] Force absolute URIs
+
+2.3.1 - 2017-07-26
+------------------
+* [BUGFIX] fixes typo in ApiController->showAction()
+* [BUGFIX] updates TypoScriptProcessor->process() - fixes entity property getter and setter calls
 
 2.3.1 - 2017-08-03
 ------------------

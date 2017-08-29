@@ -232,12 +232,21 @@ class ApiController extends AbstractHydraController
     {
         $offset = (GeneralUtility::_GET('offset') != null) ? (int)GeneralUtility::_GET('offset') : 0;
         $limit = (GeneralUtility::_GET('limit') != null) ? (int)GeneralUtility::_GET('limit') : 10;
-        $constraint = (GeneralUtility::_GET('constraint') != null) ? (string)GeneralUtility::_GET('constraint') : '';
+        $constraints = (GeneralUtility::_GET('constraints') != null) ? (array)GeneralUtility::_GET('constraints') : [];
+
+        $this->signalSlotDispatcher->dispatch(
+            __CLASS__,
+            __FUNCTION__ . 'PreProcess',
+            [&$endpoint, &$offset, &$limit, &$constraints, $this]
+        );
 
         if ($this->resourceRepository instanceof RestRepositoryInterface) {
-            $domainObjects = $this->resourceRepository->findByOffsetAndLimitAndConstraint($offset, $limit,
-                $constraint)->toArray();
-            $totalItems = $this->resourceRepository->countByConstraint($constraint);
+            $domainObjects = $this->resourceRepository->findByOffsetAndLimitAndConstraints(
+                $offset,
+                $limit,
+                $constraints
+            )->toArray();
+            $totalItems = $this->resourceRepository->countByConstraints($constraints);
         } else {
             $domainObjects = $this->resourceRepository->findAll();
             $totalItems = $this->resourceRepository->countAll();
@@ -248,12 +257,18 @@ class ApiController extends AbstractHydraController
         $pagedCollection->setId($this->hydraIriBuilder->iriFor($endpoint, $offset, $limit));
 
         $pagedCollection->setItemsPerPage($limit);
-        $pagedCollection->setFirstPage($this->hydraIriBuilder->iriForFirstPage($endpoint, $limit, $constraint));
-        $pagedCollection->setPreviousPage($this->hydraIriBuilder->iriForPreviousPage($endpoint, $offset, $limit,
-            $constraint));
-        $pagedCollection->setNextPage($this->hydraIriBuilder->iriForNextPage($endpoint, $offset, $limit, $constraint));
-        $pagedCollection->setLastPage($this->hydraIriBuilder->iriForLastPage($endpoint, $totalItems, $limit,
-            $constraint));
+        $pagedCollection->setFirstPage(
+            $this->hydraIriBuilder->iriForFirstPage($endpoint, $limit, $constraints)
+        );
+        $pagedCollection->setPreviousPage(
+            $this->hydraIriBuilder->iriForPreviousPage($endpoint, $offset, $limit, $constraints)
+        );
+        $pagedCollection->setNextPage(
+            $this->hydraIriBuilder->iriForNextPage($endpoint, $offset, $limit, $constraints)
+        );
+        $pagedCollection->setLastPage(
+            $this->hydraIriBuilder->iriForLastPage($endpoint, $totalItems, $limit, $constraints)
+        );
 
         /** @var AbstractEntity $domainObject */
         foreach ($domainObjects as $domainObject) {
@@ -290,7 +305,6 @@ class ApiController extends AbstractHydraController
      */
     public function showAction($endpoint = '', $uid = 0)
     {
-
         /** @var AbstractEntity|null $domainObject */
         $domainObject = $this->resourceRepository->findByUid($uid);
 
@@ -308,12 +322,11 @@ class ApiController extends AbstractHydraController
             $entity->setId($iri);
 
             if ($this->response instanceof CacheableResponse) {
-                $this->response->setResource($domainObjects);
+                $this->response->setResource($domainObject);
             }
         }
 
         $this->view->setVariablesToRender(['entity']);
         $this->view->assign('entity', $entity);
     }
-
 }

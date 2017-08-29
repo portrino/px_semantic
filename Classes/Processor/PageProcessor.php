@@ -81,7 +81,11 @@ class PageProcessor extends AbstractProcessor
         }
 
         if ($page && $entity instanceof CreativeWork) {
-            $url = $this->uriBuilder->setTargetPageUid($page->getUid())->build();
+            $url = $this->uriBuilder
+                ->reset()
+                ->setTargetPageUid($page->getUid())
+                ->setCreateAbsoluteUri(true)
+                ->build();
 
             $entity->setId($url);
 

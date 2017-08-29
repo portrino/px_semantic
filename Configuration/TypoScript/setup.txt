@@ -240,6 +240,7 @@ lib.structuredDataMarkupOrganizationExample {
                     url = TEXT
                     url.typolink {
                         parameter = 1
+                        forceAbsoluteUrl = 1
                         returnLast = url
                     }
                 }

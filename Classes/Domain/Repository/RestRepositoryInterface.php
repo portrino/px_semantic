@@ -41,20 +41,20 @@ interface RestRepositoryInterface
      *
      * @param int $offset
      * @param int $limit
-     * @param string $constraint
+     * @param array $constraints
      *
      * @return QueryResultInterface|array
      */
-    public function findByOffsetAndLimitAndConstraint($offset = 0, $limit = -1, $constraint = '');
+    public function findByOffsetAndLimitAndConstraints($offset = 0, $limit = -1, $constraints = []);
 
 
     /**
      * Count by constraint
      *
-     * @param string $constraint
+     * @param array $constraints
      *
      * @return int
      */
-    public function countByConstraint($constraint = '');
+    public function countByConstraints($constraint = []);
 
 }
