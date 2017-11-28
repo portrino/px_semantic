@@ -279,7 +279,7 @@ plugin.tx_pxsemantic {
  ## Authors
 
 ![](https://avatars0.githubusercontent.com/u/726519?s=40&v=4)
-![](https://avatars0.githubusercontent.com/u/31662036?s=40&v=4)
+![](https://avatars0.githubusercontent.com/u/540478?s=40&v=4)
 
 * **André Wuttig** - *Initial work, Semantic REST API, Documentation* - [aWuttig](https://github.com/aWuttig)
 * **Axel Böswetter** - *some more semantic.org entities* - [EvilBMP](https://github.com/EvilBMP)
