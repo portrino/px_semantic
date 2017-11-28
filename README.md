@@ -276,3 +276,12 @@ plugin.tx_pxsemantic {
 
 * Could be found under: https://github.com/portrino/px-semantic-demo
  
+ ## Authors
+
+![](https://avatars0.githubusercontent.com/u/726519?s=40&v=4)
+![](https://avatars0.githubusercontent.com/u/31662036?s=40&v=4)
+
+* **André Wuttig** - *Initial work, Semantic REST API, Documentation* - [aWuttig](https://github.com/aWuttig)
+* **Axel Böswetter** - *some more semantic.org entities* - [EvilBMP](https://github.com/EvilBMP)
+
+See also the list of [contributors](https://github.com/portrino/px_semantic/graphs/contributors) who participated in this project.
