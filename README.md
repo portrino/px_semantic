@@ -1,4 +1,7 @@
 # px_semantic 2.5.0 (beta)
+[![Latest Stable Version](https://poser.pugx.org/portrino/px_semantic/v/stable)](https://packagist.org/packages/portrino/px_semantic)
+[![Total Downloads](https://poser.pugx.org/portrino/px_semantic/downloads)](https://packagist.org/packages/portrino/px_semantic)
+
 Structured Data Markup Rendering for TYPO3 with JSON-LD
 
 **PxSemantic** provides an extrem dynamic and highly customizable solution to embed structured data on your website 
