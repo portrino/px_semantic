@@ -71,7 +71,7 @@ class TypoScriptTypeConverterFactory implements SingletonInterface
                 $typoScriptTypeConverter = $this->objectManager->get($className);
 
                 if (!$typoScriptTypeConverter instanceof TypoScriptTypeConverterInterface) {
-                    throw new \Exception('The given Converter "' . $className . '"implement \Portrino\PxSemantic\Converter\TypoScriptTypeConverterInterface',
+                    throw new \Exception('The given Converter "' . $className . '" must implement \Portrino\PxSemantic\Converter\TypoScriptTypeConverterInterface',
                         1464072320);
                 }
             }
