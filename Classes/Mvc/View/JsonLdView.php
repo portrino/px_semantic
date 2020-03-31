@@ -48,7 +48,11 @@ class JsonLdView extends JsonView
     {
         $this->controllerContext->getResponse()->setHeader('Content-Type', 'application/ld+json');
         $propertiesToRender = $this->renderArray();
-        return json_encode($propertiesToRender, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
+        if (is_array($propertiesToRender)) {
+            return json_encode($propertiesToRender, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
+        } else {
+            return;
+        }
     }/** @noinspection PhpMissingParentCallCommonInspection */
 
     /**

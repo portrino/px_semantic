@@ -85,8 +85,10 @@ class EntityController extends ActionController
                 $settings = isset($processorConfiguration['settings']) ? $processorConfiguration['settings'] : [];
                 $processor->process($entity, $settings);
             }
-
-            $this->view->assign('entity', $entity);
+            
+            if ($entity) {
+                $this->view->assign('entity', $entity);
+            }
         }
 
     }
