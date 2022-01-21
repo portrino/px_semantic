@@ -1,5 +1,14 @@
 # PxSemantic Changelog
 
+2.5.1 - 2022-01-21
+------------------
+* [TASK] fix composer.json, and CHANGELOG.md
+
+2.5.0 - 2017-08-03
+------------------
+* [TASK] Changes dep versions in `ext_emconf.php` and `composer.json` for TYPO3 8 Compatibility
+* [BUGFIX] Changes the properties "weight" and "height" to type QuantitativeValue for schema.org compliance
+
 2.4.0 - 2017-08-01
 ------------------
 * [FEATURE] Switch string $contraint to array $constraints in ApiController->listAction() to allow multiple constraints
@@ -9,11 +18,6 @@
 ------------------
 * [BUGFIX] fixes typo in ApiController->showAction()
 * [BUGFIX] updates TypoScriptProcessor->process() - fixes entity property getter and setter calls
-
-2.3.1 - 2017-08-03
-------------------
-* [TASK] Changes dep versions in `ext_emconf.php` and `composer.json` for TYPO3 8 Compatibility
-* [BUGFIX] Changes the properties "weight" and "height" to type QuantitativeValue for schema.org compliance
 
 2.3.0 - 2017-05-31
 ------------------

@@ -42,6 +42,6 @@
         }
     },
     "replace": {
-        "px_semantic": "*"
+        "typo3-ter/px_semantic": "self.version"
     }
 }
